@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./try01.css">
     <title>firstwebsite</title>
 </head>
+
 <body>
     This is my first website: 01 Stan
     <div class="header">
         <div class="logo">
-            <img src="./6.jpg" alt="">
+            <img src="./assets/logo.jpg" alt="">
 
         </div>
         <div class="nav">
             <ul>
                 <li>Home</li>
-                <li>About</li>
-                <li>Product</li>
+                <li class="about">About
+                
+                    <ul class="dropdown1">
+                        <li>Company</li>
+                        <li>Team</li>
+                        <li>History</li>
+                    </ul>
+                </li>       
+                    
+                <li class="product">Product
+                    <ul class="dropdown2">
+                        <li>book</li>
+                        <li>doll</li>
+                        <li>other</li>
+                    </ul>
+                </li>
                 <li>Order</li>
                 <li>Contact</li>
             </ul>
 
+        </div>
+        <div class="menu">
+            <img src="./assets/menu.png" alt="">
         </div>
     </div>
     <div class="main">
         <div class="sidenav">
             <ul>
                 <li>Home</li>
-                <li>About</li>
+                <li>About<li>                  
                 <li>Product</li>
                 <li>Order</li>
                 <li>Contact</li>
@@ -37,9 +56,40 @@
         </div>
         <div class="content">
 
+            <!-- the code is produced by type "h${the header number:$ the bigger the number is the smaller the size is}*6" -->
+            <h1>the header number: 1, the bigger the number is the smaller the size is</h1>
+            <h2>the header number: 2, the bigger the number is the smaller the size is</h2>
+            <h3>the header number: 3, the bigger the number is the smaller the size is</h3>
+            <h4>the header number: 4, the bigger the number is the smaller the size is</h4>
+            <h5>the header number: 5, the bigger the number is the smaller the size is</h5>
+            <h6>the header number: 6, the bigger the number is the smaller the size is</h6>
+            <!-- font[color="red" size="$" face="標楷體"]{指定字型以上的三種屬性，可選擇使用或一起搭配使用}*7 -->
+            <font color="red" size="1" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="2" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="3" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="4" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="5" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="6" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <font color="red" size="7" face="標楷體">指定字型以上的三種屬性，可選擇使用或一起搭配使用</font><br>
+            <!-- the code is produced by type "p{the content}" -->
+            <p><b>this is emphasised content</b></p>
+            <p><i>這是斜體</i></p>
+            <p><em>這是提供google搜尋引擎在網頁中強調文字</em></p>
+            <p><u>這是網頁文字加底線的內容設定</u></p>
+            p>del{這是網頁文字刪除線的內容設定}</p>
+            <p><strong>這是google SEO特別強調的重要性</strong></p>
+            <p><q>設定網頁的文字雙引號標記</q></p>
+            <p>X<sup>2</sup>+Y<sup>2</sup>=Z<sup>2</sup></p>
+            <p>log<sub>2</sub>8=3</p>
+            
+
+
+
+
         </div>
     </div>
 
 
 </body>
+
 </html>
