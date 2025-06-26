@@ -8,6 +8,7 @@
     
   </head>
     <style type="text/css">
+        /* #在CSS中為ID的樣式設定，此設定有唯一的專屬性 */
         
         #header{
             width: 800px;
@@ -20,8 +21,8 @@
         #content{
             width: 800px;
             height: 700px;
-            background-color:rgb(240, 136, 87);
-            color: rgb(26, 185, 4);
+            background-color:rgb(253, 155, 7);
+            color: rgb(2, 2, 2);
             text-align: left;
             font-size: 24px;
         }
@@ -33,6 +34,22 @@
             text-align: center;
             font-size: 12px;
         }
+        /* "." in css is for the class, this setting can put in multiple element.  */
+        .nav{
+            font-size: 24px;
+            margin-right: 15px;
+            text-decoration: none;
+            background-color: #fce40d;
+            color: #fff;
+            padding: 5px;
+
+        }
+        /* :hover 是虛類別，必須要依附主類別的存在，用來設定滑鼠動態滑過元件 */
+        .nav:hover{
+            background-color:pink;
+            color: #fce40d;
+
+        }
     </style>
 </head>
 <body>
@@ -40,10 +57,141 @@
      #header+#content+#footer -->
     <div id="header">
         this is the header for the page for navigation bar.
+        <p >
+        <a class="nav" href="http://www.yahoo.com.tw">按我連到yahoo!</a>
+        <a class="nav" href="./try01.html">Try01</a>
+        <a class="nav" href="./try02.html">Try02</a>
+        <a class="nav" href="./try04.html">Try04</a>
+        <a class="nav" href="./try05.html">Try05</a>
+        <a class="nav" href="./try06.html">Try06</a>
+        <a class="nav" href="mailto:test@gmail.com">寄信給我</a>
+    </p>
     </div>
     <div id="content">
         this is the content of the page.
         <img src="./7.jpg" width="400" height="300" alt="view" title="風景圖">
+
+        <!-- table>tr>td{\*}+td{$}*5^(tr>td{$}+td{1*$=$}*5)*5 -->
+
+        <table border="1" bgcolor="#fff" bordercolor="'green" style="color:#000">
+            <tr>
+                <td>*</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td bgcolor="red">5</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1*1=1</td>
+                <td>2*1=2</td>
+                <td>3*1=3</td>
+                <td>4*1=4</td>
+                <td bgcolor="red">5*1=5</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1*2=1</td>
+                <td>2*2=4</td>
+                <td>3*2=6</td>
+                <td>4*2=8</td>
+                <td bgcolor="red">5*2=10</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1*3=3</td>
+                <td>2*3=6</td>
+                <td>3*3=9</td>
+                <td>4*3=12</td>
+                <td bgcolor="red">5*3=15</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>1*4=4</td>
+                <td>2*4=8</td>
+                <td>3*4=12</td>
+                <td>4*4=16</td>
+                <td bgcolor="red">5*4=20</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td bgcolor="yellow">1*5=5</td>
+                <td bgcolor="yellow">2*5=10</td>
+                <td bgcolor="yellow">3*5=15</td>
+                <td bgcolor="yellow">4*5=20</td>
+                <td >5*5=25</td>
+            </tr>
+        </table>
+        <table border="1" bgcolor="#fff" bordercolor="'green" style="color:#000">
+            <tr>
+                <td>*</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1*1=1</td>
+                <td>1*2=2</td>
+                <td>1*3=3</td>
+                <td>1*4=4</td>
+                <td bgcolor="red">1*5=5</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2*1=2</td>
+                <td>2*2=4</td>
+                <td>2*3=6</td>
+                <td>2*4=8</td>
+                <td bgcolor="red">2*5=10</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>3*1=3</td>
+                <td>3*2=6</td>
+                <td>3*3=9</td>
+                <td>3*4=12</td>
+                <td bgcolor="red">3*5=15</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>4*1=4</td>
+                <td>4*2=8</td>
+                <td>4*3=12</td>
+                <td>4*4=16</td>
+                <td bgcolor="red">4*5=20</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td bgcolor="yellow">5*1=5</td>
+                <td bgcolor="yellow">5*2=10</td>
+                <td bgcolor="yellow">5*3=15</td>
+                <td bgcolor="yellow">5*4=20</td>
+                <td>5*5=25</td>
+            </tr>
+        </table>
+
+        <!-- table>tr*3>td{簡單測試資料$}*3 the below table is created by this code -->
+        <table border="1" bgcolor="0000ff" background="6.jpg" width="400" height="300" bordercolor="blue" align="center">
+            <tr>
+                <td bgcolor="#cccccc">簡單測試資料1</td>
+                <td bgcolor="#cccccc">簡單測試資料2</td>
+                <td bgcolor="#cccccc">簡單測試資料3</td>
+            </tr>
+            <tr>
+                <td bgcolor="#cccccc">簡單測試資料1</td>
+                <td bgcolor="#cccccc">簡單測試資料2</td>
+                <td bgcolor="#cccccc">簡單測試資料3</td>
+            </tr>
+            <tr>
+                <td bgcolor="#cccccc">簡單測試資料1</td>
+                <td bgcolor="#cccccc">簡單測試資料2</td>
+                <td bgcolor="#cccccc">簡單測試資料3</td>
+            </tr>
+        </table>
     </div>
     <div id="footer" class="text-success">
         this is the content for the footer, used to display copyright information and the contact detail.

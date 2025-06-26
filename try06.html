@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="./try06.css">
+</head>
+<body>
+    <h1 align="center">Happy Birthday</h1>
+    <div class="wrap">
+    <table border="0" style="width: 900px; text-align: center;">
+        <tr>
+            <th>日</th>
+            <th>一</th>
+            <th>二</th>
+            <th>三</th>
+            <th>四</th>
+            <th>五</th>
+            <th>六</th>
+            <tr>
+                <td class="holiday">1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td class="holiday">7</td>
+            </tr>
+            <tr>
+                <td class="holiday">8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td class="birthday">12</td>
+                <td>13</td>
+                <td class="holiday">14</td>
+            </tr>
+            <tr>
+                <td class="holiday">15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td class="holiday">21</td>
+            </tr>
+            <tr>
+                <td class="holiday">22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td class="holiday">28</td>
+            </tr>
+            <tr>
+                <td class="holiday">29</td>
+                <td>30</td>
+                <td class="none">1</td>
+                <td class="none">2</td>
+                <td class="none">3</td>
+                <td class="none">4</td>
+                <td class="none">5</td>
+            </tr>
+            
+        </tr>
+    </table>
+    </div>
+
+    <marquee behavior="alternate" direction="left" scrollamount="20" ><h1>Wish list! Buy me the gifts as below:</h1></marquee>
+    <div class="gifthere" id="gifthere">
+        <!-- <div class="giftself">
+            <a href="https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=227971"><img src="./assets/try06.jfif" alt=""></a>
+        </div> -->
+        <div class="giftbox">
+            <img src="./assets/gift.png" alt="">
+        </div>
+    </div>
+
+<script>
+    const birthdayEvent = document.querySelector('.gifthere');
+
+    function addGiftboxClick() {
+        const birthdayBox = document.querySelector('.giftbox');
+        if (birthdayBox) {
+            birthdayBox.addEventListener('click', showGift);
+        }
+    }
+
+    function showGift() {
+        birthdayEvent.innerHTML = `
+    <div class="giftself">
+      <a href="https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=227971">
+        <img src="./assets/try06.jfif" alt="">
+      </a>
+    </div>
+  `;
+
+
+        birthdayEvent.addEventListener('mouseout', resetGiftbox, { once: true });
+    }
+
+        function resetGiftbox() {
+            birthdayEvent.innerHTML = `
+    <div class="giftbox">
+      <img src="./assets/gift.png" alt="">
+    </div>
+  `;
+            
+        addGiftboxClick();
+        }
+
+        
+        addGiftboxClick();
+
+
+
+
+    // const giftbox=document.querySelector('.giftbox')
+    // const giftself=document.querySelector('.giftself');
+    // function birthdayEvent(){
+        
+    //     giftbox.classList.add('clicked');
+    //     giftself.classList.add('clicked');
+    // }
+    // function out(){
+    //     giftbox.classList.remove('clicked');
+    //     giftself.classList.remove('clicked');
+    // }
+
+    // giftbox.addEventListener('click',birthdayEvent);
+    // giftbox.addEventListener('mouseout',out
+    // );
+    
+    
+</script>
+    
+</body>
+</html>
