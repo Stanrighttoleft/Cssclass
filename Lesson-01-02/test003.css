@@ -1,0 +1,51 @@
+
+        /* *,*::before,*::after{
+            box-sizing:border-box;
+        } */
+        .content{
+            /* .fontset{
+                font-size:200px;
+                line-height: 200px;
+            } */
+            
+            background-color: skyblue;
+            width: 800px;
+            height: 1000px;
+            display: flex;
+            /* flex-direction : row/row-reverse|column|column-reverse; content, content中內容項目排列方式與方向 */
+            flex-direction: row;
+            /* flex-wrap:nowrap|wrap|wrap-reverse; items在有需要的時候自動換行 */
+            flex-wrap: wrap;
+            /* justify-content:flex-start|flex-end|center|space-between|space-around|space-evenly;的元件在主軸線對其的方式跟方向 */
+            justify-content: stretch;
+            
+            /* aligh-items:stretch|flex-start|flex-end|center|baseline; content內的元件在交錯軸的對齊方式與方向 */
+            align-items: center;
+            /* align-content:stretch|flex-start|flex-end|center|space-between|space-around|space-evenly; content內的元件整體在交錯軸的對齊的方式與方向 */
+            align-content: stretch;
+        }
+        .item{
+            
+            background-color: yellowgreen;
+            width: 98px;
+            border: solid 1px white;
+            /* margin-bottom: 50px; */
+            
+        }
+        .alignSelfStart{
+            /* align-self:auto|center|flex-start|flex-end|baseline;調整個別子元素在家錯軸的位置 */
+            align-self: flex-start;
+        }
+        .alignSelfEnd{
+            align-self:flex-end
+        }
+        .orderCtl{
+            order:2;   
+        }
+       
+        
+        /* .pad{
+            margin-top: 50px;
+            margin-bottom: 50px;
+        } */
+   

@@ -1,0 +1,40 @@
+#header{
+    background-image: url("./images1/header_bg.jpg");
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 129px;
+
+
+}
+#content{
+    background-image: url("./images1/content_bg.jpg");
+    background-repeat: repeat-y;
+    width: 800px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: stretch;
+}
+#contentL{
+    width: 245px;
+    background-color: skyblue;
+
+}
+#contentM{
+    width: 450px;
+    background-color: bisque;
+
+}
+#contentR{
+    width: 105px;
+    background-color: palegreen;
+}
+
+#footer{
+    background-image: url("./images1/footer_bg.jpg");
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 52px;
+    
+}
