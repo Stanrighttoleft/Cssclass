@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css testing</title>
+    <link rel="stylesheet" href="test004.css">
+    <!-- CSS權重:!important>inline style>id>* -->
+     <style>
+        .container{
+            width: 800px;
+            background-color: aqua;
+        }
+        /* how to deal with 複合的CSS權重 */
+        div.item{
+            /* 觀念6:復合式權重計算方式為各個階層累加的總數值,但是低階層累加的進位並不會影響上一階層的權重 */
+            color:blueviolet;
+            /* 0-0-1-1 */
+            /* 例如#content #contentL #listNew p */
+            /* 0-3-0-1 */
+        }
+        
+
+        div{
+            font-size:22px;
+            font-weight: bolder;
+            width: 100px;
+            text-align: center;
+            background-color: hotpink;
+            height: 50px;
+            margin-bottom: 30px;
+            /* 觀念2:元件element's weight>* in css, so the font-color will be replaced by the *CSS setting */
+            color: greenyellow ;
+            /* 0-0-0-1 */
+        }
+        *{
+            /* 觀念1:權重相同的CSS設定,後寫CSS會取代first edit setting */
+            color:red ;
+            /* 0-0-0-0 */
+            /* how to deal with CSS be set to !important, other elemetn need to set to !important, so the new setting can replace it. but once you set it, the following setting will be affected as well */
+
+        }
+        .item{
+            /* 觀念3:類別item class>元件element權重>*的CSS,因此類別的文字顏色 */
+            color: black ;
+        }
+        #colorset{
+            /* 觀念4:colorset ID>class>element>* ID權重最重 */
+            /* 觀念七:注意低階層的CSS設定,到高階層具有繼承的作用,所以此設定將會影響文字4字體放大 */
+            color:indigo ;
+            font-size:30px;
+        }
+        /* 請使用複合設定文字3的字體顏色跟放大字體,須標示css權種植,並觀察文字4字體變化(CSS具繼承的作用) */
+     </style>
+</head>
+<body>
+    <h1>css權重測試頁</h1>
+    <section class="container">
+        <p>文字0</p>
+        <div>文字1</div>
+        <div  class="item">文字2</div>
+        <!-- 觀念5: inline style>ID>class>element>* -->
+         <div  id="colorset" class="item" >文字3</div>
+         <div  id="colorset" class="item" >
+            <span>文字3
+
+            </span>
+            <!-- 觀念8:在子階層的權重值將會重新計算,並不會繼承 -->
+             <!-- 0-0-0-0  -->
+        </div>
+         
+         <!-- 再生成文字3並且生成span觀察變化(權重並不會繼承) -->
+         <div id="colorset" class="item" style="color:white">文字4</div>
+         <!-- 1-0-0-0 -->
+    </section>
+
+    
+</body>
+</html>

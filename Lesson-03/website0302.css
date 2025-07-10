@@ -88,3 +88,24 @@ body{
 	margin-left: 13px;
 	line-height: 2.5em;
 }
+a{
+	color: yellowgreen;
+	text-decoration: none;
+}
+a:hover{
+	color: bisque;
+	text-decoration: dotted;
+
+}
+a:active{
+	color: skyblue;
+	/* text-decoration: overline; */
+	text-decoration:line-through;
+}
+.transition{
+	transition:opacity 1s ease 0s;
+
+}
+.transition:hover{
+	opacity: 0.5;
+}

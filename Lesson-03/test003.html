@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .demo{
+            width:800px;
+            height:800px;
+            border:1px solid black;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: center;
+
+        }
+        .demo div{
+            width: 80px;
+            height: 80px;
+            border: 1px double pink;
+            margin-top: 2px;
+            margin-left: 0;
+            background: linear-gradient(to right, yellow, pink);
+            background-size: 200% 100%;
+            background-position: left center;
+            text-shadow: 0 0 0 #000;
+            
+}
+            
+      
+        .demo:hover div{
+            
+            margin-top: 708px;
+            transform: rotate(720deg) scale(1.15);
+            border: 3px dotted yellow;
+            
+            background-position: right center;
+            text-shadow: 2px 2px 5px black;
+            color:white;
+            border-radius: 50%;
+            
+
+        }
+
+        /* 下列為各種,時間速率 */
+        .timing1{
+            transition: margin-top 3s ease 0s, transform 3s ease 0s;
+        }
+        .timing2{
+            transition: all 2s ease-in 1s;
+        }
+        .timing3{
+            transition: all 2s ease-out 1s;
+        }
+        .timing4{
+            transition: all 3s ease-in-out 0s;
+        }
+        .timing5{
+            transition: margin-top 3s linear 0s, color 3s;
+        }
+        .timing6{
+            transition: all 3s cubic-bezier(0.1,0.7,1,0.1) 0s;
+        }
+        .timing6:hover{
+            
+            animation: try 3s ease ;
+            margin-left:50px;
+            margin-right:50px;
+            margin-top:670px;
+        }
+
+        @keyframes try{
+            0% {
+                transform: rotate(0deg)
+            }
+            25% {
+                transform: rotate(60deg) scale(1.2);
+            }
+            50% {
+                transform:  rotate(360deg);
+            }
+            75% {
+                transform: translateY(-50px) rotate(0deg) scale(2);
+            }
+            100% {
+                transform:  rotate(60deg);
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <div class="timing1">ease</div>
+        <div class="timing2">ease-in</div>
+        <div class="timing3">ease-out</div>
+        <div class="timing4">ease-in-out</div>
+        <div class="timing5">linear</div>
+        <div class="timing6">cubic-bezier</div>
+        <div class="">no transition</div>
+    </div>
+    
+</body>
+</html>

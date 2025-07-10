@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .demo{
+            width:680px;
+            border:1px solid red;
+
+        }
+        .demo div{
+            width: 80px;
+            height: 50px;
+            border: 1px solid blue;
+            margin-top: 2px;
+            margin-left: 0;
+            background-color: chartreuse;
+            
+        }
+        .demo:hover div{
+            /* 需保留80px空間給div */
+            margin-left: 600px;
+            transform: rotateY(720deg) scale(2.0);
+            background-color: hotpink;
+
+        }
+        /* 下列為各種,時間速率 */
+        .timing1{
+            transition: margin-left 3s ease 0s, transform 3s ease 0s;
+        }
+        .timing2{
+            transition: all 2s ease-in 1s;
+        }
+        .timing3{
+            transition: all 2s ease-out 1s;
+        }
+        .timing4{
+            transition: margin-left 3s ease-in-out 0s;
+        }
+        .timing5{
+            transition: margin-left 3s linear 0s;
+        }
+        .timing6{
+            transition: margin-left 3s cubic-bezier(0.1,0.7,1,0.1) 0s;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <div class="timing1">ease</div>
+        <div class="timing2">ease-in</div>
+        <div class="timing3">ease-out</div>
+        <div class="timing4">ease-in-out</div>
+        <div class="timing5">linear</div>
+        <div class="timing6">cubic-bezier</div>
+        <div class="">no transition</div>
+    </div>
+    
+</body>
+</html>

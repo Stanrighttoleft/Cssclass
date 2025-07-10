@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 import ImageCard from './components/image-card.vue'
 import Navbar from './components/navbar.vue'
+import nextTick from './components/nextTick.vue';
 
 const images = [
   { src: '/assets/1.jpg', name: 'Image 1' },
@@ -21,6 +22,7 @@ const images = [
       </nav>
     
     <ImageCard :imageList="images" :visibleNumber="5" />
+    <nextTick/>
   
 
   <RouterView />
