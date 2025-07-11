@@ -6,19 +6,19 @@ export default{
         };
     },
     watch:{
-        list:function(newList,oldList){
+        list:{
+        handler:function(newList,oldList){
             console.log('normal',this.$refs.ullist.offsetHeight);
             this.$nextTick(function(){
                 console.log('nextTick',this.$refs.ullist.offsetHeight);
+        
             })
+        },
+        deep:true,
         }
     },
-    deep:true,
-    methods: {
-    addToList() {
-            this.list = [...this.list, this.list.length + 1];
-    }
-  },
+    
+    
     mounted() {
         console.log('nextTick component mounted');
     }

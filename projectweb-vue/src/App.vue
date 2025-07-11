@@ -15,11 +15,11 @@ const images = [
 </script>
 
 <template>
-       <nav>
+     
         <Navbar/>
         <RouterLink to="/" class="text-danger">Home</RouterLink>
         <RouterLink to="/about" class="text-danger">About</RouterLink>
-      </nav>
+      
     
     <ImageCard :imageList="images" :visibleNumber="5" />
     <nextTick/>
@@ -29,4 +29,9 @@ const images = [
 </template>
 
 <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 </style>

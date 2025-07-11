@@ -1,7 +1,7 @@
 <template>
-    <div class="nav">
+    <div class="nav bg-warning">
         <div class="logo">
-            <img :src="logo" alt="" width="40">
+            <img :src="logo" alt="" class="w-100">
         </div>
         <div class="navlist">
             <ul>
@@ -18,7 +18,7 @@ export default{
     name:'Navbar',
     data(){
         return{
-            logo:'/favicon.ico',
+            logo:'./assets/logov2.png',
             link:['Home', 'About', 'Products', 'Contact Us'],
 
         };
@@ -27,12 +27,18 @@ export default{
 }
 
 </script>
-<style scoped>
+<style >
+body, html {
+  margin: 0;
+  padding: 0;
+}
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  width:100%;
+  box-sizing: border-box;
 }
 .navlist ul{
     display: flex;
@@ -48,6 +54,7 @@ li {
   cursor: pointer;
 }
 .logo img {
-  height: 40px;
+  height: 100px;
+  width: auto;
 }
 </style>
