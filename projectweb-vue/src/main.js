@@ -1,4 +1,3 @@
-import './assets/main.css'
 import '../css/custom.css'
 
 

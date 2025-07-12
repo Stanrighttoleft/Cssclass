@@ -1,5 +1,5 @@
 <template>
-    <div class="nav bg-warning">
+    <div class="navbar bg-warning">
         <div class="logo">
             <img :src="logo" alt="" class="w-100">
         </div>
@@ -32,7 +32,7 @@ body, html {
   margin: 0;
   padding: 0;
 }
-.nav {
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;

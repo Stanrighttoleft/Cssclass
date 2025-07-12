@@ -15,21 +15,23 @@ const images = [
 </script>
 
 <template>
+  <div>
      
-        <Navbar/>
-        <RouterLink to="/" class="text-danger">Home</RouterLink>
-        <RouterLink to="/about" class="text-danger">About</RouterLink>
+  <Navbar/>
+  <RouterLink to="/" class="text-danger">Home</RouterLink>
+  <RouterLink to="/about" class="text-danger">About</RouterLink>
       
     
-    <ImageCard :imageList="images" :visibleNumber="5" />
-    <nextTick/>
+  <ImageCard :imageList="images" :visibleNumber="5" />
+  <nextTick/>
   
 
   <RouterView />
+  </div>
 </template>
 
 <style>
-html, body {
+html, body, div  {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
