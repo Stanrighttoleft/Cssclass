@@ -8,7 +8,7 @@
                 <li 
                 v-for="(item,index) in link"
                 :key="index"
-                ><RouterLink :to=item.goTo class="text-danger">{{ item.name }}</RouterLink></li>
+                ><RouterLink :to=item.goTo class="navlink">{{ item.name }}</RouterLink></li>
             </ul>
         </div>
     </div>
@@ -18,7 +18,7 @@ import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const name=ref('Navbar');
-const logo=ref('./assets/logov2.png');
+const logo=ref('./assets/logov12.png');
 const link=ref([{
         name:'Home',
         goTo:'/',
@@ -62,11 +62,20 @@ body, html {
 .navlist li{
     margin-right: 2rm;
 }
-li {
-  cursor: pointer;
+.navlink {
+   
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-family: "Alata", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+ 
 }
 .logo img {
-  height: 100px;
-  width: auto;
+  height: 120px;
+  width: 120px;
 }
+
 </style>
