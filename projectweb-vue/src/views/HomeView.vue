@@ -28,7 +28,7 @@ export default{
 
 <template>
   <main>
-    <div>
+    <div class="text-primary">
       name: <input type="text" v-model="name">
       age: <input type="text" v-model="age">
       <button v-on:click="add">add</button>
