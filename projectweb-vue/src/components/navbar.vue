@@ -1,31 +1,43 @@
 <template>
     <div class="nav bg-warning">
         <div class="logo">
-            <img :src="logo" alt="" class="w-100">
+            <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
         </div>
         <div class="navlist">
             <ul>
                 <li 
                 v-for="(item,index) in link"
                 :key="index"
-                >{{ item }}</li>
+                ><RouterLink :to=item.goTo class="text-danger">{{ item.name }}</RouterLink></li>
             </ul>
         </div>
     </div>
 </template>
-<script>
-export default{
-    name:'Navbar',
-    data(){
-        return{
-            logo:'./assets/logov2.png',
-            link:['Home', 'About', 'Products', 'Contact Us'],
+<script setup>
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 
-        };
-    }
+const name=ref('Navbar');
+const logo=ref('./assets/logov2.png');
+const link=ref([{
+        name:'Home',
+        goTo:'/',
+
+    },
+    {
+        name:'About',
+        goTo:'/about',
+    },
+    {
+        name:'Products',
+        goTo:'/products',
+
+    },{
+        name:'Contact Us',
+        goTo:'/contact',
+    }])
+      
     
-}
-
 </script>
 <style >
 body, html {
