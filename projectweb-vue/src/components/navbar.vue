@@ -1,15 +1,20 @@
 <template>
-    <div class="nav bg-warning">
-        <div class="logo">
-            <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
+    <div>
+        <div class="nav-top bg-secondary">
+            <img class="facebook" :src="facebook" alt="">
         </div>
-        <div class="navlist">
-            <ul>
-                <li 
-                v-for="(item,index) in link"
-                :key="index"
-                ><RouterLink :to=item.goTo class="navlink">{{ item.name }}</RouterLink></li>
-            </ul>
+        <div class="nav bg-warning">
+            <div class="logo">
+                <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
+            </div>
+            <div class="navlist">
+                <ul>
+                    <li 
+                    v-for="(item,index) in link"
+                    :key="index"
+                    ><RouterLink :to=item.goTo class="navlink">{{ item.name }}</RouterLink></li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -19,6 +24,8 @@ import { RouterLink } from 'vue-router';
 
 const name=ref('Navbar');
 const logo=ref('./assets/logov12.png');
+const facebook=ref('./assets/facebook.png');
+const like=ref('./assets/like.png')
 const link=ref([{
         name:'Home',
         goTo:'/',
@@ -46,11 +53,18 @@ body, html {
 }
 .nav {
   display: flex;
+  height: 100px;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   width:100%;
   box-sizing: border-box;
+}
+.nav-top{
+    background-color: rgb(240, 186, 9);
+}
+.facebook{  
+    height: 30px;
 }
 .navlist ul{
     display: flex;
@@ -62,6 +76,7 @@ body, html {
 .navlist li{
     margin-right: 2rm;
 }
+
 .navlink {
    
     cursor: pointer;
@@ -74,8 +89,8 @@ body, html {
  
 }
 .logo img {
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
 }
 
 </style>
