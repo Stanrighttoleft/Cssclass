@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import '../css/custom.css'
-=======
 import './css/custom.css'
->>>>>>> upstream/main
 
 
 import { createApp } from 'vue'

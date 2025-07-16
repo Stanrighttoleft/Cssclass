@@ -1,13 +1,7 @@
 <template>
-<<<<<<< HEAD
-    <div class="navbar bg-warning">
-        <div class="logo">
-            <img :src="logo" alt="" class="w-100">
-=======
     <div>
         <div class="nav-top bg-secondary">
             <img class="facebook" :src="facebook" alt="">
->>>>>>> upstream/main
         </div>
         <div class="nav bg-warning">
             <div class="logo">
