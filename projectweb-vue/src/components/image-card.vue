@@ -1,11 +1,4 @@
-<template>
-  <div :class="`image-card-container-${visibleNumber} contain`">
-    <div class="card" v-for="(image, index) in visibleList" :key="index">
-      <img :src="image.src" class="card-img-top" alt="" />
-      <div class="card-body text-danger ">{{ image.name }}</div>
-    </div>
-  </div>
-</template>
+
 
 <script>
 export default {
@@ -30,6 +23,14 @@ export default {
   },
 };
 </script>
+<template>
+  <div :class="`image-card-container-${visibleNumber} contain`">
+    <div class="card" v-for="(image, index) in visibleList" :key="index">
+      <img :src="image.src" class="card-img-top" alt="" />
+      <div class="card-body text-danger ">{{ image.name }}</div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .card-img-top{
