@@ -30,7 +30,7 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: black;
-  --bs-secondary: rgb(128, 200, 128);
+  --bs-secondary: forestgreen;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
@@ -38,7 +38,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-primary-rgb: 0, 0, 0;
-  --bs-secondary-rgb: 128, 200, 128;
+  --bs-secondary-rgb: 34, 139, 34;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
@@ -46,7 +46,7 @@
   --bs-light-rgb: 248, 249, 250;
   --bs-dark-rgb: 33, 37, 41;
   --bs-primary-text-emphasis: black;
-  --bs-secondary-text-emphasis: rgb(51.2, 80, 51.2);
+  --bs-secondary-text-emphasis: rgb(13.6, 55.6, 13.6);
   --bs-success-text-emphasis: rgb(10, 54, 33.6);
   --bs-info-text-emphasis: rgb(5.2, 80.8, 96);
   --bs-warning-text-emphasis: rgb(102, 77.2, 2.8);
@@ -54,7 +54,7 @@
   --bs-light-text-emphasis: #495057;
   --bs-dark-text-emphasis: #495057;
   --bs-primary-bg-subtle: #cccccc;
-  --bs-secondary-bg-subtle: rgb(229.6, 244, 229.6);
+  --bs-secondary-bg-subtle: rgb(210.8, 231.8, 210.8);
   --bs-success-bg-subtle: rgb(209, 231, 220.8);
   --bs-info-bg-subtle: rgb(206.6, 244.4, 252);
   --bs-warning-bg-subtle: rgb(255, 242.6, 205.4);
@@ -62,7 +62,7 @@
   --bs-light-bg-subtle: rgb(251.5, 252, 252.5);
   --bs-dark-bg-subtle: #ced4da;
   --bs-primary-border-subtle: #999999;
-  --bs-secondary-border-subtle: rgb(204.2, 233, 204.2);
+  --bs-secondary-border-subtle: rgb(166.6, 208.6, 166.6);
   --bs-success-border-subtle: rgb(163, 207, 186.6);
   --bs-info-border-subtle: rgb(158.2, 233.8, 249);
   --bs-warning-border-subtle: rgb(255, 230.2, 155.8);
@@ -142,7 +142,7 @@
   --bs-tertiary-bg: rgb(42.5, 47.5, 52.5);
   --bs-tertiary-bg-rgb: 43, 48, 53;
   --bs-primary-text-emphasis: #666666;
-  --bs-secondary-text-emphasis: rgb(178.8, 222, 178.8);
+  --bs-secondary-text-emphasis: rgb(122.4, 185.4, 122.4);
   --bs-success-text-emphasis: rgb(117, 183, 152.4);
   --bs-info-text-emphasis: rgb(109.8, 223.2, 246);
   --bs-warning-text-emphasis: rgb(255, 217.8, 106.2);
@@ -150,7 +150,7 @@
   --bs-light-text-emphasis: #f8f9fa;
   --bs-dark-text-emphasis: #dee2e6;
   --bs-primary-bg-subtle: black;
-  --bs-secondary-bg-subtle: rgb(25.6, 40, 25.6);
+  --bs-secondary-bg-subtle: rgb(6.8, 27.8, 6.8);
   --bs-success-bg-subtle: rgb(5, 27, 16.8);
   --bs-info-bg-subtle: rgb(2.6, 40.4, 48);
   --bs-warning-bg-subtle: rgb(51, 38.6, 1.4);
@@ -158,7 +158,7 @@
   --bs-light-bg-subtle: #343a40;
   --bs-dark-bg-subtle: #1a1d20;
   --bs-primary-border-subtle: black;
-  --bs-secondary-border-subtle: rgb(76.8, 120, 76.8);
+  --bs-secondary-border-subtle: rgb(20.4, 83.4, 20.4);
   --bs-success-border-subtle: rgb(15, 81, 50.4);
   --bs-info-border-subtle: rgb(7.8, 121.2, 144);
   --bs-warning-border-subtle: rgb(153, 115.8, 4.2);
@@ -1944,13 +1944,13 @@ progress {
 
 .table-secondary {
   --bs-table-color: #000;
-  --bs-table-bg: rgb(229.6, 244, 229.6);
-  --bs-table-border-color: rgb(183.68, 195.2, 183.68);
-  --bs-table-striped-bg: rgb(218.12, 231.8, 218.12);
+  --bs-table-bg: rgb(210.8, 231.8, 210.8);
+  --bs-table-border-color: rgb(168.64, 185.44, 168.64);
+  --bs-table-striped-bg: rgb(200.26, 220.21, 200.26);
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: rgb(206.64, 219.6, 206.64);
+  --bs-table-active-bg: rgb(189.72, 208.62, 189.72);
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: rgb(212.38, 225.7, 212.38);
+  --bs-table-hover-bg: rgb(194.99, 214.415, 194.99);
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -2983,19 +2983,19 @@ textarea.form-control-lg {
 
 .btn-secondary {
   --bs-btn-color: #000;
-  --bs-btn-bg: rgb(128, 200, 128);
-  --bs-btn-border-color: rgb(128, 200, 128);
+  --bs-btn-bg: forestgreen;
+  --bs-btn-border-color: forestgreen;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: rgb(147.05, 208.25, 147.05);
-  --bs-btn-hover-border-color: rgb(140.7, 205.5, 140.7);
-  --bs-btn-focus-shadow-rgb: 109, 170, 109;
+  --bs-btn-hover-bg: rgb(67.15, 156.4, 67.15);
+  --bs-btn-hover-border-color: rgb(56.1, 150.6, 56.1);
+  --bs-btn-focus-shadow-rgb: 29, 118, 29;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: rgb(153.4, 211, 153.4);
-  --bs-btn-active-border-color: rgb(140.7, 205.5, 140.7);
+  --bs-btn-active-bg: rgb(78.2, 162.2, 78.2);
+  --bs-btn-active-border-color: rgb(56.1, 150.6, 56.1);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: rgb(128, 200, 128);
-  --bs-btn-disabled-border-color: rgb(128, 200, 128);
+  --bs-btn-disabled-bg: forestgreen;
+  --bs-btn-disabled-border-color: forestgreen;
 }
 
 .btn-success {
@@ -3118,19 +3118,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-secondary {
-  --bs-btn-color: rgb(128, 200, 128);
-  --bs-btn-border-color: rgb(128, 200, 128);
+  --bs-btn-color: forestgreen;
+  --bs-btn-border-color: forestgreen;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: rgb(128, 200, 128);
-  --bs-btn-hover-border-color: rgb(128, 200, 128);
-  --bs-btn-focus-shadow-rgb: 128, 200, 128;
+  --bs-btn-hover-bg: forestgreen;
+  --bs-btn-hover-border-color: forestgreen;
+  --bs-btn-focus-shadow-rgb: 34, 139, 34;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: rgb(128, 200, 128);
-  --bs-btn-active-border-color: rgb(128, 200, 128);
+  --bs-btn-active-bg: forestgreen;
+  --bs-btn-active-border-color: forestgreen;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: rgb(128, 200, 128);
+  --bs-btn-disabled-color: forestgreen;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: rgb(128, 200, 128);
+  --bs-btn-disabled-border-color: forestgreen;
   --bs-gradient: none;
 }
 
@@ -6806,8 +6806,8 @@ textarea.form-control-lg {
   text-decoration-color: RGBA(var(--bs-secondary-rgb), var(--bs-link-underline-opacity, 1)) !important;
 }
 .link-secondary:hover, .link-secondary:focus {
-  color: RGBA(153, 211, 153, var(--bs-link-opacity, 1)) !important;
-  text-decoration-color: RGBA(153, 211, 153, var(--bs-link-underline-opacity, 1)) !important;
+  color: RGBA(78, 162, 78, var(--bs-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(78, 162, 78, var(--bs-link-underline-opacity, 1)) !important;
 }
 
 .link-success {
