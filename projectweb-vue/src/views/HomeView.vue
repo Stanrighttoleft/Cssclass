@@ -34,6 +34,7 @@ const images = [
   
   <main>
     <openBanner/>
+         
     <ImageCard :imageList="images" :visibleNumber="6" />
 
     <div class="text-primary">

@@ -15,7 +15,7 @@
             
         </div>
         
-        <div class="nav bg-warning">
+        <div class="nav bg-secondary">
             <div class="logo">
                 <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
             </div>
@@ -122,7 +122,7 @@ body, html {
 }
 .logo img {
   height: 100px;
-  width: 100px;
+  width: 90px;
 }
 
 </style>

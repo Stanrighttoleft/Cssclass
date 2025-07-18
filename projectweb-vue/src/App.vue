@@ -10,7 +10,7 @@ import nextTick from './components/nextTick.vue';
      
     <Navbar/>
     <RouterView />
-    <nextTick/>
+    
 
   </main>
 </template>
