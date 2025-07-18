@@ -1,4 +1,5 @@
 <script setup>
+import openBanner from '../components/openBanner.vue'; 
 import ImageCard from '../components/image-card.vue';
 import { ref } from 'vue';
 
@@ -22,6 +23,7 @@ const images = [
   { src: '/assets/3.jpg', name: 'Image 3' },
   { src: '/assets/4.jpg', name: 'Image 4' },
   { src: '/assets/5.jpg', name: 'Image 5' },
+  { src: '/assets/6.jpg', name: 'Image 6' },
 ];
 
 </script>
@@ -31,7 +33,8 @@ const images = [
 <template>
   
   <main>
-    <ImageCard :imageList="images" :visibleNumber="5" />
+    <openBanner/>
+    <ImageCard :imageList="images" :visibleNumber="6" />
 
     <div class="text-primary">
       name: <input type="text" v-model="name">

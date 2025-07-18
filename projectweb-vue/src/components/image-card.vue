@@ -1,5 +1,3 @@
-
-
 <script>
 export default {
   name: 'ImageCard',
@@ -24,11 +22,13 @@ export default {
 };
 </script>
 <template>
-  <div :class="`image-card-container-${visibleNumber} contain`">
-    <div class="card" v-for="(image, index) in visibleList" :key="index">
-      <img :src="image.src" class="card-img-top" alt="" />
+  <div :class="`image-card-container-${visibleNumber} contain container-fluid bg-secondary`">
+  <div class="row" >
+    <div class="card col-12 col-sm-6 col-md-4 col-lg-2" v-for="(image, index) in visibleList" :key="index">
+      <img :src="image.src" class="card-img-top " alt="" />
       <div class="card-body text-danger ">{{ image.name }}</div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -36,9 +36,10 @@ export default {
 .card-img-top{
   width: 300px;
   height: 300px;
+ 
 }
 .card{
-  width:300px;
+  /* width:16em; */
   display: flex;
   flex-direction: column;
 }

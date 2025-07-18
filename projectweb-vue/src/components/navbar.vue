@@ -1,8 +1,20 @@
 <template>
-    <div>
-        <div class="nav-top bg-secondary">
-            <img class="facebook" :src="facebook" alt="">
+    <div class="container-fluid p-0">
+        <div class="row nav-top bg-secondary g-0">
+            <div class="nav-top-left d-flex justify-content-end col-sm-8 d-sm-flex d-none">
+                <img class="facebook" :src="facebook" alt="">
+                <span class="text-light" >Follow us on Facebook</span>
+                <img :src="like" alt="" class="like">
+            </div>
+            <div class="nav-top-right col-sm-4  justify-content-end d-flex">
+                <img :src="search" alt="" class="search">
+                <img :src="login" alt="" class="login">
+                <img :src="cart" alt="" class="search">
+
+            </div>
+            
         </div>
+        
         <div class="nav bg-warning">
             <div class="logo">
                 <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
@@ -25,7 +37,10 @@ import { RouterLink } from 'vue-router';
 const name=ref('Navbar');
 const logo=ref('./assets/logov12.png');
 const facebook=ref('./assets/facebook.png');
-const like=ref('./assets/like.png')
+const like=ref('./assets/like.png');
+const login=ref('./assets/user.png');
+const search=ref('./assets/search.png');
+const cart=ref('./assets/cart.png');
 const link=ref([{
         name:'Home',
         goTo:'/',
@@ -64,7 +79,24 @@ body, html {
     background-color: rgb(240, 186, 9);
 }
 .facebook{  
-    height: 30px;
+    height: 25px;
+    margin: 0 5px;
+}
+.like{
+    height:25px;
+    margin:0  5px;
+}
+.login{
+    height: 25px;
+    margin:0 5px;
+}
+.search{
+    height: 25px;
+    margin:0 5px;
+}
+.cart{
+    height: 25px;
+    margin:0 5px;
 }
 .navlist ul{
     display: flex;
