@@ -3,6 +3,12 @@
     <slot :currentSlide="currentSlide"></slot>
 
     <!--Navigation  -->
+    <div class="toggle-page left">
+        <span ><img src="./assets/left.png" alt=""></span>
+    </div>
+    <div class="toggle-page right">
+        <span ><img src="./assets/right.png" alt=""></span>
+    </div>
     
   </div>
 </template>

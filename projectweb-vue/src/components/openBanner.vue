@@ -1,6 +1,6 @@
 <script setup>
 
-import {ref} from 'Vue';
+import {ref} from 'vue';
 const rabbit=ref('./assets/rabbit.png');
 const fu=ref('./assets/fun.png')
 
