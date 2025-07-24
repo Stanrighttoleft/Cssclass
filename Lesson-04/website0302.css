@@ -170,6 +170,7 @@ a:hover {
 	right: 50px;
 	bottom: 0;
 	left: 35px;
+	border-left: dotted 3px yellowgreen;
 
 }
 #contentR #contentMain li{

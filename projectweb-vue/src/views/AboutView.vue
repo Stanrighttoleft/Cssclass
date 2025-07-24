@@ -1,13 +1,20 @@
 <template>
     <div class="about">
-        {{ 'test' }}
+       
        
         <Carousel
             class="carousel"
-            v-slot="{currentSlide}"
+            v-slot="{ currentSlide }"
+            :navigation="true"
+            :pagination="true"
+            :timeout="15000"
+            :startAutoPlay="true"
+            :slide-count="carouselSlides.length"
         >
             <Slide v-for="(slide, index) in carouselSlides" :key="index">
-                <div v-show="currentSlide ===index+1" class="slide-info">
+                <div 
+                v-show="currentSlide ===index+1" 
+                class="slide-info">
                     <img :src="`./assets/${slide}.jpg`"  alt=""/>
                     
                 </div>
@@ -31,8 +38,10 @@ const carouselSlides=ref(["bg-1","bg-2","bg-3"])
 <style>
 .carousel{
     position:relative;
-    max-height:100vh;
-    height:100vh
+    width: 100%;
+    height:500px;
+    
+    
 }
 .slide-info{
     position:absolute;

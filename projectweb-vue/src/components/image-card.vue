@@ -1,11 +1,14 @@
 <script>
 export default {
   name: 'ImageCard',
+  data(){
+    return {
+
+    };
+  },
+  
   props: {
-    imageList: {
-      type: Array,
-      default: () => [],
-    },
+    
     visibleNumber: {
       type: [Number, String],
       default: 3,
@@ -13,6 +16,10 @@ export default {
         return value > 0 && value <= 5;
       },
     },
+    getImages:{
+      type:Array,
+
+    }
   },
   computed: {
     visibleList() {
@@ -24,7 +31,7 @@ export default {
 <template>
   <div :class="`image-card-container-${visibleNumber} contain container-fluid bg-secondary`">
   <div class="row" >
-    <div class="card col-12 col-sm-6 col-md-4 col-lg-2" v-for="(image, index) in visibleList" :key="index">
+    <div class="card col-12 col-sm-6 col-md-4 col-lg-2" v-for="(image, index) in getImages" :key="index">
       <img :src="image.src" class="card-img-top " alt="" />
       <div class="card-body text-danger ">{{ image.name }}</div>
     </div>
