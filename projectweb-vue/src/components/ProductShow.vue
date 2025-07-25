@@ -1,5 +1,5 @@
 <template>
-     <div class="productShow">
+     <div class="productShow position-relative">
       <div class="container-fluid shows p-0 m-0 "  >
         <div ref="productDiv" class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
           <div class="col-1 col-sm-3 productcard p-0 m-0 " v-for="(product, index) in productsList" :key="index">
@@ -12,18 +12,26 @@
               <div class="bg-warning">{{product.name }}</div>
             </div>
           </div>
+        </div>
         <!-- Navigation -->
-          <div class="navigation position-absolute d-flex align-items-start align-items-center col-12 h-100">
-              <div class="navPrev col-2">
-                <img class="productBun" :src="prevBun" alt="">
-              </div>
-              <div class="navNext d-flex justify-content-end  col-10">
-                <img class="productBun" :src="nextBun" alt="">
+        <div class="navigation position-absolute d-flex start-0 end-0 justify-content-between px-2 " style="top: 45%; transform: translateY(-50%);">
+            <div class="navPrev col-2">
+              <img 
+              class="productBun"  @mousedown="startScroll('prev')"
+              @mouseup="stopScroll"
+              @mouseleave="stopScroll" :src="prevBun" alt="">
+            </div>
+            <div class="navNext d-flex justify-content-end  col-10">
+              <img 
+              class="productBun"
+              @mousedown="startScroll('next')"
+              @mouseup="stopScroll"
+              @mouseleave="stopScroll" :src="nextBun" alt="">
 
-              </div>
+            </div>
 
           </div>
-        </div>
+        
       </div>
 
     </div> 
@@ -36,6 +44,23 @@ const hot=ref('./assets/hot.png');
 const prevBun=ref('./assets/left.png');
 const nextBun=ref('./assets/right.png');
 const productDiv=ref(null);
+const scrollInterval=ref(null);
+const scrollAmount=300;
+const startScroll=(direction)=>{
+  if(!productDiv.value) return;
+
+
+  scrollInterval.value=setInterval(()=>{
+    productDiv.value.scrollBy({
+      left:direction==='next' ? scrollAmount /10 : -scrollAmount /10, behavior:'smooth'
+  })
+},50);
+};
+
+const stopScroll=()=>{
+  clearInterval(scrollInterval.value);
+  scrollInterval.value=null;
+}
 
 onMounted(() => {
   const width = productDiv.value.offsetWidth;
@@ -63,7 +88,7 @@ const props=defineProps({
 
 .productcard{
   width:300px;
-  height: 300px;
+  height: 250px;
 }
 .productimage{
   width:300px;
@@ -71,5 +96,6 @@ const props=defineProps({
 }
 .productBun{
   height: 40px;
+  cursor: pointer;
 }
 </style>
