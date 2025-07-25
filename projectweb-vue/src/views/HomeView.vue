@@ -2,29 +2,80 @@
 import openBanner from '../components/openBanner.vue'; 
 import ImageCard from '../components/image-card.vue';
 import { ref } from 'vue';
+import product from '@/components/product.vue';
+import ProductShow from '@/components/ProductShow.vue';
 
-const name=ref('');
-const list=ref([
-  {name:'billy',age:25}
-]);
-const add=()=>{
-  list.value.push({
-    name:name.value,
-    age:age.value,
-  })
-}
-const remove=()=>{
-  list.value.splice(index,1);
-}
 
-const images = [
-  { src: '/assets/1.jpg', name: 'Image 1' },
-  { src: '/assets/2.jpg', name: 'Image 2' },
-  { src: '/assets/3.jpg', name: 'Image 3' },
-  { src: '/assets/4.jpg', name: 'Image 4' },
-  { src: '/assets/5.jpg', name: 'Image 5' },
-  { src: '/assets/6.jpg', name: 'Image 6' },
-];
+
+const list=ref([{
+    id:1,
+    category:'雜貨',
+    name:'澳洲的土',
+    image:'./assets/1.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:2,
+    category:'雜貨',
+    name:'澳洲的水',
+    image:'./assets/2.jpg',
+    price:1200,
+    topsale:false,
+    latest:true,
+
+},{
+    id:3,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/3.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:4,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/4.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:5,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/5.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:6,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/6.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+}
+])
+
+const getImages= ref([
+        { src: './assets/1.jpg', name: 'Image 1' },
+        { src: '/assets/2.jpg', name: 'Image 2' },
+        { src: '/assets/3.jpg', name: 'Image 3' },
+        { src: '/assets/4.jpg', name: 'Image 4' },
+        { src: '/assets/5.jpg', name: 'Image 5' },
+        { src: '/assets/6.jpg', name: 'Image 6' },
+      ]);
 
 </script>
 
@@ -34,23 +85,11 @@ const images = [
   
   <main>
     <openBanner/>
+    <ProductShow :productsList="list"/>
          
-    <ImageCard :imageList="images" :visibleNumber="6" />
+    <ImageCard :visibleNumber="6" :getImages="getImages"/>
 
-    <div class="text-primary">
-      name: <input type="text" v-model="name">
-      age: <input type="text" v-model="age">
-      <button v-on:click="add">add</button>
-      <br><br>
-      <ul>
-        <li v-for="(item,index) in list" :key="index">
-          name:{{ item.name }}
-          age:{{ item.age }}
-          <button v-on:click="remove(index)">delete</button>
-
-        </li>
-      </ul>
-    </div>
+   
     
   </main>
 </template>

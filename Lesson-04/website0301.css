@@ -97,3 +97,78 @@ a {
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
+#booktop{
+	float: left;
+	width: 555px;
+	height: auto;
+	
+}
+#bookL01,#bookL02,#bookL03,#bookL04{
+	float: left;
+	width: 277px;
+	height: 300px;
+	
+}
+#bookR01,#bookR02,#bookR03,#bookR04{
+	float: left;
+	width: 278px;
+	height: 300px;
+	
+}
+#bookbom{
+	float: left;
+	width: 555px;
+	height: 500px;
+
+}
+.type1{
+	list-style-image: url('./images/arrow_c.gif');
+}
+.type2{
+	list-style-image: url('./images/arrow_k.gif');
+}
+.type3{
+	list-style-image: url('./images/arrow_m.gif');
+}
+.type4{
+	list-style-image: url('./images/arrow_y.gif');
+}
+#content #contentR #contentMain ul{
+	padding-top: 10px;
+	padding-right: 50px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+
+}
+#content #contentR #contentMain ul{
+	border-left: dotted 1px #666;
+
+}
+#content #contentR #contentMain li{
+	line-height: 2em;
+	padding-bottom: 15px;
+
+}
+.dd>img{
+	opacity:1;
+	transition: opacity 1s ease;
+}
+.dd>img:hover {
+	opacity:0.5;
+	
+	
+	
+	
+}
+.dd{
+	width: 195px;
+	border: solid 5px rgba(255,0,0,0);
+	
+	transition: border 0.5s ease ;
+
+
+}
+.dd:hover{
+	border: solid 5px rgba(255,0,0,1);
+
+}
