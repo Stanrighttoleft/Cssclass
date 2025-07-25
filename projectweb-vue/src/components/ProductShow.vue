@@ -1,7 +1,7 @@
 <template>
      <div class="productShow">
       <div class="container-fluid shows p-0 m-0 "  >
-        <div class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
+        <div ref="productDiv" class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
           <div class="col-1 col-sm-3 productcard p-0 m-0 " v-for="(product, index) in productsList" :key="index">
             <div class="position-relative border-end border-dark">
               <img class="productimage " :src="product.image" alt="">
@@ -30,10 +30,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
 const hot=ref('./assets/hot.png');
 const prevBun=ref('./assets/left.png');
 const nextBun=ref('./assets/right.png');
+const productDiv=ref(null);
+
+onMounted(() => {
+  const width = productDiv.value.offsetWidth;
+  console.log('Width:', width);
+
+
+  const rect = productDiv.value.getBoundingClientRect();
+  console.log('Width from getBoundingClientRect:', rect.width);
+});
 
 const props=defineProps({
   productsList:
