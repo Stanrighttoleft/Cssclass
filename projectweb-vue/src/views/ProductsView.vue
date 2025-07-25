@@ -1,57 +1,79 @@
 <template>
-    <div class="products">
-        <carousel
-            class="carousel"
-            v-slot="{ currentSlide }"
-            :navigation="true"
-            :pagination="true"
-            :timeout="15000"
-            :startAutoPlay="true"
-            :slide-count="carouselSlides.length"
-        >
-            <Slide v-for="(slide, index) in carouselSlides" :key="index">
-                <div 
-                v-show="currentSlide ===index+1" 
-                class="slide-info">
-                    <img :src="`./assets/${slide}.jpg`"  alt=""/>
-                    
-                </div>
-            </Slide>
+    <ProductShow :productsList="list"/>
 
-        </carousel>
-
-    </div>
+   
   
 </template>
 
 <script setup>
-import Carousel from '@/components/Carousel.vue';
-import Slide from '@/components/Slide.vue';
-import imageCard from '@/components/image-card.vue';
+import product from '@/components/product.vue';
+import ProductShow from '@/components/ProductShow.vue';
 import { ref } from 'vue';
+const list=ref([{
+    id:1,
+    category:'雜貨',
+    name:'澳洲的土',
+    image:'./assets/1.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
 
-const name="products";
-const carouselSlides=ref(["bg-1","bg-2","bg-3"]);
+
+},{
+    id:2,
+    category:'雜貨',
+    name:'澳洲的水',
+    image:'./assets/2.jpg',
+    price:1200,
+    topsale:false,
+    latest:true,
+
+},{
+    id:3,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/3.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:4,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/4.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:5,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/5.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+
+},{
+    id:6,
+    category:'雜貨',
+    name:'澳洲的空氣',
+    image:'./assets/6.jpg',
+    price:1200,
+    topsale:true,
+    latest:true,
+
+}
+])
+
 
 </script>
 
+
 <style>
-.carousel{
-    position:relative;
-    width: 100%;
-    height:500px;    
-}
-.slide-info{
-    position:absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-height: 100%;
-    height: 100%;
-}
-.slide-info img{
-    min-width:100%;
-    height:100%;
-    object-fit:cover;
-}
+
 </style>
