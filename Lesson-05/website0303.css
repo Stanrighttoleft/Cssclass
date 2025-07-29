@@ -142,3 +142,76 @@ a:hover {
 	margin-top: 65px;
 	margin-left: 100px;
 }
+.i1 {
+	width: 510px;
+	margin-bottom: 20px;
+}
+.i2{
+	width: 200px;
+}
+.i3{
+	width: 300px;
+	margin-bottom: 15px;
+	margin-top: 30px;
+}
+.i4{
+	width: 300px;
+}
+.i5{
+	width: 300px;
+}
+.i6{
+	width: 300px;
+}
+.fl{
+	float: left;
+	margin-right: 15px;
+}
+.fr{
+	float: right;
+	margin-left: 15px;
+}
+.clear{
+	clear:both;
+}
+h1 {
+	font-size          : 20px;
+	color              : #000;
+	background-image   : url(./starrail/h1_bg.gif);
+	background-repeat  : repeat-x;
+	padding-bottom     : 25px;
+	background-position: bottom;
+	display: flex;
+	justify-content: center;
+}
+
+h2 {
+	font-size        : 16px;
+	color            : palevioletred;
+	margin-top       : 15px;
+	margin-bottom    : 20px;
+	padding-left     : 10px;
+	margin-left      : 210px;
+	border-bottom: 3px solid red;
+}
+
+h3 {
+	font-size: 16px;
+	color    : #000;
+	border-bottom: 2px dotted black;
+}
+
+#contentMain a{
+	color: #00a0e9;
+	text-decoration: none;
+	border-bottom: 1px dotted #000;
+	
+}
+#contentMain a:hover{
+	color: #f00;
+	border: 1px solid #f00;
+}
+.top{
+	font-size: 16px;
+	float: right;
+}

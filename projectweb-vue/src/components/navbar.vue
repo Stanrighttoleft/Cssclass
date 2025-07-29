@@ -8,7 +8,8 @@
             </div>
             <div class="nav-top-right col-sm-4  justify-content-end d-flex">
                 <img :src="search" alt="" class="search">
-                <img :src="login" alt="" class="login">
+                <RouterLink to="/login">
+                <img :src="login" alt="" class="login"></RouterLink>
                 <img :src="cart" alt="" class="search">
 
             </div>
