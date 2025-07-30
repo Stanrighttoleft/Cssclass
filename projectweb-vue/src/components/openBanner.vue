@@ -1,8 +1,8 @@
 <script setup>
 
 import {ref} from 'vue';
-const rabbit=ref('./assets/rabbit.png');
-const fu=ref('./assets/fun.png')
+const rabbit=ref('/assets/rabbit.png');
+const fu=ref('/assets/fun.png')
 
 </script>
 
@@ -22,7 +22,7 @@ const fu=ref('./assets/fun.png')
 
 <style>
 .open{
-    background-image: url('./assets/open-field.jpg');
+    background-image: url('/assets/open-field.jpg');
     background-size: cover;
     height: 670px;
     overflow: hidden;
@@ -38,7 +38,7 @@ const fu=ref('./assets/fun.png')
     left: 0;
     right: 0;
     bottom: -70%;
-    background-image:url('./assets/grass1.svg');
+    background-image:url('/assets/grass1.svg');
     background-repeat: repeat-x;
     background-position: center;
 }

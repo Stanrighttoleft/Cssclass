@@ -1,8 +1,23 @@
 <template>
     <div class="container-fluid p-0">
+        <div class="row nav-top bg-secondary g-0">
+            <div class="nav-top-left d-flex justify-content-end col-sm-8 d-sm-flex d-none">
+                <img class="facebook" :src="facebook" alt="">
+                <span class="text-light" >Follow us on Facebook</span>
+                <img :src="like" alt="" class="like">
+            </div>
+            <div class="nav-top-right col-sm-4  justify-content-end d-flex">
+                <img :src="search" alt="" class="search">
+                <RouterLink to="/login">
+                <img :src="login" alt="" class="login"></RouterLink>
+                <img :src="cart" alt="" class="search">
+
+            </div>
+            
+        </div>
         
-        <div class="row bg-secondary g-0">
-            <div class="logo col-2 p-0 m-0">
+        <div class="nav bg-secondary">
+            <div class="logo">
                 <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
             </div>
             <div class="nav-right-top col-10 d-flex flex-column justify-content-between">

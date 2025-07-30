@@ -40,9 +40,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-const hot=ref('./assets/hot.png');
-const prevBun=ref('./assets/left.png');
-const nextBun=ref('./assets/right.png');
+const hot=ref('/assets/hot.png');
+const prevBun=ref('/assets/left.png');
+const nextBun=ref('/assets/right.png');
 const productDiv=ref(null);
 const scrollInterval=ref(null);
 const scrollAmount=300;

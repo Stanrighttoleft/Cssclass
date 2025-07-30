@@ -184,3 +184,15 @@ h3{
 	font-style: 16px;
 	color: black;
 }
+.articleStep{
+	background-color: #7bf7f7;
+	font-size: 18px;
+	font-weight: bolder;
+	color: white;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+a{
+	text-decoration: none;
+}
