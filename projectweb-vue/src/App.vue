@@ -1,14 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import Navbar from './components/navbar.vue'
-import nextTick from './components/nextTick.vue';
+import Navbar from '@/components/navbar.vue'
+import NewNavbar from '@/components/NewNavbar.vue';
 
 </script>
 
 <template>
   <main>
+    <NewNavbar/>
      
-    <Navbar/>
+    <!-- <Navbar/> -->
     <RouterView />
     
 

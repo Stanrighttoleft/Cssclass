@@ -44,7 +44,9 @@ onMounted(async ()=>{
 const truncatedArticles=computed(()=>{
     return articles.value.map(article=>({
         ...article,
-        truncatedContent: article.description.length>90 ? article.description.slice(0,90) :article.description
+        truncatedContent: article.description && article.description.length > 90 
+        ? article.description.slice(0,90) 
+        :article.description || 'no description'
     }))
 })
 
