@@ -7,7 +7,7 @@ const fu=ref('/assets/fun.png')
 </script>
 
 <template>
-    <div class="open d-flex justify-content-center align-items-center">
+    <div class="open d-flex justify-content-center align-items-center p-0 m-0">
         
         <div>
             <img :src=rabbit alt="">
@@ -27,6 +27,7 @@ const fu=ref('/assets/fun.png')
     height: 670px;
     overflow: hidden;
     position: relative;
+    
     
     
 

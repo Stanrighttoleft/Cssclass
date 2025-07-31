@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid p-0">
-        <div class="row nav-top bg-secondary g-0">
+        <!-- <div class="row nav-top bg-secondary g-0">
             <div class="nav-top-left d-flex justify-content-end col-sm-8 d-sm-flex d-none">
                 <img class="facebook" :src="facebook" alt="">
                 <span class="text-light" >Follow us on Facebook</span>
@@ -14,10 +14,10 @@
 
             </div>
             
-        </div>
+        </div> -->
         
-        <div class="nav bg-secondary">
-            <div class="logo">
+        <div class="row bg-secondary">
+            <div class="logo col-2">
                 <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
             </div>
             <div class="nav-right-top col-10 d-flex flex-column justify-content-between">
@@ -26,10 +26,10 @@
                         <img class="facebook" :src="facebook" alt="">
                         <span class="text-light" ></span>
                         <img :src="like" alt="" class="like">
-                    </div>
+                    </div> 
                     <div class="nav-top-right col-sm-5  justify-content-end d-flex">
                         
-                        <img :src="login" alt="" class="login">
+                        <RouterLink to="/login"> <img :src="login" alt="" class="login"></RouterLink>
                         <img :src="cart" alt="" class="cart">
                          <img :src="searchIcon" alt="" class="search-icon">
 
@@ -57,7 +57,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 
 const name=ref('Navbar');
 const logo=ref('./assets/logov12.png');
@@ -66,6 +66,11 @@ const like=ref('./assets/like.png');
 const login=ref('./assets/user.png');
 const searchIcon=ref('./assets/search.png');
 const cart=ref('./assets/cart.png');
+// provide function for the nav link
+const isActiveLink=(routePath)=>{
+    const route=useRoute();
+    return route.path===routePath;
+}
 const link=ref([{
         name:'Home',
         goTo:'/',
@@ -86,12 +91,12 @@ const link=ref([{
       
     
 </script>
-<style >
-body, html {
+<style scoped>
+/* body, html {
   margin: 0;
   padding: 0;
-}
-.navbar {
+} */
+/* .navbar {
   display: flex;
   height: 100px;
   align-items: center;
@@ -99,10 +104,10 @@ body, html {
   padding: 1rem;
   width:100%;
   box-sizing: border-box;
-}
-.nav-top{
+} */
+/* .nav-top{
     background-color: rgb(240, 186, 9);
-}
+} */
 .facebook{  
     height: 25px;
     margin: 0 5px;
