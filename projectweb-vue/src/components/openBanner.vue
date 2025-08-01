@@ -22,7 +22,7 @@ const fu=ref('/assets/fun.png')
 
 <style>
 .open{
-    background-image: url('/assets/open-field.jpg');
+    background-image: url('/assets/bg-banner.jpg');
     background-size: cover;
     height: 670px;
     overflow: hidden;
