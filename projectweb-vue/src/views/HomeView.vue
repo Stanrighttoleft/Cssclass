@@ -5,6 +5,7 @@ import { ref } from 'vue';
 import product from '@/components/product.vue';
 import ProductShow from '@/components/ProductShow.vue';
 import News from '@/components/news.vue';
+import AboutUs from '@/components/AboutUs.vue';
 
 
 
@@ -89,6 +90,7 @@ const getImages= ref([
     <openBanner/>
     <ProductShow :productsList="list"/>
     <News/>
+    <AboutUs/>
          
     <ImageCard :visibleNumber="6" :getImages="getImages"/>
 
