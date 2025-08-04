@@ -2,7 +2,7 @@
     <div class="row d-flex mt-3">
         
         <div class="col-sm-10">
-            <h4 class="d-flex justify-content-center bg-light">澳洲時事</h4>
+            <Router-Link to="/newslist"><h4 class="d-flex justify-content-center bg-light">澳洲時事</h4></Router-Link> 
             <div v-for="(article, index) in truncatedArticles" :key="index" class="row d-flex mb-0">
                 <div class="row">
                     <div class="col-sm-9 overflow-hidden"><h5 class="bg-light">{{ article.title }}</h5></div>
@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, computed, onMounted} from 'vue';
+import { RouterLink } from 'vue-router';
 
 const name='News';
 const articles=ref([]);

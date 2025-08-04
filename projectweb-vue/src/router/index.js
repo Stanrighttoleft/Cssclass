@@ -3,7 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ProductsView from '@/views/ProductsView.vue'
 import ContactView from '@/views/ContactView.vue'
-import login from '@/views/Login.vue'
+import login from '@/views/LoginView.vue'
+import NewsList from '@/views/NewsList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,10 @@ const router = createRouter({
       name: 'login',
       component: login,
 
+    },{
+      path: '/newslist',
+      name: 'newslist',
+      component: NewsList,
     }
   ],
 })
