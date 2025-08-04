@@ -1,11 +1,13 @@
 <template>
-    <newsList/>
-    <loginForm/>
+    <div>
+        
+        <loginForm/>
+    </div>
   
 </template>
 
 <script setup>
-import newsList from '@/components/newsList.vue';
+
 import loginForm from '@/components/loginForm.vue';
 </script>
 
