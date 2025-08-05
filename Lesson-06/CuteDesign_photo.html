@@ -6,6 +6,8 @@
 <title>可愛網頁設計Cute Design Studio</title>
 <link href="website0302.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+<link rel="stylesheet" href="css/magnific-popup.css">
 <script type="text/javascript" >
   //設定元件閃爍特效
   //effectFadeTo(哪一個物件,特效時間,透明度起始,透明度結束)
@@ -19,7 +21,8 @@
   $(function(){
     $(".photolist img").on({
       mouseover:function(){effectFadeTo(this,2000,0.2,1);}
-    })
+    });
+    $('#contentMain').magnificPopup({delegate: 'a', type: 'image', gallery:{ enabled:true } });
   })
 </script>
 </head>
@@ -41,39 +44,39 @@
 <div id="contentR"> <img src="images1/titles_works.jpg" width="500" height="242" class="topPhoto" />
   <div id="contentMain">
     <div class="photolist">
-          <img src="images/photos1/pic01s.jpg" alt="">
+          <p><a href="images/photos1/pic01.jpg" title="綠川"><img src="images/photos1/pic01s.jpg" alt=""></a></p>
           <p>綠川</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic02s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic02.jpg" title="台中曼哈頓懸日"><img src="images/photos1/pic02s.jpg" alt=""></a></p>
           <p>台中曼哈頓懸日</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic03s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic03.jpg" title="東海大學"><img src="images/photos1/pic03s.jpg" alt=""></a></p>
           <p>東海大學</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic04s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic04.jpg" title="台中嘉明湖"><img src="images/photos1/pic04s.jpg" alt=""></a></p>
           <p>台中嘉明湖</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic05s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic05.jpg" title="大坑"><img src="images/photos1/pic05s.jpg" alt=""></a></p>
           <p>大坑</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic06s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic06.jpg" title="藍色公路"><img src="images/photos1/pic06s.jpg" alt=""></a></p>
           <p>藍色公路</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic07s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic07.jpg" title="高美溼地"><img src="images/photos1/pic07s.jpg" alt=""></a></p>
           <p>高美溼地</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic08s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic08.jpg" title="台中夜景若茵農場"><img src="images/photos1/pic08s.jpg" alt=""></a></p>
           <p>台中夜景若茵農場</p>
         </div>
         <div class="photolist">
-          <p><img src="images/photos1/pic09s.jpg" alt=""></p>
+          <p><a href="images/photos1/pic09.jpg" title="台中國家歌劇院"><img src="images/photos1/pic09s.jpg" alt=""></a></p>
           <p>台中國家歌劇院</p>
         </div>
        

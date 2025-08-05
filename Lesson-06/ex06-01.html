@@ -6,8 +6,10 @@
 <title>PhotoTour 旅遊攝影網 :: 歡迎愛旅遊愛攝影的你 ::</title>
 <link href="ex06-01.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
-<link rel="stylesheet" href="css/jquery.lightbox-0.5.css">
+<script type="text/javascript" src="fancybox-2.1.7/source/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="fancybox-2.1.7/source/jquery.fancybox.css">
+<!-- <script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
+<link rel="stylesheet" href="css/jquery.lightbox-0.5.css"> -->
 <script type="text/javascript" >
   //設定元件閃爍特效
   //effectFadeTo(哪一個物件,特效時間,透明度起始,透明度結束)
@@ -17,17 +19,18 @@
     $(targetElement).fadeTo(duration/2,to);
   }
   $(function(){
-    $('#contentPhoto a').lightBox({
-      maxHight:$(window).height()*0.9, //最大高度
-      maxWidth:$(window).width()*0.9, //最大寬度
-      overlayBgColor:'#f00', //覆蓋螢幕的顏色
-      overlayOpacity:0.2, //覆蓋螢幕的透明度
-      fixedNavigation:false, //固定上下頁的按鈕
-      containerResizeSpeed:200,
-      txtImage:'產品',
-      txtOf:'至',
+    // $('#contentPhoto a').lightBox({
+    //   maxHight:$(window).height()*0.9, //最大高度
+    //   maxWidth:$(window).width()*0.9, //最大寬度
+    //   overlayBgColor:'#f00', //覆蓋螢幕的顏色
+    //   overlayOpacity:0.2, //覆蓋螢幕的透明度
+    //   fixedNavigation:false, //固定上下頁的按鈕
+    //   containerResizeSpeed:200,
+    //   txtImage:'產品',
+    //   txtOf:'至',
 
-    });
+    // });
+    $(".fancybox").fancybox();
   })
 </script>
 </head>
@@ -50,39 +53,39 @@
       <div class="sideTitle"><img src="images/menu_title2.gif" width="603" height="65" alt="攝影作品" /></div>
       <div id="contentPhoto">
         <div class="photolist">
-          <p><a href="images/photos/001.jpg" title="BlueSky"><img src="images/photos/001s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/001.jpg" rel="group" class="fancybox" title="BlueSky"><img src="images/photos/001s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>BlueSky</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/002.jpg" title="三角守護者"><img src="images/photos/002s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/002.jpg" rel="group" class="fancybox" title="三角守護者"><img src="images/photos/002s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>三角守護者</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/003.jpg" title="生活"><img src="images/photos/003s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/003.jpg" rel="group" class="fancybox" title="生活"><img src="images/photos/003s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>生活</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/004.jpg" title="忙錄"><img src="images/photos/004s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/004.jpg" rel="group" class="fancybox" title="忙錄"><img src="images/photos/004s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>忙錄</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/005.jpg" title="擺在眼前的鮮美"><img src="images/photos/005s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/005.jpg" rel="group" class="fancybox" title="擺在眼前的鮮美"><img src="images/photos/005s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>擺在眼前的鮮美</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/006.jpg" title="凝望"><img src="images/photos/006s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/006.jpg" rel="group" class="fancybox" title="凝望"><img src="images/photos/006s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>凝望</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/007.jpg" title="花的姿態"><img src="images/photos/007s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/007.jpg" rel="group" class="fancybox" title="花的姿態"><img src="images/photos/007s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>襌的奧義</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/008.jpg" title="花的姿態"><img src="images/photos/008s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/008.jpg" rel="group" class="fancybox" title="花的姿態"><img src="images/photos/008s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>花的姿態</p>
         </div>
         <div class="photolist">
-          <p><a href="images/photos/009.jpg" title="莊嚴"><img src="images/photos/009s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
+          <p><a href="images/photos/009.jpg" rel="group" class="fancybox" title="莊嚴"><img src="images/photos/009s.jpg" onmouseover="effectFadeTo(this,1000,0.3,1)" alt=""></a></p>
           <p>莊嚴</p>
         </div>
       </div>

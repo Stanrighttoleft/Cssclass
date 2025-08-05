@@ -5,6 +5,9 @@ import ProductsView from '@/views/ProductsView.vue'
 import ContactView from '@/views/ContactView.vue'
 import login from '@/views/LoginView.vue'
 import NewsList from '@/views/NewsList.vue'
+import CreateAcc from '@/views/CreateAccView.vue'
+import PasswordView from '@/views/PasswordView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,7 +41,15 @@ const router = createRouter({
       path: '/newslist',
       name: 'newslist',
       component: NewsList,
-    }
+    },{
+      path:'/login/password',
+      name: 'password',
+      component: PasswordView,
+    },{
+      path: '/login/createacc',
+      name: 'createacc',
+      component: CreateAcc,
+    },
   ],
 })
 

@@ -16,7 +16,7 @@
 import { ref, onMounted } from 'vue';
 const articles=ref([]);
 
-const newsUrl='https://newsapi.org/v2/top-headlines?' +'category=business&' +     'country=us&' +'pageSize=3&' +                'apiKey=222dfbdb223a4c6097f1b8155d21e91e';
+const newsUrl='https://newsapi.org/v2/top-headlines?' +'category=business&' +     'country=us&' +'pageSize=3&' +                'apiKey=';
 
 onMounted(async()=>{
     try{
