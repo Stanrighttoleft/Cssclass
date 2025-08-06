@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .bgset, .bgset1{
+            width: 400px;
+            height: 1200px;
+            background-color: pink;
+            background-image: url("free1.png"), url("1_b.jpg");
+            /* 
+            1-1. bgcolor,bgimgae兩個設定可以並存，若同時設定bgcolor wull appear under the image。
+            1-2. image can be put in from left to right, the left one in on top of right one 
+            1-3. 可以搭配linear-gradient(rgb(), rgb()) 或,linear-gradient(rgba(255,0,0,0.1),rgba(0,0,255,0.1))*/
+            background-size: 300px 300px;
+            /* 2-1 背景圖片可以顯示的大小範圍，預設auto，為原圖解析度大小。
+            2-2. width:第一位參數，設定背景大小的寬，px,%,rem 
+            2-3. height:第2位參數，設定背景大小的寬，px,%,rem 
+            2-4. cover:等比例放大或是縮小，超出的部分自動裁切。
+            2-5. conteain:等比例放大或是縮小，超出的部分不自動裁切。
+            */
+           
+            background-blend-mode:normal;
+            /* 
+            觀念3: 
+            3-1.用以背景色跟背景的混合模式。
+            3-2.normal正常模式，為預設值
+            3-3.multiply色彩增值。
+            3-4.screen濾色模式
+            3.5.overlay覆蓋模式
+            3.6.darken變暗模式
+            3.7.lighten變亮模式
+            3.8.color-dodge加亮模式
+            3.9.color-burn加深模式
+            3.10.hard-light實光模式
+            3.11.soft-light柔光模式
+            3.12.difference差異化模式
+            3.13.exclusion排除模式
+            3.14.hue色相模式
+            3.15.staturation飽和度模式
+            3.16.color顏色模式
+            3.17.luminosity明度模式
+            */
+            /*  
+                background-origin:padding-box */
+            
+            background-repeat: no-repeat;
+            /* 觀念4：
+            4-1:背景拼貼X Y軸，或不重複拼貼。
+            4-2:repeat，為預設值重複拼貼XY直到滿版最後一格裁切拼貼。
+            4-3:repeat-x重複拼貼x直到滿版
+            4-4:repeat-y重複拼貼y直到滿版
+            4-5:space不裁切，不縮放圖，重複拼貼XY軸若無空間無法拼貼，則自動均分空白空間
+            4-6.round不裁切，重複拼貼xy直到滿版
+            */
+            
+            /* padding: 50px 0 0 50px; */
+            /* border: dotted 10px white; */
+            /* overflow:auto */
+            background-origin:content-box;
+            /* background-attachment: fixed; */
+            /* 
+            觀念5:
+            5-1.background-origin設定背景圖片原點的位置，若background-attachment:fix時會失去作用
+            5.2.border-box設定背景圖原點為邊框
+            5.3.padding-box設定背景圖原點為padding區域，此為預設值
+            5-4.content-box設定背景圖原點為content區域。
+
+            */
+            background-position-x: center;
+            background-position-y: top;
+            /* 其實用background-position: left top; 這樣就好了 */
+            /* 
+            觀念6:
+            6-1 background-position-x:控制水平left, center,right
+            6-2 background-position-y:控制垂直top,center,bottom
+            6-3 其他設定方式：可用px,%任何單位來設定控制背景出現的位置
+            6-4 預設是靠左對齊
+
+            */
+            background-attachment: scroll;
+            overflow: scroll;
+            /* 
+            觀念7:
+            7-1 scroll背景會隨著網頁捲動，為預設值
+            7-2 fixed背景圖不會隨著網頁的滾動而捲動
+            7-3 local背景圖會隨著元件內容的滾軸而捲動
+            */
+
+        }
+        .bgset1{
+            background-attachment: local;
+        }
+        .flexset{
+            display: flex;
+        }
+        .bgset p{
+            /* border:dotted 10px black;
+            padding: 20px; */
+            /* font-size: 30px; */
+            background-color: yellowgreen;
+            font-weight: bold;
+            background-clip: text;
+            color:rgba(0,0,0,0.1)
+            /* color: rgba(0,0,0,0.1); */
+            /* 觀念5：
+            5.1 background-clip設定背景是否延伸到邊框。
+            5-2.border-box設定背景延伸到邊框。
+            5-3.padding-box設定背景延伸到padding區域
+            5-4.content-box設定背景延伸到content區域。
+            5.5.text以文字以外的背景全部裁掉
+            
+             */
+        }
+    </style>
+</head>
+<body>
+    <div class="flexset">
+        <div class="bgset">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+        </div>
+        <div class="bgset1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores provident consequuntur molestias, laboriosam eum impedit cumque. Nostrum, mollitia similique harum quae quidem, reprehenderit, facilis eum architecto sed quasi quaerat sit.</p>
+        </div>
+    </div>
+    
+</body>
+</html>

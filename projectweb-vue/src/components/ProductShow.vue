@@ -2,12 +2,12 @@
      <div class="productShow position-relative">
       <div class="container-fluid shows p-0 m-0 "  >
         <div ref="productDiv" class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
-          <div class="col-1 col-sm-3 productcard p-0 m-0 " v-for="(product, index) in productsList" :key="index">
-            <div class="position-relative border-end border-dark">
+          <div class="col-1 col-sm-3 productcard p-2 m-1 rounded-3 bg-light" v-for="(product, index) in productsList" :key="index">
+            <div class="position-relative">
               <img class="productimage " :src="product.image" alt="">
               <img v-if="product.topsale" class="position-absolute top-0 start-0" :src="hot" alt="">
             </div>
-            <div class="productTag border-end border-dark">
+            <div class="productTag ">
               <div class="bg-light">{{'TW '+ product.price }}</div>
               <div class="bg-warning">{{product.name }}</div>
             </div>
@@ -87,8 +87,8 @@ const props=defineProps({
 <style>
 
 .productcard{
-  width:300px;
-  height: 250px;
+  width:330px;
+  height: 300px;
 }
 .productimage{
   width:300px;

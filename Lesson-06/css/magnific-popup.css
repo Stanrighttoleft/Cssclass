@@ -163,9 +163,12 @@ button::-moz-focus-inner {
   top: 0;
   right: 0;
   color: #CCC;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 18px;
-  white-space: nowrap; }
+  white-space: nowrap; 
+  font-weight: bold;
+}
+
 
 .mfp-arrow {
   position: absolute;
@@ -295,6 +298,8 @@ img.mfp-img {
   color: #F3F3F3;
   word-wrap: break-word;
   padding-right: 36px; 
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .mfp-image-holder .mfp-content {

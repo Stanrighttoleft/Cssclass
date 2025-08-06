@@ -186,7 +186,8 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url(fancybox_overlay.png);
+	/* background: url(fancybox_overlay.png); */
+	background-color: rgba(255,0,0,0.2);
 }
 
 .fancybox-overlay-fixed {
@@ -237,6 +238,8 @@
 	font-weight: bold;
 	line-height: 24px;
 	white-space: nowrap;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .fancybox-title-outside-wrap {
