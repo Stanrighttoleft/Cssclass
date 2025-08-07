@@ -13,10 +13,10 @@
                     </div>
                     <div class="nav-top-right col-sm-5  justify-content-end d-flex p-0 m-0"> 
                         <RouterLink to="/login">
-                             <img :src="login" alt="" class="login"><span class="text-light">會員登入</span>
+                             <img :src="login" alt="" class="login"><span class="text-light"></span>
                         </RouterLink>
-                        <img :src="cart" alt="" class="cart"><span class="text-light">購物車</span>
-                         <img :src="searchIcon" alt="" class="search-icon"><span class="text-light">搜尋商品</span>
+                        <img :src="cart" alt="" class="cart"><span class="text-light"></span>
+                         <img :src="searchIcon" alt="" class="search-icon"><span class="text-light"></span>
                     </div>
                 </div>               
                 <div class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center p-0 m-0">

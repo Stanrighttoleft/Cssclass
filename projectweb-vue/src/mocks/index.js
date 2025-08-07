@@ -1,5 +1,5 @@
-import { mock } from "mockjs";
+import  Mock  from "mockjs";
 import './users'
 import './products'
 
-mock.setup({timeout: '300-600'})
+Mock.setup({timeout: '300-600'})

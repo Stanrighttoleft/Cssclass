@@ -10,13 +10,22 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useProductStore } from '@/stores/productStore';
+import { storeToRefs } from 'pinia';
 
-const {products, fetchProducts} =useProductStore();
+const productStore = useProductStore()
+const { products}=storeToRefs(productStore)
+const { fetchProducts }=productStore
 
-onMounted(()=>{
-    fetchProducts()
+
+onMounted(async()=>{
+    await fetchProducts()
+    console.log('products in component:',products.value)
+})
+
+watch(products, (newVal)=>{
+    console.log('products updated:', newVal)
 })
 </script>
 
