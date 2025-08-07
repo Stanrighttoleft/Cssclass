@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輕設計工作室Light Design Studio</title>
+  <link href="website0301copy.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <script type="text/javascript" >
+  //設定元件閃爍特效
+  //effectFadeTo(哪一個物件,特效時間,透明度起始,透明度結束)
+  function effectFadeTo(targetElement,duration,from,to){
+    //淡化透明度的值
+    $(targetElement).fadeTo(duration/2,from);
+    $(targetElement).fadeTo(duration/2,to);
+  }
+
+  //$(function(){})網頁載入完成後,即進入功能函數內執行
+  $(function(){
+    $(".photolist img").on({
+      mouseover:function(){effectFadeTo(this,1000,0.1,1);}
+    });
+    $('#contentMain').magnificPopup({delegate: 'a', type: 'image', gallery:{ enabled:true } });
+  })
+</script>
+</head>
+
+<body>
+  <div id="header"><a href="index_new.html"><img src="images3/logo.gif" width="182" height="60"
+        class="headerLogo transition" /></a><span class="headerCopy">Best: 1024*768<br />
+      Copyright © Light Design Studio All rights reserved.</span></div>
+  <div id="content">
+    <div id="contentL"><a href="about.html"><img src="images3/menu1.jpg" width="242" height="83"
+          class="noborder transition" /></a><a href="works.html"><img src="images3/menu2.jpg" width="242" height="84"
+          class="noborder transition" /></a><a
+        href="mailto://service@flag.com.tw?subject=&quot;Design Case!!&quot;"><img src="images3/menu3.jpg" width="242"
+          height="93" class="noborder transition" /></a>
+      <div id="listNew">
+        <p>07-01<br />
+          <a href="http://www.flag.com.tw" target="_blank">輕設計工作室參與的新書 「正確學會 Dreamweaver CS6 的 16 堂課」 出版了，詳細請連此</a>
+        </p>
+        <p>05-20<br />
+          輕設計獨家設計手提袋新上架，請洽各網路商店</p>
+        <p>05-01<br />
+          輕設計個性 T 恤上架，請洽各網</p>
+      </div>
+    </div>
+    <div id="contentR"><img src="images3/page_photo.jpg" width="487" height="186" class="topPhoto transition" />
+    <div id="contentMain">
+      <div class="photolist">
+            <p><a href="images/starrail/001.jpg" title="黃金裔"><img src="images/starrail/001s.jpg" alt=""></a></p>
+            <p>黃金裔</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/002.jpg" title="飛霄"><img src="images/starrail/002s.jpg" alt=""></a></p>
+            <p>飛霄</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/003.jpg" title="真理已然闡明"><img src="images/starrail/003s.jpg" alt=""></a></p>
+            <p>真理已然闡明</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/004.jpg" title="送十抽"><img src="images/starrail/004s.jpg" alt=""></a></p>
+            <p>送十抽</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/005.jpg" title="冥界"><img src="images/starrail/005s.jpg" alt=""></a></p>
+            <p>冥界</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/006.jpg" title="死龍"><img src="images/starrail/006s.jpg" alt=""></a></p>
+            <p>死龍</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/007.jpg" title="虛數之樹"><img src="images/starrail/007s.jpg" alt=""></a></p>
+            <p>虛數之樹</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/008.jpeg" title=""><img src="images/starrail/008s.jpg" alt="銀狼"></a></p>
+            <p>銀狼</p>
+          </div>
+          <div class="photolist">
+            <p><a href="images/starrail/009.jpg" title="匹諾康尼"><img src="images/starrail/009s.jpg" alt=""></a></p>
+            <p>匹諾康尼</p>
+          </div>
+    </div>
+  <div id="wallpaper">
+        <p>桌布下載：<a href="images/starrail/001.jpg" target="_blank">800*600</a> <a href="images/starrail/wallpaper.zip" >1024*768</a></p>
+  </div>
+    </div>
+  </div>
+  <div id="footer"></div>
+</body>
+
+</html>

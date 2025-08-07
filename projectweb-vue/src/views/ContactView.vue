@@ -1,5 +1,13 @@
-<script setup></script>
-
 <template>
-    <div>This is the contact page</div>
+    <ProductList/>
+  
 </template>
+
+<script setup>
+import ProductList from '@/components/ProductList.vue';
+
+</script>
+
+<style>
+
+</style>
