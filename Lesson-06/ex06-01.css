@@ -298,4 +298,24 @@ img {
 	padding-top: 30px;
 
 }
+#wallpaper{
+	text-align: center;
+	font-size: 22px;
+	font-weight: bolder;
+	border-right:#ffc17f solid 8px;
+	width: 590px;
+}
+#wallpaper p{
+	margin:0px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+#wallpaper a{
+	text-decoration: none;
+	color: #b7d680;
+}
+#wallpaper a:hover{
+	text-decoration: underline;
+	color: #ffc17f;
+}
 

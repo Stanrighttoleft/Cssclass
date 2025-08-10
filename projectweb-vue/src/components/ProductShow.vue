@@ -98,4 +98,7 @@ const props=defineProps({
   height: 40px;
   cursor: pointer;
 }
+.productShow{
+  background-color: rgba(116, 124, 8, 0.548);
+}
 </style>
