@@ -98,6 +98,8 @@ const getImages= ref([
     <!-- <ImageCard :visibleNumber="6" :getImages="getImages"/> -->
      <Footer/>
 
+     </div>
+
    
     
   
