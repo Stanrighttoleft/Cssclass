@@ -8,15 +8,15 @@
                 <div class="d-flex flex-row p-0 m-0" >
                     <div class="col-sm-7 d-flex justify-content-end p-0 m-0">
                         <img class="facebook" :src="facebook" alt="">
-                        <span class="text-light" >關注我們</span>
+                        <span class="text-light d-none d-md-inline" >關注我們</span>
                         <img :src="like" alt="" class="like">
                     </div>
                     <div class="nav-top-right col-sm-5  justify-content-end d-flex p-0 m-0"> 
                         <RouterLink to="/login">
-                             <img :src="login" alt="" class="login"><span class="text-light"></span>
+                             <img :src="login" alt="" class="login"><span class="text-light d-none d-lg-inline">會員登入</span>
                         </RouterLink>
-                        <img :src="cart" alt="" class="cart"><span class="text-light"></span>
-                         <img :src="searchIcon" alt="" class="search-icon"><span class="text-light"></span>
+                        <img :src="cart" alt="" class="cart"><span class="text-light d-none d-lg-inline">購物車</span>
+                         <img :src="searchIcon" alt="" class="search-icon"><span class="text-light d-none d-lg-inline">查找商品</span>
                     </div>
                 </div>               
                 <div class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center p-0 m-0">
@@ -43,20 +43,20 @@ const login=ref('./assets/user.png');
 const searchIcon=ref('./assets/search.png');
 const cart=ref('./assets/cart.png');
 const link=ref([{
-        name:'Home',
+        name:'團購首頁',
         goTo:'/',
 
     },
     {
-        name:'About',
+        name:'關於澳打',
         goTo:'/about',
     },
     {
-        name:'Products',
+        name:'商品瀏覽',
         goTo:'/products',
 
     },{
-        name:'Contact Us',
+        name:'聯絡我們',
         goTo:'/contact',
     }])
       
