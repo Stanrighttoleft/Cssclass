@@ -3,18 +3,83 @@
 import {ref} from 'vue';
 const rabbit=ref('/assets/rabbit.png');
 const fu=ref('/assets/fun.png')
+const cloud=ref('/assets/cloud.svg')
+const cloud2='/assets/cloud2.svg'
+import { motion, useScroll } from 'motion-v';
+
+const {scrollProgress}=useScroll()
+
+const scrollIndicator={
+    rotate:scrollProgress,
+}
+
+
+
+
 
 </script>
 
 <template>
-    <div class="open d-flex justify-content-center align-items-center">
+    <div class="open d-flex justify-content-center align-items-center position-relative">
         
-        <div>
-            <img :src=rabbit alt="">
-        </div>
+        <motion.div 
+        :initial="{
+            x:0,
+            opacity:0,
+            scale:0.8
+        }"
+        :whileInView="{
+            y:[0,-50,0],
+            opacity:1,
+            transition:{duration:2},
+            scale:1
+        }"
+        :whilePress="{y:-50}"
+        >
+            <img  :src=rabbit alt="">
+        </motion.div>
         <div class="fu">
-            <img :src=fu alt="">
+            <motion.img :src=fu alt=""
+            :initial="{rotate:0}"
+            :whileInView="{
+            rotate:180,
+            transition:{
+                delay:0.5,
+                duration:1}}"
+            
+            ></motion.img>
         </div>
+        <div class="cloud position-absolute "><motion.img :src=cloud alt=""
+            :initial="{
+                x:0,
+                opacity:0
+                }"
+            :whileInView="{
+                x:100,
+                opacity:0.7,
+                transition:{
+                    delay:0.5,
+                    duration:1,
+                }
+            }"
+
+            ></motion.img></div>
+        <div class="cloud2 position-absolute "><motion.img :src=cloud2 alt=""
+            :initial="{
+                x:0,
+                opacity:0
+                }"
+            :whileInView="{
+                x:-100,
+                opacity:0.7,
+                transition:{
+                    delay:0.5,
+                    duration:1,
+                }
+            }"
+            
+
+            ></motion.img></div>
         
     </div>
 
@@ -26,7 +91,7 @@ const fu=ref('/assets/fun.png')
     background-size: cover;
     height: 670px;
     overflow: hidden;
-    position: relative;
+    
     
     
 
@@ -60,6 +125,22 @@ const fu=ref('/assets/fun.png')
 
 .fu{
     transform:translate(-40%,-80%)
+}
+.cloud{
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 0;
+    z-index:3;
+    
+}
+.cloud2{
+    width: 600px;
+    height: 600px;
+    top: 60%;
+    right: 0;
+    z-index:3;
+    
 }
 
 
