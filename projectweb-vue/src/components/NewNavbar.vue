@@ -7,9 +7,18 @@
             <div class="nav-right-top col-sm-10 d-flex flex-column p-0 m-0">
                 <div class="d-flex flex-row p-0 m-0" >
                     <div class="col-sm-7 d-flex justify-content-end p-0 m-0">
-                        <img class="facebook" :src="facebook" alt="">
+                        <img class="facebook"
+                        
+                        :src="facebook" alt="">
                         <span class="text-light d-none d-md-inline" >關注我們</span>
-                        <img :src="like" alt="" class="like">
+                        <motion.img :src="like"
+                        :initial="{
+                            scale:1
+                        }"
+                        :whileInView="{
+                            scale:[1,2,1]
+                        }"  
+                        alt="" class="like"></motion.img>
                     </div>
                     <div class="nav-top-right col-sm-5  justify-content-end d-flex p-0 m-0"> 
                         <RouterLink to="/login">
@@ -34,6 +43,7 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { motion } from 'motion-v';
 
 const name=ref('Navbar');
 const logo=ref('./assets/logov12.png');
