@@ -20,7 +20,7 @@
                         }"  
                         alt="" class="like"></motion.img>
                     </div>
-                    <div class="nav-top-right col-sm-5  justify-content-end d-flex p-0 m-0"> 
+                    <div class="nav-top-right col-sm-5  justify-content-end d-flex pe-3 m-0"> 
                         <RouterLink to="/login">
                              <img :src="login" alt="" class="login"><span class="text-light d-none d-lg-inline">會員登入</span>
                         </RouterLink>
@@ -28,12 +28,12 @@
                          <img :src="searchIcon" alt="" class="search-icon"><span class="text-light d-none d-lg-inline">查找商品</span>
                     </div>
                 </div>               
-                <div class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center p-0 m-0">
+                <div class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center pe-3 m-0">
                     <ul class="navlistul">
                         <li 
                         v-for="(item,index) in link"
                         :key="index"
-                        ><RouterLink :to=item.goTo class="navlink">{{ item.name }}</RouterLink></li>
+                        ><RouterLink :to=item.goTo class="navlink ms-3">{{ item.name }}</RouterLink></li>
                     </ul>
                 </div>
             </div>

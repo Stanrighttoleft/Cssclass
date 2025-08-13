@@ -4,7 +4,12 @@ import { ref } from 'vue'
 const menus = ref([
   {
     title: '新品直購',
-    children: []
+    expanded:false,
+    children: [
+      '生活五金',
+      '保養品',
+      '戶外用品',
+    ]
   },
   {
     title: '澳洲直購',
@@ -26,14 +31,17 @@ const menus = ref([
   },
   {
     title: '航太超跑',
+    expanded:false,
     children: []
   },
   {
     title: '委託代購',
+    expanded:false,
     children: []
   },
   {
     title: '代購試算',
+    expanded:false,
     children: []
   }
 ])

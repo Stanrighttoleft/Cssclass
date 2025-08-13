@@ -1,6 +1,13 @@
 <template>
-    <ProductShow :productsList="list"/>
-    <sidecollapse/>
+    <div class="container-fluid">
+        <div class="row">
+            <ProductShow :productsList="list"/>
+            <div class="col-md-5"><Sidecollapse /></div>
+            <div class="col-md-7"><productPage /></div>
+            
+        </div>
+    </div>
+    
 
 
    
@@ -11,6 +18,7 @@
 import product from '@/components/product.vue';
 import ProductShow from '@/components/ProductShow.vue';
 import Sidecollapse from '@/components/Sidecollapse.vue';
+import productPage from '@/components/productPage.vue';
 import { ref } from 'vue';
 
 const list=ref([{

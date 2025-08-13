@@ -1,5 +1,11 @@
 <template>
-    <div class="footerdiv position-relative  container-fluid bg-secondary text-white pt-3">
+    <motion.div :class="[{active:startAnim },'footerdiv position-relative  container-fluid bg-secondary text-white pt-3']"
+    :initial="{opacity:0}"
+    :whileInView="{opacity:1}"
+    @viewport-enter="startAnim=true"
+    @viewport-leave="startAnim=false"
+
+    >
         <div class="row">
             <div class="col-md-3">掃我到客服</div>
             <div class="col-md-3"><img class="img-fluid" src="/assets/logov12.png" alt=""></div>
@@ -19,12 +25,16 @@
         </div>
         <hr>
         <div class="d-flex justify-content-center">copyright</div>
-    </div>
+    </motion.div>
     
   
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { motion } from 'motion-v';
+
+const startAnim=ref(false)
 
 </script>
 
@@ -36,7 +46,7 @@
     background-image: url('/assets/footer.png');
     background-size: auto 100%;
     gap: 0;
-    width:100%;
+    width:200%;
     height: 200px;
     background-repeat: repeat-x;
    
@@ -47,6 +57,28 @@
     left:0;
     z-index: 0;
     
+}
+.footerdiv.active::before{
+    animation:pulse 2s ease-in-out;
+}
+
+@keyframes pulse{
+    0%{
+        transform:translateX(0) translateY(0) scale(1);
+        
+        
+
+    }
+    50%{
+        transform:translateX(-20%) translateY(1%) scale(1.1);
+        
+        
+    }
+    100%{
+        transform:translateX(0) translateY(0) scale(1);
+        
+        
+    }
 }
 
 </style>
