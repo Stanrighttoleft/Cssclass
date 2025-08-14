@@ -1,23 +1,25 @@
 <template>
-  <div class="row bg-warning">
-    <div class="col-lg-3 d-none d-lg-inline"><img class="styleimg" :src="styleimg" alt=""></div>
-    <div class=" col-md-3 d-flex justify-content-center"><img class="aboutimg" :src="aboutus" > </div>
-    <div class="col-lg-6 col-md-9 ">
-        <div class="d-flex justify-content-end" ><motion.img class="shipment2" 
-            :src="shipmentpic"
-            :initial="{opacity:0, x:50}"
-            :while-in-view="{
-                opacity:1,
-                x:0,
-                transition:{
-                    duration:1
-                }
-                }"
-             alt=""></motion.img>
+  <div class="container-fluid m-0 p-0">
+      <div class="row bg-warning">
+        <div class="col-lg-3 d-none d-lg-inline"><img class="styleimg" :src="styleimg" alt=""></div>
+        <div class=" col-md-3 d-flex justify-content-center"><img class="aboutimg" :src="aboutus" > </div>
+        <div class="col-lg-6 col-md-9 ">
+            <div class="d-flex justify-content-end" ><motion.img class="shipment2" 
+                :src="shipmentpic"
+                :initial="{opacity:0, x:0}"
+                :while-in-view="{
+                    opacity:1,
+                    x:-50,
+                    transition:{
+                        duration:1
+                    }
+                    }"
+                 alt=""></motion.img>
+            </div>
+            <div class="about d-flex align-items-center"><h3 class="text-white">在每一個細節中{{ displayedText }}</h3></div>
         </div>
-        <div class="about d-flex align-items-center"><h3 class="text-white">在每一個細節中{{ displayedText }}</h3></div>
-    </div>
-    
+        
+      </div>
   </div>
 </template>
 

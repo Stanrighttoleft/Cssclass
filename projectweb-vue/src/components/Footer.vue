@@ -39,6 +39,7 @@ const startAnim=ref(false)
 </script>
 
 <style>
+.footerdiv::after,
 .footerdiv::before{
     content: '';
     position:absolute;
@@ -46,38 +47,43 @@ const startAnim=ref(false)
     background-image: url('/assets/footer.png');
     background-size: auto 100%;
     gap: 0;
-    width:200%;
+    width:100%;
     height: 200px;
     background-repeat: repeat-x;
-   
     margin: 0;
     padding: 0;
-   
     bottom: 100%;
     left:0;
     z-index: 0;
     
 }
 .footerdiv.active::before{
-    animation:pulse 2s ease-in-out;
+    animation:pulse1 6s ease-in-out;
+}
+.footerdiv.active::after{
+    animation:pulse2 6s linear;
 }
 
-@keyframes pulse{
+@keyframes pulse1{
     0%{
-        transform:translateX(0) translateY(0) scale(1);
-        
-        
-
+        transform:translateX(0);
     }
     50%{
-        transform:translateX(-20%) translateY(1%) scale(1.1);
-        
-        
+        transform:translateX(-900px)
     }
     100%{
-        transform:translateX(0) translateY(0) scale(1);
-        
-        
+        transform:translateX(0) ; 
+    }
+}
+@keyframes pulse2{
+    0%{
+        transform:translateX(1200px);
+    }
+    50%{
+        transform:translateX(-200px)
+    }
+    100%{
+        transform:translateX(0px) ; 
     }
 }
 

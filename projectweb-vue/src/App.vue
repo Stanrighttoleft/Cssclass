@@ -2,6 +2,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Navbar from '@/components/navbar.vue'
 import NewNavbar from '@/components/NewNavbar.vue';
+import Footer from './components/Footer.vue';
+
 
 </script>
 
@@ -11,6 +13,9 @@ import NewNavbar from '@/components/NewNavbar.vue';
      
     <!-- <Navbar/> -->
     <RouterView />
+    <Footer/>
+
+    
     
 
   </main>

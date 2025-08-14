@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
+import { motion } from 'motion-v'
 
 const menus = ref([
   {
@@ -46,27 +47,54 @@ const menus = ref([
   }
 ])
 
+
+
 function toggleMenu(index) {
   menus.value[index].expanded = !menus.value[index].expanded
 }
+
+ 
+
 </script>
 
 <template>
-  <div class="sidebar">
-    <div
-      v-for="(menu, index) in menus"
-      :key="index"
-      class="menu-item"
-    >
-      <div class="menu-header" @click="toggleMenu(index)">
-        ▶ {{ menu.title }}
+  <div class="sidebar container-fluid  ">
+    <div class="row  ">
+      <div class="col-md-12 flex-column align-items-start ">
+        <div
+          v-for="(menu, index) in menus"
+          :key="index"
+          class="menu-item "
+        >
+          <div class="menu-header" @click="toggleMenu(index)">
+           <i 
+           class="demoicon pi pi-angle-right"
+           :class="{rotated:menu.expanded}"
+           ></i>  {{ menu.title }}
+          </div>
+    
+          <motion.ul v-if="menu.children && menu.expanded" class="submenu"
+          
+          :initial="{opacity:0,}"
+          :animate="{
+            
+            y:0,
+            opacity:1,
+            transition:{
+              duration:1,
+              
+            }
+          }"
+          >
+            <li 
+            v-for="(child, i) in menu.children" :key="i"
+            
+            >
+              {{ child }}
+            </li>
+          </motion.ul>
+        </div>
       </div>
-
-      <ul v-if="menu.children && menu.expanded" class="submenu">
-        <li v-for="(child, i) in menu.children" :key="i">
-          {{ child }}
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -74,21 +102,23 @@ function toggleMenu(index) {
 <style scoped>
 .sidebar {
   width: 250px;
-  border: 1px solid #ccc;
+  margin-left: 5px;
+  margin-top: 10px;
+  padding-left: 0;
+ 
   background: #fff;
   font-size: 14px;
 }
 
-.menu-item {
-  border-bottom: 1px solid #ddd;
-}
+
 
 .menu-header {
-  background-color: #e6f2ee;
+  
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  border-left: 5px solid #4cae4c;
+  border:1px dotted black
+  
 }
 
 .submenu {
@@ -101,5 +131,13 @@ function toggleMenu(index) {
   padding: 8px 10px;
   border-bottom: 1px solid #f0f0f0;
   cursor: pointer;
+}
+.demoicon{
+  font-size: 1rem;
+  color: black;
+
+}
+.demoicon.rotated{
+  transform:rotate(90deg);
 }
 </style>

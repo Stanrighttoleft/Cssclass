@@ -1,6 +1,6 @@
 <template>
      <div class="productShow position-relative">
-      <div class="container-fluid shows p-0 m-0 "  >
+      <div class="container-fluid shows   "  >
         <div ref="productDiv" class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
           <div class="col-1 col-sm-3 productcard p-2 m-1 rounded-3 bg-light" v-for="(product, index) in productsList" :key="index">
             <div class="position-relative">
