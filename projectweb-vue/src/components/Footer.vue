@@ -40,8 +40,8 @@ const startAnim = ref(false);
 </script>
 
 <style>
-.footerdiv::before,
-.footerdiv::after {
+.footerdiv::after,
+.footerdiv::before {
   content: "";
   position: absolute;
   display: block;
@@ -51,42 +51,39 @@ const startAnim = ref(false);
   width: 100%;
   height: 200px;
   background-repeat: repeat-x;
-
   margin: 0;
   padding: 0;
-
   bottom: 100%;
   left: 0;
   z-index: 0;
 }
 .footerdiv.active::before {
-  animation: pulse1 8s ease;
+  animation: pulse1 6s ease-in-out;
 }
 .footerdiv.active::after {
-  animation: pulse2 8s ease-in-out;
+  animation: pulse2 6s linear;
 }
 
 @keyframes pulse1 {
   0% {
-    background-position-x: 0px;
+    transform: translateX(0);
   }
-
   50% {
-    background-position-x: -500px;
+    transform: translateX(-900px);
   }
   100% {
-    background-position-x: 0px;
+    transform: translateX(0);
   }
 }
 @keyframes pulse2 {
   0% {
-    background-position-x: -300px; /* half of your PNG's width */
+    transform: translateX(1200px);
   }
   50% {
-    background-position-x: -900px; /* half offset + one full width */
+    transform: translateX(-200px);
   }
   100% {
-    background-position-x: 0px; /* half offset + one full width */
+    transform: translateX(0px);
   }
 }
 </style>

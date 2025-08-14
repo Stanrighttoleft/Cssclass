@@ -96,7 +96,7 @@ const getImages= ref([
     <shipment/>
          
     <!-- <ImageCard :visibleNumber="6" :getImages="getImages"/> -->
-     <Footer/>
+     
 
      </div>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-warning test" ></div>
+    <div class="bg-warning test" >test</div>
   
 </template>
 
@@ -9,8 +9,9 @@
 
 <style>
 .test{
-    height: 300px;
-    width: 300px;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
 }
 
 </style>

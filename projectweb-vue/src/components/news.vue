@@ -1,21 +1,25 @@
 <template>
-    <div class="row d-flex mt-3">
-        
-        <div class="col-sm-10">
-            <Router-Link to="/newslist"><h4 class="d-flex justify-content-center bg-light">澳洲時事</h4></Router-Link> 
-            <div v-for="(article, index) in truncatedArticles" :key="index" class="row d-flex mb-0">
-                <div class="row">
-                    <div class="col-sm-9 overflow-hidden"><h5 class="bg-light">{{ article.title }}</h5></div>
-                    <div class="col-sm-3 overflow-hidden "><p class="bg-light"><strong>Date:</strong>{{ article.publishedAt }}</p></div>
-                    <!-- <p class="bg-light">{{ article.truncatedContent }}...</p> -->
+    <div class="container-fluid">
+        <div class="row d-flex mt-3">
+            
+            <div class="col-md-10 ">
+                
+                
+                <Router-Link to="/newslist"><h4 class="d-flex justify-content-center bg-light text-decoration-none">澳洲時事</h4></Router-Link> 
+                <div v-for="(article, index) in truncatedArticles" :key="index" class="row d-flex mb-0">
+                    <div class="row">
+                        <div class="col-sm-9 overflow-hidden"><h5 class="bg-light">{{ article.title }}</h5></div>
+                        <div class="col-sm-3 overflow-hidden "><p class="bg-light"><strong>Date:</strong>{{ article.publishedAt }}</p></div>
+                        <!-- <p class="bg-light">{{ article.truncatedContent }}...</p> -->
+                    </div>
+    
                 </div>
-
+                  
+    
             </div>
-              
-
-        </div>
-        <div class="col-sm-2">
-            <img class="newsDraw" :src="pen" alt="">
+            <div class="col-sm-2">
+                <img class="newsDraw" :src="pen" alt="">
+            </div>
         </div>
     </div>
   

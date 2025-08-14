@@ -1,6 +1,7 @@
 
 import './mocks'
 import './css/custom.css'
+import 'primeicons/primeicons.css'
 
 
 import { createApp } from 'vue'

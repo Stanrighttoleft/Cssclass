@@ -33,7 +33,7 @@
                         <li 
                         v-for="(item,index) in link"
                         :key="index"
-                        ><RouterLink :to=item.goTo class="navlink ms-3">{{ item.name }}</RouterLink></li>
+                        ><RouterLink :to=item.goTo class="navlink ms-3"><i class="pi pi-spin pi-chevron-circle-left "></i>{{ item.name }}</RouterLink></li>
                     </ul>
                 </div>
             </div>
