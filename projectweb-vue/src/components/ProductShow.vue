@@ -1,7 +1,7 @@
 <template>
-     <div class="productShow position-relative">
-      <div class="container-fluid shows   "  >
-        <div ref="productDiv" class="row d-flex flex-row flex-nowrap overflow-hidden position-relative">
+     
+      <div class="container-fluid shows  m-3 p-2 productShow overflow-hidden position-relative  "  >
+        <div ref="productDiv" class="list row d-flex flex-row flex-nowrap overflow-hidden position-relative">
           <div class="col-1 col-sm-3 productcard p-2 m-1 rounded-3 bg-light" v-for="(product, index) in productsList" :key="index">
             <div class="position-relative">
               <img class="productimage " :src="product.image" alt="">
@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- Navigation -->
-        <div class="navigation position-absolute d-flex start-0 end-0 justify-content-between px-2 " style="top: 45%; transform: translateY(-50%);">
+        <div class="navigation position-absolute d-flex start-0 end-0 justify-content-between px-1 " >
             <div class="navPrev col-2">
               <img 
               class="productBun"  @mousedown="startScroll('prev')"
@@ -34,7 +34,7 @@
         
       </div>
 
-    </div> 
+   
 </template>
 
 <script setup>
@@ -84,7 +84,7 @@ const props=defineProps({
 
 </script>
 
-<style>
+<style scoped>
 
 .productcard{
   width:330px;
@@ -98,7 +98,16 @@ const props=defineProps({
   height: 40px;
   cursor: pointer;
 }
-.productShow{
+
+.shows{
+  max-width: 99%;
   background-color: rgba(116, 124, 8, 0.548);
 }
+.list{
+  max-width: 100%;
+}
+.navigation{
+  bottom: 50%;
+}
+
 </style>

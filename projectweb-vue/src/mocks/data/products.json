@@ -1,5 +1,30 @@
-[
-  { "id": 101, "title": "Laptop", "price": 1200 },
-  { "id": 102, "title": "Mouse", "price": 25 },
-  { "id": 103, "title": "Keyboard", "price": 45 }
-]
+{
+  "nutrition":[
+    { 
+    "id": 1, 
+    "title": "益生菌B420-60顆", 
+    "price": 1200, 
+    "bestsell":true ,
+    "image":"/products/small/m1.webp","brand":"Life Space" 
+    },
+    { 
+    "id": 2, 
+    "title": "Unichi Rosa美白小熊軟糖-60顆", "price": 1000,
+    "bestsell":true,
+    "image":"/products/small/m2.webp",
+    "brand":"Unichi Rosa" 
+    },
+    { 
+    "id": 3, 
+    "title": "女性綜合維他命小熊軟糖-60顆",
+    "price": 1000,
+    "bestsell":true,
+    "image":"/products/small/m3.webp",
+    "brand":"Unichi Rosa"
+   }
+],
+  "kitchenware":[
+    {}
+  ]
+
+}

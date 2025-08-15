@@ -49,7 +49,7 @@ const startAnim = ref(false);
   background-size: auto 100%;
   gap: 0;
   width: 100%;
-  height: 200px;
+  height: 120px;
   background-repeat: repeat-x;
   margin: 0;
   padding: 0;
@@ -66,24 +66,24 @@ const startAnim = ref(false);
 
 @keyframes pulse1 {
   0% {
-    transform: translateX(0);
+    background-position-x: 0;
   }
   50% {
-    transform: translateX(-900px);
+    background-position-x: -1200px;
   }
   100% {
-    transform: translateX(0);
+    background-position-x: 0;
   }
 }
 @keyframes pulse2 {
   0% {
-    transform: translateX(1200px);
+    background-position-x: -300px;
   }
   50% {
-    transform: translateX(-200px);
+    background-position-x: -900px;
   }
   100% {
-    transform: translateX(0px);
+    background-position-x: 0;
   }
 }
 </style>
