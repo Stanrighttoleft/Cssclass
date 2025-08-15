@@ -7,7 +7,7 @@
             <ProductShow :productsList="list"/>
             
         </div>
-        <Footer/>>
+        
     </div>
     
 

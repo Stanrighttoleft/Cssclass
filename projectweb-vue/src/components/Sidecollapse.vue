@@ -90,7 +90,7 @@ function toggleMenu(index) {
             v-for="(child, i) in menu.children" :key="i"
             
             >
-              {{ child }}
+              <input type="checkbox" class="me-2">{{ child }}
             </li>
           </motion.ul>
         </div>

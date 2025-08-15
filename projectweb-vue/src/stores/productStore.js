@@ -8,9 +8,9 @@ export const useProductStore = defineStore('product', () => {
         try {
             const response = await request.get('api/products')
 
-            products.value = response.data.data
+            products.value = response.data.data.nutrition
 
-            console.log('Users assigned to store:', products.value)
+            console.log('Products assigned to store:', products.value)
         } catch (error) {
             console.error('Failed to fetch products:', error)
         }
