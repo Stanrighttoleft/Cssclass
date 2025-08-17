@@ -1,28 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Navbar from '@/components/navbar.vue'
-import NewNavbar from '@/components/NewNavbar.vue';
-import Footer from './components/Footer.vue';
-
-
+import { RouterLink, RouterView } from "vue-router";
+import Navbar from "@/components/navbar.vue";
+import NewNavbar from "@/components/NewNavbar.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
   <main>
-    <NewNavbar/>
-     
+    <NewNavbar />
+
     <!-- <Navbar/> -->
     <RouterView />
-    <Footer/>
-
-    
-    
-
+    <Footer />
   </main>
 </template>
 
 <style>
-html, body, div  {
+html,
+body,
+div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

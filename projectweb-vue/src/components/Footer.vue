@@ -53,7 +53,7 @@ const startAnim = ref(false);
   background-repeat: repeat-x;
   margin: 0;
   padding: 0;
-  bottom: 100%;
+  bottom: 98%;
   left: 0;
   z-index: 0;
 }
