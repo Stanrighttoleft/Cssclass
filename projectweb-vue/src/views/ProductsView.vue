@@ -1,8 +1,9 @@
 <template>
-  <div class="container-fluid p-0 m-0 productview">
+  <div class="container-fluid productview">
     <div class="row">
-      <div class="col-md-3 d-none d-md-flex sidebar"><Sidecollapse /></div>
-      <div class="col-12 col-md-9 productpage"><productPage /></div>
+      <NewProductPage />
+      <!-- <div class="col-md-3 d-none d-md-flex sidebar"><Sidecollapse /></div>
+      <div class="col-12 col-md-9 productpage"><productPage /></div> -->
       <!-- <ProductShow :productsList="list" /> -->
     </div>
   </div>
@@ -15,6 +16,7 @@ import Sidecollapse from "@/components/Sidecollapse.vue";
 import productPage from "@/components/productPage.vue";
 import { ref } from "vue";
 import Footer from "@/components/Footer.vue";
+import NewProductPage from "@/components/NewProductPage.vue";
 
 const list = ref([
   {
@@ -77,6 +79,7 @@ const list = ref([
 <style>
 .productview {
   overflow-x: hidden;
+  margin-top: 120px;
 }
 .sidebar {
   margin-top: 100px;

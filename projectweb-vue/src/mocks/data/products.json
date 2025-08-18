@@ -12,7 +12,7 @@
       "id": 2,
       "title": "Unichi Rosa美白小熊軟糖-60顆",
       "price": 1000,
-      "bestsell": true,
+      "bestsell": false,
       "image": "/products/small/m2.webp",
       "brand": "Unichi Rosa"
     },
@@ -20,7 +20,7 @@
       "id": 3,
       "title": "女性綜合維他命小熊軟糖-60顆",
       "price": 1000,
-      "bestsell": true,
+      "bestsell": false,
       "image": "/products/small/m3.webp",
       "brand": "Unichi Rosa"
     },
@@ -28,7 +28,7 @@
       "id": 4,
       "title": "女性綜合維他命小熊軟糖-60顆",
       "price": 1000,
-      "bestsell": true,
+      "bestsell": false,
       "image": "/products/small/m3.webp",
       "brand": "Unichi Rosa"
     },
