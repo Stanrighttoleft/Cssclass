@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="loginpage">
         
         <loginForm/>
     </div>
@@ -12,5 +12,9 @@ import loginForm from '@/components/loginForm.vue';
 </script>
 
 <style>
+.loginpage{
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
 
 </style>

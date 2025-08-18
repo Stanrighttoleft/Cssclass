@@ -1,86 +1,120 @@
+
 <template>
-    <div class="container-fluid p-0 m-0">
-        <div class="nav row bg-secondary p-0 m-0">
-            <div class="logo p-0 m-0 col-2">
-                <RouterLink to="/" class="text-danger"><img :src="logo" alt="" class="w-100"></RouterLink>
-            </div>
-            <div class="nav-right-top col-sm-10 d-flex flex-column p-0 m-0">
-                <div class="d-flex flex-row p-0 m-0" >
-                    <div class="col-sm-7 d-flex justify-content-end p-0 m-0">
-                        <img class="facebook"
-                        
-                        :src="facebook" alt="">
-                        <span class="text-light d-none d-md-inline" >關注我們</span>
-                        <motion.img :src="like"
-                        :initial="{
-                            scale:1
-                        }"
-                        :whileInView="{
-                            scale:[1,2,1]
-                        }"  
-                        alt="" class="like"></motion.img>
-                    </div>
-                    <div class="nav-top-right col-sm-5  justify-content-end d-flex pe-3 m-0"> 
-                        <RouterLink to="/login">
-                             <img :src="login" alt="" class="login"><span class="text-light d-none d-lg-inline">會員登入</span>
-                        </RouterLink>
-                        <img :src="cart" alt="" class="cart"><span class="text-light d-none d-lg-inline">購物車</span>
-                         <img :src="searchIcon" alt="" class="search-icon"><span class="text-light d-none d-lg-inline">查找商品</span>
-                    </div>
-                </div>               
-                <div class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center pe-3 m-0">
-                    <ul class="navlistul">
-                        <li 
-                        v-for="(item,index) in link"
-                        :key="index"
-                        ><RouterLink :to=item.goTo class="navlink ms-3"><i class="pi pi-spin pi-chevron-circle-left "></i>{{ item.name }}</RouterLink></li>
-                    </ul>
-                </div>
-            </div>
-        </div>       
+  <div class="container-fluid p-0 m-0 fixed-top test">
+    <div class="nav row bg-secondary p-0 m-0">
+      <div class="logo p-0 m-0 col-2">
+        <RouterLink to="/" class="text-danger"
+          ><img :src="logo" alt="" class="w-100"
+        /></RouterLink>
+      </div>
+      <div class="nav-right-top col-sm-10 d-flex flex-column p-0 m-0">
+        <div class="d-flex flex-row p-0 m-0">
+          <div class="col-sm-7 d-flex justify-content-end p-0 m-0">
+            <img class="facebook" :src="facebook" alt="" />
+            <span class="text-light d-none d-md-inline">關注我們</span>
+            <motion.img
+              :src="like"
+              :initial="{
+                scale: 1,
+              }"
+              :whileInView="{
+                scale: [1, 2, 1],
+              }"
+              alt=""
+              class="like"
+            ></motion.img>
+          </div>
+          <div
+            class="nav-top-right col-sm-5 justify-content-end d-flex pe-3 m-0"
+          >
+            <RouterLink to="/login">
+              <img :src="login" alt="" class="login" /><span
+                class="text-light d-none d-lg-inline"
+                >會員登入</span
+              >
+            </RouterLink>
+            <img :src="cart" alt="" class="cart" /><span
+              class="text-light d-none d-lg-inline"
+              >購物車</span
+            >
+            <img :src="searchIcon" alt="" class="search-icon" /><span
+              class="text-light d-none d-lg-inline"
+              >查找商品</span
+            >
+          </div>
+        </div>
+        <div
+          class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center pe-3 m-0"
+        >
+          <ul class="navlistul">
+            <li v-for="(item, index) in link" :key="index">
+              <RouterLink
+                :to="item.goTo"
+                :class="[
+                  isActiveLink(item.goTo) ? 'active' : '',
+                  'navlink',
+                  'px-3',
+                  'pb-4',
+                  'pt-2',
+                  'thelink',
+                  'border-box',
+                ]"
+                ><i class="pi pi-spin pi-chevron-circle-left"></i
+                >{{ item.name }}</RouterLink
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script setup>
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
-import { motion } from 'motion-v';
+import { ref } from "vue";
+import { RouterLink, useRoute } from "vue-router";
+import { motion } from "motion-v";
 
-const name=ref('Navbar');
-const logo=ref('./assets/logov12.png');
-const facebook=ref('./assets/facebook.png');
-const like=ref('./assets/like.png');
-const login=ref('./assets/user.png');
-const searchIcon=ref('./assets/search.png');
-const cart=ref('./assets/cart.png');
-const link=ref([{
-        name:'團購首頁',
-        goTo:'/',
+const name = ref("Navbar");
+const logo = ref("./assets/logov12.png");
+const facebook = ref("./assets/facebook.png");
+const like = ref("./assets/like.png");
+const login = ref("./assets/user.png");
+const searchIcon = ref("./assets/search.png");
+const cart = ref("./assets/cart.png");
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+  return route.path === routePath;
+};
 
-    },
-    {
-        name:'關於澳打',
-        goTo:'/about',
-    },
-    {
-        name:'商品瀏覽',
-        goTo:'/products',
-
-    },{
-        name:'聯絡我們',
-        goTo:'/contact',
-    }])
-      
-    
+const link = ref([
+  {
+    name: "團購首頁",
+    goTo: "/",
+  },
+  {
+    name: "關於澳打",
+    goTo: "/about",
+  },
+  {
+    name: "商品瀏覽",
+    goTo: "/products",
+  },
+  {
+    name: "聯絡我們",
+    goTo: "/contact",
+  },
+]);
 </script>
-<style >
-body, html {
-    margin: 0;
-    padding: 0;
+<style scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
-.nav{
-    height: 100px;
-    display: flex;
-    align-items: stretch;
+.nav {
+  height: 100px;
+  display: flex;
+  align-items: stretch;
 }
 /* .navbar {
   display: flex;
@@ -91,68 +125,70 @@ body, html {
   width:100%;
   box-sizing: border-box;
 } */
-.nav-top{
-    background-color: rgb(240, 186, 9);
+.nav-top {
+  background-color: rgb(240, 186, 9);
 }
-.facebook{  
-    height: 30px;
-    margin: 0 5px;
+.facebook {
+  height: 30px;
+  margin: 0 5px;
 }
-.like{
-    height:30px;
-    margin:0  5px;
+.like {
+  height: 30px;
+  margin: 0 5px;
 }
-.login{
-    height: 30px;
-    margin:0 5px;
+.login {
+  height: 30px;
+  margin: 0 5px;
 }
-.search-icon{
-    height: 30px;
-    margin:0 5px;
-    
-    width: auto;
-    display: inline-block;
-}
-.cart{
-    height: 30px;
-    margin:0 5px;
-}
-.search-put{
-    width: 200px;
-    height: 30px;
-    margin-left: 8px;
-}
-.navlist{
-    height: 75px;
+.search-icon {
+  height: 30px;
+  margin: 0 5px;
 
+  width: auto;
+  display: inline-block;
 }
-.navlist ul{
-    display: flex;
-    list-style: none;
-    justify-content: space-evenly;
-    gap: 1rem;
-    margin-left: auto;
-    
-   
+.cart {
+  height: 30px;
+  margin: 0 5px;
 }
-.navlist li{
-    margin-right: 2rm;
+.search-put {
+  width: 200px;
+  height: 30px;
+  margin-left: 8px;
+}
+.navlist {
+  height: 75px;
+}
+.navlist ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-left: auto;
+}
+.navlist li {
+  margin-right: 2rm;
 }
 
 .navlink {
-   
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-family: "Alata", sans-serif;
-    font-weight: 400;
-    font-style: normal;
- 
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-family: "Alata", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 .logo img {
   max-height: 100px;
   max-width: 120px;
+}
+.active {
+  border-radius: 10% 10% 10% 10%;
+  background-color: rgb(12, 120, 12);
+}
+.thelink:hover {
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
 }
 
 </style>
