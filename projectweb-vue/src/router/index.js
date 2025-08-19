@@ -7,6 +7,8 @@ import login from '@/views/LoginView.vue'
 import NewsList from '@/views/NewsList.vue'
 import CreateAcc from '@/views/CreateAccView.vue'
 import PasswordView from '@/views/PasswordView.vue'
+import ProductDetailView from '@/views/ProductDetailView.vue'
+
 
 
 const router = createRouter({
@@ -26,6 +28,12 @@ const router = createRouter({
       path: '/products',
       name: 'products',
       component: ProductsView ,
+    },
+    {
+      path:'/products/:id',
+      name:'productdetail',
+      component: ProductDetailView,
+      props:true,
     },
     {
       path: '/contact',

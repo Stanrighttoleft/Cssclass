@@ -9,7 +9,7 @@
       </div>
       <div class="nav-right-top col-sm-10 d-flex flex-column p-0 m-0">
         <div class="d-flex flex-row p-0 m-0">
-          <div class="col-sm-7 d-flex justify-content-end p-0 m-0">
+          <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
             <span class="text-light d-none d-md-inline">關注我們</span>
             <motion.img
@@ -25,7 +25,7 @@
             ></motion.img>
           </div>
           <div
-            class="nav-top-right col-sm-5 justify-content-end d-flex pe-3 m-0"
+            class="nav-top-right d-none d-lg-flex col-5 justify-content-end pe-3 m-0"
           >
             <RouterLink to="/login">
               <img :src="login" alt="" class="login" /><span
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div
-          class="navlist col-sm-12 d-none d-sm-flex justify-content-end align-items-center pe-3 m-0"
+          class="navlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0"
         >
           <ul class="navlistul">
             <li v-for="(item, index) in link" :key="index">
