@@ -3,6 +3,7 @@ import { onMounted, ref, nextTick, watch, computed } from 'vue'
 import { useProductStore } from '@/stores/productStore'
 import { storeToRefs } from 'pinia'
 import { motion } from 'motion-v'
+import { RouterLink } from 'vue-router'
 
 const productStore=useProductStore();
 const {products}=storeToRefs(productStore);
@@ -29,7 +30,7 @@ const sortedProducts=computed(()=>{
 
 const menus = ref([
   {
-    title: '新品直購',
+    title: '品項選擇',
     expanded:false,
     children: [
       '生活五金',
@@ -90,7 +91,7 @@ watch(products, (newVal) => {
 <template>
   <div class=" container-fluid  ">
     <div class="row  ">
-      <div class="col-md-3 flex-column align-items-start ">
+      <div class="col-sm-3 flex-column align-items-start ">
         <div
           v-for="(menu, index) in menus"
           :key="index"
@@ -125,7 +126,7 @@ watch(products, (newVal) => {
           </motion.ul>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-sm-9">
             <div>
                 <label for="selector" class="form-label" 
                 >篩選產品：</label>
@@ -138,28 +139,32 @@ watch(products, (newVal) => {
             </div>
             <hr />
             <div class="row d-flex g-1">
-            <div
-                v-for="product in sortedProducts"
-                :key="product.id"
-                class="col-md-3 col-12 position-relative"
-            >
-                <div>
-                <img
-                    :src="product.image"
-                    alt="product.title"
-                    class=""
-                    style="height: 110px; width: 120px"
-                />
-                <img  v-if="product.bestsell" class="position-absolute top-0 start-0" :src="hot" alt="">
-                </div>
-                <div class="m-0 p-0">
-                <p class="">{{ product.title }}</p>
-                </div>
-                <div class="m-0 p-0">
-                <p class="">TWD: {{ product.price }}</p>
-                </div>
-            </div>
-
+            
+              <div
+                  v-for="product in sortedProducts"
+                  :key="product.id"
+                  class="col-md-3 col-sm-4 col-6 position-relative"
+              >
+              <RouterLink :to="`/products/${product.id}`">
+                  <div>
+                    <img
+                        :src="product.image"
+                        alt="product.title"
+                        class=""
+                        style="height: 110px; width: 120px"
+                    />
+                    <img  v-if="product.bestsell" class="position-absolute top-0 start-0" :src="hot" alt="">
+                    </div>
+                  <div class="m-0 p-0">
+                    <p class="">{{ product.title }}</p>
+                  </div>
+                  <div class="m-0 p-0">
+                    <p class="">TWD: {{ product.price }}</p>
+                  </div>
+                  </RouterLink>
+              </div>
+  
+            
         </div>
     </div>
     
