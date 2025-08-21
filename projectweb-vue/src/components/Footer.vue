@@ -61,8 +61,9 @@ const startAnim=ref(false)
     animation:pulse1 6s ease-in-out;
 }
 .footerdiv.active::after{
-    animation:pulse2 6s linear;
+    animation:pulse2 6s ease-in-out;
 }
+
 
 @keyframes pulse1{
     0%{

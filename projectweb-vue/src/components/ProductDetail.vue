@@ -1,6 +1,7 @@
 <template>
-    <div class="productdetail">
+    <div class="container-fluid productdetail">
         <h1>{{ product.title }}</h1>
+        <h2>{{ product.id }}</h2>
         <p>{{ product.price }}</p>
     </div>
     
@@ -24,8 +25,9 @@ const productId=route.params.id;
 
 onMounted(async()=>{
     await fetchProduct(productId);
+    console.log("product in component:", product.value)
 })
-watch(products,(newVal)=>{
+watch(product,(newVal)=>{
     console.log("products updated", newVal);
 })
 
@@ -34,7 +36,8 @@ watch(products,(newVal)=>{
 
 <style>
 .productdetail{
-    width: 100vh;
+    height: 100vh;
+    width: 100%;
     margin-top: 100px;
 }
 

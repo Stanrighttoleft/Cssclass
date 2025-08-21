@@ -20,7 +20,7 @@ const productId=route.params.id
 <style>
 .productdetail{
     margin-top: 100px;
-    height: 100vh;
+    
 }
 
 </style>
