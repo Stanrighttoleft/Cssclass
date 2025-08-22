@@ -76,15 +76,10 @@ const list = ref([
 ]);
 </script>
 
-<style>
+<style scoped>
 .productview {
   overflow-x: hidden;
-  margin-top: 120px;
+  margin-top: 150px;
 }
-.sidebar {
-  margin-top: 100px;
-}
-.productpage {
-  margin-top: 100px;
-}
+
 </style>    

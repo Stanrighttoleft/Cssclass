@@ -8,7 +8,7 @@ import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <main>
+  <main >
     <NewNavbar/>
      
     <!-- <Navbar/> -->
@@ -27,4 +27,5 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
 </style>

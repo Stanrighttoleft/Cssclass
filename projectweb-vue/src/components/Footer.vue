@@ -7,9 +7,9 @@
 
     >
         <div class="row">
-            <div class="col-md-3">掃我到客服</div>
-            <div class="col-md-3"><img class="img-fluid" src="/assets/logov12.png" alt=""></div>
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="col-md-3 col-xxl-2 offset-xxl-2">掃我到客服</div>
+            <div class="col-md-3 col-xxl-2"><img class="img-fluid" src="/assets/logov12.png" alt=""></div>
+            <div class="col-md-6 col-xxl-4 d-flex justify-content-center">
                 <ul class="list-unstyled">
                     <li class="">澳丁團購</li>
                     <li class="">會員登入</li>
