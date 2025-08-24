@@ -19,12 +19,10 @@ export const useProductStore = defineStore("product", () => {
   const fetchProduct = async (id) => {
     try {
       const response = await request.get(`api/products/${id}`);
-
       product.value = response.data.data;
-
-      console.log("Products assigned to store:", product.value);
+      console.log("product assigned to store:", product.value);
     } catch (error) {
-      console.error("Failed to fetch products:", error);
+      console.error("failed to fetch products:");
     }
   };
   return {

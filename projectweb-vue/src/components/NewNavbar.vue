@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid p-0 m-0 fixed-top test">
-    <div class="nav row bg-secondary p-0 m-0">
-      <div class="logo p-0 m-0 col-2">
+    <div class="row bg-secondary p-0 m-0">
+      <div class="col-xxl-1 offset-xxl-2 col-2">
         <RouterLink to="/" class="text-danger"
-          ><img :src="logo" alt="" class="w-100"
+          ><img :src="logo" alt="" class="img-fluid logo"
         /></RouterLink>
       </div>
-      <div class="nav-right-top col-sm-10 d-flex flex-column p-0 m-0">
-        <div class="d-flex flex-row p-0 m-0">
+      <div class="right-top col-xxl-7 col-10 flex-column  p-0 m-0">
+        <div class="row p-0 m-0">
           <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
             <span class="text-light d-none d-md-inline">關注我們</span>
@@ -24,7 +24,7 @@
             ></motion.img>
           </div>
           <div
-            class="nav-top-right d-none d-lg-flex col-5 justify-content-end pe-3 m-0"
+            class=" d-none d-lg-flex col-5 justify-content-end pe-3 m-0"
           >
             <RouterLink to="/login">
               <img :src="login" alt="" class="login" /><span
@@ -43,9 +43,9 @@
           </div>
         </div>
         <div
-          class="navlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0"
+          class="navbarlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0 mt-2"
         >
-          <ul class="navlistul">
+          <ul class="navbarlistul">
             <li v-for="(item, index) in link" :key="index">
               <RouterLink
                 :to="item.goTo"
@@ -53,7 +53,7 @@
                   isActiveLink(item.goTo) ? 'active' : '',
                   'navlink',
                   'px-3',
-                  'pb-4',
+                  'pb-3',
                   'pt-2',
                   'thelink',
                   'border-box',
@@ -110,20 +110,11 @@ html {
   margin: 0;
   padding: 0;
 }
-.nav {
+.test {
   height: 100px;
-  display: flex;
-  align-items: stretch;
+  
 }
-/* .navbar {
-  display: flex;
-  height: 100px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  width:100%;
-  box-sizing: border-box;
-} */
+
 .nav-top {
   background-color: rgb(240, 186, 9);
 }
@@ -155,17 +146,17 @@ html {
   height: 30px;
   margin-left: 8px;
 }
-.navlist {
+.navbatlist {
   height: 75px;
 }
-.navlist ul {
+.navbarlist ul {
   display: flex;
   list-style: none;
   justify-content: space-evenly;
   gap: 1rem;
   margin-left: auto;
 }
-.navlist li {
+.navbarlist li {
   margin-right: 2rm;
 }
 
@@ -178,9 +169,9 @@ html {
   font-weight: 400;
   font-style: normal;
 }
-.logo img {
-  max-height: 100px;
-  max-width: 120px;
+.logo {
+  max-height: 90px;
+  max-width: 100px;
 }
 .active {
   border-radius: 10% 10% 10% 10%;

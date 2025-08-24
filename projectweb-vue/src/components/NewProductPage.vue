@@ -89,9 +89,9 @@ watch(products, (newVal) => {
 </script>
 
 <template>
-  <div class=" container-fluid  ">
+  <div class=" container-fluid productpage  ">
     <div class="row  ">
-      <div class="col-sm-3 flex-column align-items-start ">
+      <div class="col-xxl-2 offset-xxl-2 col-sm-3 flex-column align-items-start ">
         <div
           v-for="(menu, index) in menus"
           :key="index"
@@ -126,7 +126,7 @@ watch(products, (newVal) => {
           </motion.ul>
         </div>
       </div>
-      <div class="col-sm-9">
+      <div class="col-xxl-6 col-sm-9">
             <div>
                 <label for="selector" class="form-label" 
                 >篩選產品：</label>
@@ -174,6 +174,9 @@ watch(products, (newVal) => {
 </template>
 
 <style scoped>
+.productpage{
+  height: 100vh;
+}
 .sidebar {
   width: 250px;
   margin-left: 5px;

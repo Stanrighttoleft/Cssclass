@@ -17,10 +17,10 @@ const productId=route.params.id
 
 </script>
 
-<style>
+<style scoped>
 .productdetail{
     margin-top: 100px;
-    height: 100vh;
+    
 }
 
 </style>
