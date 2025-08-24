@@ -6,7 +6,7 @@
           ><img :src="logo" alt="" class="img-fluid logo"
         /></RouterLink>
       </div>
-      <div class="right-top col-xxl-7 col-10 flex-column  p-0 m-0">
+      <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
         <div class="row p-0 m-0">
           <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
@@ -23,19 +23,17 @@
               class="like"
             ></motion.img>
           </div>
-          <div
-            class=" d-none d-lg-flex col-5 justify-content-end pe-3 m-0"
-          >
+          <div class="d-none d-lg-flex col-5 justify-content-end pe-3 m-0">
             <RouterLink to="/login">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
                 >會員登入</span
               >
             </RouterLink>
-            <img :src="cart" alt="" class="cart" /><span
-              class="text-light d-none d-lg-inline"
-              >購物車</span
-            >
+            <RouterLink to="/cart">
+              <img :src="cart" alt="" class="cart" />
+              <span class="text-light d-none d-lg-inline">購物車 </span>
+            </RouterLink>
             <img :src="searchIcon" alt="" class="search-icon" /><span
               class="text-light d-none d-lg-inline"
               >查找商品</span
@@ -112,7 +110,6 @@ html {
 }
 .test {
   height: 100px;
-  
 }
 
 .nav-top {
