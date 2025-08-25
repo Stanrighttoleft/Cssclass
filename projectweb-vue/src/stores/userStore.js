@@ -7,35 +7,62 @@ export const useUserStore = defineStore("user", () => {
   const users = ref([]); // all users fetched from API/mock
   const userInfo = ref(null); // current logged-in user
 
-  // Fetch users from API/mock
-  const fetchUsers = async () => {
+  const login = async (email, password) => {
     try {
-      const response = await request.get("/api/users");
-      console.log("API response data:", response.data.data);
-      users.value = response.data.data;
-      console.log("Users assigned to store:", users.value);
+      const res = await request.post("/api/login.php", { email, password });
+      if (res.data.success) {
+        userInfo.value = res.data.user;
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
-      console.error("Failed to fetch users", error);
+      console.error("Login error:", error);
+      return false;
     }
   };
 
-  // Login simulation: pick user by id
-  const login = (userId) => {
-    const user = users.value.find((u) => u.id === userId);
-    if (user) {
-      userInfo.value = user;
+  const register = async (name, email, password, phone, address) => {
+    try {
+      const res = await request.post("/api/register.php", {
+        name,
+        email,
+        password,
+        phone,
+        address,
+      });
+      return res.data;
+    } catch (error) {
+      console.error("Register error:", error);
+      return false;
     }
   };
-
-  const logout = () => {
+  const logout = async () => {
+    await request.post("/api/logout.php");
     userInfo.value = null;
   };
+  const fetchCurrentUser = async () => {
+    const res = await request.get("/api/user.php");
+    userInfo.value = res.data.user;
+  };
+
+  // Fetch users from API/mock
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await request.get("/api/users");
+  //     console.log("API response data:", response.data.data);
+  //     users.value = response.data.data;
+  //     console.log("Users assigned to store:", users.value);
+  //   } catch (error) {
+  //     console.error("Failed to fetch users", error);
+  //   }
+  // };
 
   return {
-    users,
-    fetchUsers,
     userInfo,
     login,
+    register,
     logout,
+    fetchCurrentUser,
   };
 });

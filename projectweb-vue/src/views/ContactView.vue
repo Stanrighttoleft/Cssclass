@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid contactview">
-    <ContacUs />
+    <ContactUs />
   </div>
 </template>
 
 <script setup>
-import ContacUs from "@/components/ContacUs.vue";
+import ContactUs from "@/components/ContactUs.vue";
 </script>
 
 <style>
