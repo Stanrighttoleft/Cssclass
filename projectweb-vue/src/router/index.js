@@ -8,6 +8,8 @@ import NewsList from '@/views/NewsList.vue'
 import CreateAcc from '@/views/CreateAccView.vue'
 import PasswordView from '@/views/PasswordView.vue'
 import ProductDetailView from '@/views/ProductDetailView.vue'
+import CartListView from '@/views/CartListView.vue'
+import OrderPageView from '@/views/OrderPageView.vue'
 
 
 
@@ -57,7 +59,16 @@ const router = createRouter({
       path: '/login/createacc',
       name: 'createacc',
       component: CreateAcc,
-    },
+    },{
+      path:'/cart',
+      name:'cart',
+      component:CartListView,
+
+    },{
+      path:'/order',
+      name:'order',
+      component:OrderPageView,
+    }
   ],
 })
 

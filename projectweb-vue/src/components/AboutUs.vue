@@ -17,8 +17,7 @@
                  alt=""></motion.img>
             </div>
             <div class="about d-flex align-items-center"><h3 class="text-white">在每一個細節中{{ displayedText }}</h3></div>
-        </div>
-        
+        </div>       
       </div>
   </div>
 </template>

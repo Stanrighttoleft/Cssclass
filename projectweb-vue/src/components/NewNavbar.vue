@@ -33,10 +33,12 @@
                 >會員登入</span
               >
             </RouterLink>
+            <RouterLink to="/cart">
             <img :src="cart" alt="" class="cart" /><span
               class="text-light d-none d-lg-inline"
               >購物車</span
             >
+            </RouterLink>
             <img :src="searchIcon" alt="" class="search-icon" /><span
               class="text-light d-none d-lg-inline"
               >查找商品</span

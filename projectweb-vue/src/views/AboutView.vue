@@ -47,6 +47,6 @@ const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
   object-fit: cover;
 }
 .about {
-  height: 100vh;
+  height: 50vh;
 }
 </style>

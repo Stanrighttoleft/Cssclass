@@ -1,22 +1,16 @@
 <template>
   <div class="container-fluid contactview">
-    <div class="row">
-      <ProductList class="mt-5" />
-      <UserList />
-      
-    </div>
-    <NewProductPage/>
+    <ContactUs />
   </div>
 </template>
 
 <script setup>
-import ProductList from "@/components/ProductList.vue";
-import UserList from "@/components/UserList.vue";
-import NewProductPage from "@/components/NewProductPage.vue";
+import ContactUs from "@/components/ContactUs.vue";
 </script>
 
 <style>
 .contactview {
+  margin-top: 110px;
   overflow-x: hidden;
   height: 100vh;
 }
