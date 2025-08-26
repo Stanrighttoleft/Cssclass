@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
+import MemoView from "@/views/MemoView.vue";
 import ProductsView from "@/views/ProductsView.vue";
 import ContactView from "@/views/ContactView.vue";
 import login from "@/views/LoginView.vue";
@@ -10,6 +10,7 @@ import ProductDetailView from "@/views/ProductDetailView.vue";
 import CartListView from "@/views/CartListView.vue";
 import OrderPageView from "@/views/OrderPageView.vue";
 import CreateAccView from "@/views/CreateAccView.vue";
+import MemberView from "@/views/MemberView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,9 +21,9 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/about",
-      name: "about",
-      component: AboutView,
+      path: "/memo",
+      name: "memo",
+      component: MemoView,
     },
     {
       path: "/products",
@@ -44,7 +45,15 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: login,
+      meta: { guestOnly: true },
     },
+    {
+      path: "/member",
+      name: "member",
+      component: MemberView,
+      meta: { requiresAuth: true },
+    },
+
     {
       path: "/newslist",
       name: "newslist",
@@ -71,6 +80,19 @@ const router = createRouter({
       component: OrderPageView,
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  const isLoggedIn = !!userStore.userInfo;
+
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    return next({ name: "login" });
+  }
+  if (to.meta.guestOnly && isLoggedIn) {
+    return next({ name: "member" });
+  }
+  next();
 });
 
 export default router;

@@ -31,6 +31,7 @@ export const useUserStore = defineStore("user", () => {
         phone,
         address,
       });
+      console.log("Register API response:", res);
       return res.data;
     } catch (error) {
       console.error("Register error:", error);

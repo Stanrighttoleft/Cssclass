@@ -91,8 +91,8 @@ const link = ref([
     goTo: "/",
   },
   {
-    name: "關於澳打",
-    goTo: "/about",
+    name: "購貨須知",
+    goTo: "/memo",
   },
   {
     name: "商品瀏覽",
