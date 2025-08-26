@@ -1,16 +1,16 @@
 <template>
-    <div class="memberview container-fluid"></div>
-  
+  <div class="memberview container-fluid">
+    <Member />
+  </div>
 </template>
 
 <script setup>
-import Member from '@/components/Member.vue';
+import Member from "@/components/Member.vue";
 </script>
 
 <style>
-.memberview{
-
-height: 100vh;
+.memberview {
+  margin-top: 100px;
+  height: 100vh;
 }
-
 </style>

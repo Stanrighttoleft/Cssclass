@@ -43,8 +43,13 @@ export const useUserStore = defineStore("user", () => {
     userInfo.value = null;
   };
   const fetchCurrentUser = async () => {
-    const res = await request.get("/api/user.php");
-    userInfo.value = res.data.user;
+    try {
+      const res = await request.get("/api/user.php");
+      userInfo.value = res.data.user || null;
+    } catch (error) {
+      console.error("Failed to fetch current user:", error);
+      userInfo.value = null;
+    }
   };
 
   // Fetch users from API/mock

@@ -11,6 +11,7 @@ import CartListView from "@/views/CartListView.vue";
 import OrderPageView from "@/views/OrderPageView.vue";
 import CreateAccView from "@/views/CreateAccView.vue";
 import MemberView from "@/views/MemberView.vue";
+import { useUserStore } from "@/stores/userStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
