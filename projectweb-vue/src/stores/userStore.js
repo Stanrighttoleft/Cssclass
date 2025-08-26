@@ -25,6 +25,7 @@ export const useUserStore = defineStore("user", () => {
   const register= async(name, email, password, phone, address)=>{
     try{
       const res=await request.post("/api/register.php",{name, email, password, phone,address});
+      console.log("Register API response:", res);
       return res.data;
     }catch(error){
       console.error("Register error:", error);
