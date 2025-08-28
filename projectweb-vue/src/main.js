@@ -1,29 +1,25 @@
+import "./mocks";
+import "./css/custom.css";
+import "primeicons/primeicons.css";
 
-import './mocks'
-import './css/custom.css'
-import 'primeicons/primeicons.css'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import { useUserStore } from "./stores/userStore";
 
+import App from "./App.vue";
+import router from "./router";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { useUserStore } from './stores/userStore';
+const app = createApp(App);
 
-import App from './App.vue'
-import router from './router'
+app.use(router);
 
-const app = createApp(App)
+app.use(createPinia());
 
-app.use(createPinia())
-
-const userStore=useUserStore();
-userStore.fetchCurrentUser().then(()=>{
-    app.mount("#app")
-})
+const userStore = useUserStore();
+userStore.fetchCurrentUser().then(() => {
+  app.mount("#app");
+});
 
 // if(import.meta.env.DEV){
 //     import('./mocks')
 // }
-
-app.use(router)
-
-
