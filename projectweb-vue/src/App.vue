@@ -3,12 +3,18 @@ import { RouterLink, RouterView } from "vue-router";
 import Navbar from "@/components/navbar.vue";
 import NewNavbar from "@/components/NewNavbar.vue";
 import Footer from "./components/Footer.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useCartStore } from "./stores/cartStore";
+import { useUserStore } from "./stores/userStore";
 
 const cartStore = useCartStore();
+const userStore = useUserStore();
 
 const carticon = ref("/assets/carticon.png");
+
+onMounted(async () => {
+  await userStore.fetchCurrentUser();
+});
 </script>
 
 <template>

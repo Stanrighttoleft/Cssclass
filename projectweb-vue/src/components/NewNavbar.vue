@@ -10,7 +10,7 @@
         <div class="row p-0 m-0">
           <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
-            <span class="text-light d-none d-md-inline">關注我們</span>
+            <RouterLink to="/likeus"><span class="text-light d-none d-md-inline">關注我們</span></RouterLink>
             <motion.img
               :src="like"
               :initial="{

@@ -3,7 +3,7 @@ import axios from "axios";
 const request=axios.create({
     // baseURL:'/',
     baseURL:"http://localhost:90/backend",
-    witCredentials:true,
+    withCredentials:true,
     timeout:5000,
 })
 

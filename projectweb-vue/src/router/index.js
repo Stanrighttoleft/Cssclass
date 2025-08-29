@@ -12,6 +12,7 @@ import OrderPageView from "@/views/OrderPageView.vue";
 import CreateAccView from "@/views/CreateAccView.vue";
 import MemberView from "@/views/MemberView.vue";
 import { useUserStore } from "@/stores/userStore";
+import LikeUsView from "@/views/LikeUsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,6 +80,11 @@ const router = createRouter({
       path: "/order",
       name: "order",
       component: OrderPageView,
+    },
+    {
+      path: "/likeus",
+      name: "likeus",
+      component: LikeUsView,
     },
   ],
 });
