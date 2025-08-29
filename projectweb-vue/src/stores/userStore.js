@@ -4,14 +4,17 @@ import { defineStore } from "pinia";
 import request from "@/api/request";
 
 export const useUserStore = defineStore("user", () => {
-  const users = ref([]); // all users fetched from API/mock
-  const userInfo = ref(null); // current logged-in user
+  const storedUser = localStorage.getItem("userInfo"); // all users fetched from API/mock
+  const userInfo = ref(storedUser ? JSON.parse(storedUser) : null); // current logged-in user
 
   const login = async (email, password) => {
     try {
-      const res = await request.post("/api/login.php", { email, password });
+      // const res = await request.post("/api/login.php", { email, password });
+      const res = await request.post("/login.php", { email, password });
       if (res.data.success) {
         userInfo.value = res.data.user;
+        //save to localhost
+        localStorage.setItem("userInfo", JSON.stringify(res.data.user));
         return true;
       } else {
         return false;
@@ -24,7 +27,8 @@ export const useUserStore = defineStore("user", () => {
 
   const register = async (name, email, password, phone, address) => {
     try {
-      const res = await request.post("/api/register.php", {
+      // const res = await request.post("/api/register.php", {
+      const res = await request.post("/register.php", {
         name,
         email,
         password,
@@ -39,16 +43,28 @@ export const useUserStore = defineStore("user", () => {
     }
   };
   const logout = async () => {
-    await request.post("/api/logout.php");
+    // await request.post("/api/logout.php");
+    await request.post("/logout.php");
     userInfo.value = null;
+    //remove from localstorage
+    localStorage.removeItem("userInfo");
   };
+  //fetch current user from server
   const fetchCurrentUser = async () => {
     try {
-      const res = await request.get("/api/user.php");
+      // const res = await request.get("/api/user.php");
+      const res = await request.get("/user.php");
       userInfo.value = res.data.user || null;
+
+      if (userInfo.value) {
+        localStorage.setItem("userInfo", JSON.stringify(userInfo.value));
+      } else {
+        localStorage.removeItem("userInfo");
+      }
     } catch (error) {
       console.error("Failed to fetch current user:", error);
       userInfo.value = null;
+      localStorage.removeItem("userInfo");
     }
   };
 
