@@ -10,7 +10,11 @@
         <div class="row p-0 m-0">
           <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
-            <RouterLink to="/likeus"><span class="text-light d-none d-md-inline">關注我們</span></RouterLink>
+            <RouterLink to="/likeus"
+              ><span class="text-light d-none d-md-inline"
+                >關注我們</span
+              ></RouterLink
+            >
             <motion.img
               :src="like"
               :initial="{
@@ -37,7 +41,7 @@
               >
             </RouterLink>
             <img :src="searchIcon" alt="" class="search-icon" /><span
-              class="text-light d-none d-lg-inline"
+              class="text-light d-none d-lg-inline pe-3"
               >查找商品</span
             >
           </div>
@@ -53,7 +57,7 @@
                   isActiveLink(item.goTo) ? 'active' : '',
                   'navlink',
                   'px-3',
-                  'pb-3',
+
                   'pt-2',
                   'thelink',
                   'border-box',
@@ -111,7 +115,7 @@ html {
   padding: 0;
 }
 .test {
-  height: 100px;
+  height: 80px;
 }
 
 .nav-top {
@@ -145,9 +149,7 @@ html {
   height: 30px;
   margin-left: 8px;
 }
-.navbatlist {
-  height: 75px;
-}
+
 .navbarlist ul {
   display: flex;
   list-style: none;
@@ -169,12 +171,13 @@ html {
   font-style: normal;
 }
 .logo {
-  max-height: 90px;
-  max-width: 100px;
+  max-height: 82px;
+  max-width: 90px;
 }
 .active {
-  border-radius: 10% 10% 10% 10%;
+  border-radius: 10% 10% 0% 0%;
   background-color: rgb(12, 120, 12);
+  padding-bottom: 1.1rem;
 }
 .thelink:hover {
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);

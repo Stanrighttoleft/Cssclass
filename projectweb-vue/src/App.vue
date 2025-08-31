@@ -52,7 +52,7 @@ div {
   border: 0;
   width: 90px;
   height: 90px;
-  left: 10%;
+  left: 20%;
   top: 80%;
   z-index: 5;
 }
