@@ -1,4 +1,3 @@
-
 <template>
   <div class="container-fluid p-0 m-0 fixed-top test">
     <div class="row bg-secondary p-0 m-0">
@@ -7,11 +6,15 @@
           ><img :src="logo" alt="" class="img-fluid logo"
         /></RouterLink>
       </div>
-      <div class="right-top col-xxl-7 col-10 flex-column  p-0 m-0">
+      <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
         <div class="row p-0 m-0">
           <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
             <img class="facebook" :src="facebook" alt="" />
-            <RouterLink to="/likeus"><span class="text-light d-none d-md-inline">關注我們</span></RouterLink>
+            <RouterLink to="/likeus"
+              ><span class="text-light d-none d-md-inline"
+                >關注我們</span
+              ></RouterLink
+            >
             <motion.img
               :src="like"
               :initial="{
@@ -24,9 +27,7 @@
               class="like"
             ></motion.img>
           </div>
-          <div
-            class=" d-none d-lg-flex col-5 justify-content-end pe-3 m-0"
-          >
+          <div class="d-none d-lg-flex col-5 justify-content-end pe-3 m-0">
             <RouterLink to="/login">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
@@ -34,13 +35,13 @@
               >
             </RouterLink>
             <RouterLink to="/cart">
-            <img :src="cart" alt="" class="cart" /><span
-              class="text-light d-none d-lg-inline"
-              >購物車</span
-            >
+              <img :src="cart" alt="" class="cart" /><span
+                class="text-light d-none d-lg-inline"
+                >購物車</span
+              >
             </RouterLink>
             <img :src="searchIcon" alt="" class="search-icon" /><span
-              class="text-light d-none d-lg-inline"
+              class="text-light d-none d-lg-inline pe-3"
               >查找商品</span
             >
           </div>
@@ -56,7 +57,7 @@
                   isActiveLink(item.goTo) ? 'active' : '',
                   'navlink',
                   'px-3',
-                  'pb-3',
+
                   'pt-2',
                   'thelink',
                   'border-box',
@@ -114,8 +115,7 @@ html {
   padding: 0;
 }
 .test {
-  height: 100px;
-  
+  height: 80px;
 }
 
 .nav-top {
@@ -149,9 +149,7 @@ html {
   height: 30px;
   margin-left: 8px;
 }
-.navbatlist {
-  height: 75px;
-}
+
 .navbarlist ul {
   display: flex;
   list-style: none;
@@ -173,15 +171,15 @@ html {
   font-style: normal;
 }
 .logo {
-  max-height: 90px;
-  max-width: 100px;
+  max-height: 82px;
+  max-width: 90px;
 }
 .active {
-  border-radius: 10% 10% 10% 10%;
+  border-radius: 10% 10% 0% 0%;
   background-color: rgb(12, 120, 12);
+  padding-bottom: 1.1rem;
 }
 .thelink:hover {
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
 }
-
 </style>

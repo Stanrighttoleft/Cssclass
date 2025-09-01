@@ -31,7 +31,7 @@ const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
 .carousel {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 100vh;
 }
 .slide-info {
   position: absolute;
@@ -47,6 +47,6 @@ const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
   object-fit: cover;
 }
 .about {
-  height: 50vh;
+  height: 100vh;
 }
 </style>

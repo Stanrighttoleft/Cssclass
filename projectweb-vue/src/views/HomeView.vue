@@ -2,7 +2,7 @@
 import openBanner from "@/components/openBanner.vue";
 import ImageCard from "@/components/image-card.vue";
 import { ref } from "vue";
-import product from "@/components/product.vue";
+
 import ProductShow from "@/components/ProductShow.vue";
 import News from "@/components/news.vue";
 import AboutUs from "@/components/AboutUs.vue";
@@ -92,6 +92,6 @@ const getImages = ref([
   overflow-x: hidden;
 }
 .openbanner {
-  margin-top: 90px;
+  margin-top: 85px;
 }
 </style>

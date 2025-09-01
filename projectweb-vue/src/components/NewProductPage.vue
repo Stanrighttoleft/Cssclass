@@ -21,7 +21,13 @@ const sortedProducts=computed(()=>{
             return [...products.value].sort((a,b)=>a.price - b.price);
         case "hot":
             return [...products.value].sort((a,b)=>{
-                return (b.bestsell===true)-(a.bestsell===true)
+              const hotA=isHot(a);
+              const hotB=isHot(b);
+
+              if(hotA && !hotB) return -1;
+              if(!hotA && hotB) return 1;
+              return 0;
+               
             });
         default:
             return price.value;
@@ -73,7 +79,8 @@ const menus = ref([
   }
 ])
 
-
+const isHot = (product) =>
+  product.bestsell === true || product.bestsell === 1 || product.bestsell === '1';
 
 function toggleMenu(index) {
   menus.value[index].expanded = !menus.value[index].expanded
@@ -153,7 +160,7 @@ watch(products, (newVal) => {
                         class=""
                         style="height: 110px; width: 120px"
                     />
-                    <img  v-if="product.bestsell" class="position-absolute top-0 start-0" :src="hot" alt="">
+                    <img  v-if="isHot(product)" class="position-absolute top-0 start-0" :src="hot" alt="">
                     </div>
                   <div class="m-0 p-0">
                     <p class="">{{ product.title }}</p>

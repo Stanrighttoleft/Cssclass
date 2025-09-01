@@ -14,6 +14,15 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+   server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:90/backend",
+        changeOrigin: true,
+        secure: false, // optional if backend is HTTP
+      },
+    },
+  },
 
 
   resolve: {

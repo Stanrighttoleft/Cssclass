@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import product from "@/components/product.vue";
 import ProductShow from "@/components/ProductShow.vue";
 import Sidecollapse from "@/components/Sidecollapse.vue";
 import productPage from "@/components/productPage.vue";
