@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-5 orderpage">
     <div class="row">
-      <div class="col-12 col-xxl-8 offset-xxl-2">
+      <div class="col-12 col-md-6 col-xxl-4 offset-xxl-2">
         <h1>訂單確認 & 收件資訊</h1>
 
         <form @submit.prevent="submitOrder">
@@ -70,6 +70,67 @@
 
           <button type="submit" class="btn btn-success">確認送出</button>
         </form>
+      </div>
+      <div class="col-6 col-xxl-4">
+        <h1>訂購資訊</h1>
+        <div
+          v-for="item in cart.items"
+          :key="item.id + '-' + (item.size || '')"
+          class="card mb-3"
+        >
+          <div class="row g-0 align-items-center">
+            <div class="col-md-2 text-center">
+              <img
+                :src="item.image"
+                class="img-fluid rounded"
+                alt="product pic"
+                style="max-height: 200px"
+              />
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="cart-title">{{ item.title }}</h5>
+                <p class="card-text mb-1">品牌:{{ item.brand }}</p>
+                <p class="card-text mb-1">尺寸:{{ item.size }}</p>
+                <p class="card-text fw-bold text-danger">${{ item.price }}</p>
+              </div>
+            </div>
+
+            <!-- quantity and actions -->
+            <div class="col-md-4 d-flex flex-column align-items-center">
+              <div class="d-flex align-items-center mb-2">
+                <button
+                  class="btn btn-outline-sceondary btn-sm me-2"
+                  @click="cart.decreaseQuantity(item.id)"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  v-model.number="item.cartQuantity"
+                  min="1"
+                  class="form-control text-center"
+                  style="width: 60px"
+                  @change="onQuantityChange(item)"
+                />
+                <button
+                  class="btn btn-outline-sceondary btn-sm ms-2"
+                  @click="cart.addToCart(item)"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                class="btn btn-danger btn-sm"
+                @click="cart.removeFromCart(item.id)"
+              >
+                刪除
+              </button>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
     </div>
   </div>

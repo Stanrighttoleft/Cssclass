@@ -28,7 +28,13 @@
             ></motion.img>
           </div>
           <div class="d-none d-lg-flex col-5 justify-content-end pe-3 m-0">
-            <RouterLink to="/login">
+            <RouterLink v-if="userInfo" to="/member">
+              <img :src="login" alt="" class="login" /><span
+                class="text-light d-none d-lg-inline"
+                >會員專區</span
+              >
+            </RouterLink>
+            <RouterLink v-else to="/login">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
                 >會員登入</span
@@ -76,6 +82,8 @@
 import { ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { motion } from "motion-v";
+import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
 
 const name = ref("Navbar");
 const logo = ref("./assets/logov12.png");
@@ -88,6 +96,8 @@ const isActiveLink = (routePath) => {
   const route = useRoute();
   return route.path === routePath;
 };
+const userStore=useUserStore();
+const {userInfo}=storeToRefs(userStore);
 
 const link = ref([
   {
