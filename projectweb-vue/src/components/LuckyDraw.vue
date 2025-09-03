@@ -175,7 +175,7 @@ const visibleResults = computed(() =>
   results.value.filter((res) => res.visible)
 );
 
-const overlayColor = ref("rgba(255,0,0,0.4)");
+const overlayColor = ref("rgba(128,64,64,0.5)");
 let colorInterval = null;
 
 const STORAGE_KEY = "luckydraw_accumulated_v1";
@@ -268,17 +268,6 @@ function resetAccumulated() {
   }
 }
 
-// function exportAccumulated() {
-//   const dataStr = JSON.stringify(accumulatedSummary.value, null, 2);
-//   const blob = new Blob([dataStr], { type: "application/json" });
-//   const url = URL.createObjectURL(blob);
-//   const a = document.createElement("a");
-//   a.href = url;
-//   a.download = "luckydraw_accumulated.json";
-//   a.click();
-//   URL.revokeObjectURL(url);
-// }
-
 function startLottery() {
   triggerFishFly();
 
@@ -349,32 +338,6 @@ onMounted(() => {
     tabBtn.classList.remove("moved");
   });
 });
-
-// onMounted(async () => {
-//   loadAccumulated();
-
-//   const el = document.getElementById("resultOffcanvas");
-//   if (!el) return;
-
-//   if (window.bootstrap && window.bootstrap.Offcanvas) {
-//     try {
-//       offcanvasInstance.value = new window.bootstrap.Offcanvas(el);
-//     } catch (e) {
-//       console.warn("window.bootstrap.Offcanvas init failed", e);
-//     }
-//     return;
-//   }
-
-//   try {
-//     const mod = await import("bootstrap/js/dist/offcanvas");
-//     const Offcanvas = mod.default || mod;
-//     offcanvasInstance.value = new Offcanvas(el);
-//   } catch (e) {
-//     console.warn(
-//       "Bootstrap Offcanvas JS not found. 請在 main.js 引入： import 'bootstrap/dist/js/bootstrap.bundle';"
-//     );
-//   }
-// });
 </script>
 
 <style scoped>
