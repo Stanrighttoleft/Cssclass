@@ -57,8 +57,6 @@
           </div>
           <p>運送方式：{{ shippingway }}</p>
 
-          
-          
           <p>運費: {{ cart.shippingCost }}</p>
           <p>總金額: {{ cart.finalPrice }}</p>
 
@@ -67,7 +65,6 @@
       </div>
       <!-- Cart Summary -->
       <div class="col-6 col-xxl-4">
-        
         <h1>訂購資訊</h1>
         <div
           v-for="item in cart.items"
@@ -125,8 +122,6 @@
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
   </div>
@@ -140,12 +135,10 @@ import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 
-
-
 const order = useOrderStore();
 const cart = useCartStore();
 const user = useUserStore();
-const userInformation=storeToRefs(user);
+const userInformation = storeToRefs(user);
 const router = useRouter();
 
 const form = reactive({
@@ -156,47 +149,44 @@ const form = reactive({
   paymentMethod: "credit",
 });
 
-const shippingway=computed(()=>{
-  switch(cart.selectedShipping){
+const shippingway = computed(() => {
+  switch (cart.selectedShipping) {
     case "family":
-      return ("全家便利商店取貨");
+      return "全家便利商店取貨";
       break;
     case "seven":
-      return ("Seven-Eleven便利商店取貨");
+      return "Seven-Eleven便利商店取貨";
       break;
     case "hilife":
-      return ("萊爾富便利商店取貨");
+      return "萊爾富便利商店取貨";
       break;
     case "postoffice":
       break;
     default:
-      return ("全家便利商店取貨");
+      return "全家便利商店取貨";
       break;
   }
+});
 
-})
-
-onMounted (async () => {
+onMounted(async () => {
   await user.fetchCurrentUser();
 
   // Pre-fill from logged-in user
- if (userInformation.userInfo?.value) {
-  const { name, email, phone, address } = userInformation.userInfo.value;
-  form.customerName = name || "";
-  form.email = email || "";
-  form.phone = phone || "";
-  form.address = address || "";
-}
-
-  
+  if (userInformation.userInfo?.value) {
+    const { name, email, phone, address } = userInformation.userInfo.value;
+    form.customerName = name || "";
+    form.email = email || "";
+    form.phone = phone || "";
+    form.address = address || "";
+  }
 });
 
-function submitOrder() {
+async function submitOrder() {
   if (cart.items.length === 0) {
     return alert("購物車是空的！");
   }
 
-  order.createOrder({
+  const success = await order.createOrder({
     items: cart.items,
     shipping: cart.selectedShipping,
     shippingCost: cart.shippingCost,
@@ -204,10 +194,11 @@ function submitOrder() {
     ...form,
   });
 
-  console.log("送出訂單:", order.currentOrder);
-
-  cart.clearCart();
-  router.push("/thank-you");
+  if (success) {
+    cart.clearCart();
+    router.push("/thank-you");
+    console.log("送出訂單:", order.currentOrder);
+  }
 }
 </script>
 
