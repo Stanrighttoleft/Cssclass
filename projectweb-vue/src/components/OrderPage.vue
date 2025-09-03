@@ -55,23 +55,19 @@
               <option value="cod">貨到付款</option>
             </select>
           </div>
+          <p>運送方式：{{ shippingway }}</p>
 
-          <!-- Cart Summary -->
-          <h3>購買商品</h3>
-          <ul>
-            <li v-for="item in cart.items" :key="item.id">
-              {{ item.title }} x {{ item.cartQuantity }} (${{
-                item.price * item.cartQuantity
-              }})
-            </li>
-          </ul>
+          
+          
           <p>運費: {{ cart.shippingCost }}</p>
           <p>總金額: {{ cart.finalPrice }}</p>
 
           <button type="submit" class="btn btn-success">確認送出</button>
         </form>
       </div>
+      <!-- Cart Summary -->
       <div class="col-6 col-xxl-4">
+        
         <h1>訂購資訊</h1>
         <div
           v-for="item in cart.items"
@@ -137,15 +133,19 @@
 </template>
 
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useOrderStore } from "@/stores/orderStore";
 import { useCartStore } from "@/stores/cartStore";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+
+
 
 const order = useOrderStore();
 const cart = useCartStore();
 const user = useUserStore();
+const userInformation=storeToRefs(user);
 const router = useRouter();
 
 const form = reactive({
@@ -156,25 +156,39 @@ const form = reactive({
   paymentMethod: "credit",
 });
 
-onMounted(async () => {
-  await user.fetchUsers();
+const shippingway=computed(()=>{
+  switch(cart.selectedShipping){
+    case "family":
+      return ("全家便利商店取貨");
+      break;
+    case "seven":
+      return ("Seven-Eleven便利商店取貨");
+      break;
+    case "hilife":
+      return ("萊爾富便利商店取貨");
+      break;
+    case "postoffice":
+      break;
+    default:
+      return ("全家便利商店取貨");
+      break;
+  }
+
+})
+
+onMounted (async () => {
+  await user.fetchCurrentUser();
 
   // Pre-fill from logged-in user
-  if (user.userInfo) {
-    form.customerName = user.userInfo.name;
-    form.email = user.userInfo.email;
-    form.phone = user.userInfo.phone;
-    form.address = user.userInfo.address;
-  }
+ if (userInformation.userInfo?.value) {
+  const { name, email, phone, address } = userInformation.userInfo.value;
+  form.customerName = name || "";
+  form.email = email || "";
+  form.phone = phone || "";
+  form.address = address || "";
+}
 
-  // Pre-fill from previous order in localStorage
-  if (order.currentOrder) {
-    form.customerName = form.customerName || order.currentOrder.customerName;
-    form.email = form.email || order.currentOrder.email;
-    form.phone = form.phone || order.currentOrder.phone;
-    form.address = form.address || order.currentOrder.address;
-    form.paymentMethod = form.paymentMethod || order.currentOrder.paymentMethod;
-  }
+  
 });
 
 function submitOrder() {
