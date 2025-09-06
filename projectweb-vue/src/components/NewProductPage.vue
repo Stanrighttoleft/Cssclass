@@ -3,7 +3,9 @@ import { onMounted, ref, nextTick, watch, computed } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import { storeToRefs } from "pinia";
 import { motion } from "motion-v";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
 
 const productStore = useProductStore();
 const { products } = storeToRefs(productStore);
@@ -20,7 +22,8 @@ function getModelForMenu(menu) {
     : selectedBrands.value;
 }
 function onCheckboxChange(menu, value, event) {
-  const targetArray = menu.title === '品項選擇' ? selectedCategories.value : selectedBrands.value;
+  const targetArray =
+    menu.title === "品項選擇" ? selectedCategories.value : selectedBrands.value;
 
   if (event.target.checked) {
     if (!targetArray.includes(value)) {
@@ -34,10 +37,17 @@ function onCheckboxChange(menu, value, event) {
   }
 }
 
+const keyword = computed(() => route.query.keyword || "");
+
 const filteredAndSortedProducts = computed(() => {
   if (!products.value) return [];
 
   let filtered = [...products.value];
+
+  // Filter by keyword
+  filtered = filtered.filter((p) =>
+    p.title.toLowerCase().includes(keyword.value.toLowerCase())
+  );
 
   //  Filter by categories
   if (selectedCategories.value.length > 0) {
@@ -134,7 +144,6 @@ watch(products, (newVal) => {
                 type="checkbox"
                 class="me-2"
                 :value="child"
-                
                 :checked="getModelForMenu(menu).includes(child)"
                 @change="onCheckboxChange(menu, child, $event)"
               />

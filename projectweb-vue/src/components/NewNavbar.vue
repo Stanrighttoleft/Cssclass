@@ -8,10 +8,10 @@
       </div>
       <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
         <div class="row p-0 m-0">
-          <div class="col-7 d-none d-lg-flex justify-content-end p-0 m-0">
-            <img class="facebook" :src="facebook" alt="" />
+          <div class="col-5 d-none d-lg-flex justify-content-end align-items-center p-0 m-0">
+            <img class="facebook " :src="facebook" alt="" />
             <RouterLink to="/likeus"
-              ><span class="text-light d-none d-md-inline"
+              ><span class="text-light d-none d-md-inline align-items-center justify-content-center"
                 >關注我們</span
               ></RouterLink
             >
@@ -27,7 +27,7 @@
               class="like"
             ></motion.img>
           </div>
-          <div class="d-none d-lg-flex col-5 justify-content-end pe-3 m-0">
+          <div class="d-none d-lg-flex col-7 justify-content-end pe-3 m-0">
             <RouterLink v-if="userInfo" to="/member">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
@@ -46,10 +46,16 @@
                 >購物車</span
               >
             </RouterLink>
-            <img :src="searchIcon" alt="" class="search-icon" /><span
-              class="text-light d-none d-lg-inline pe-3"
-              >查找商品</span
-            >
+            <img :src="searchIcon" alt="" class="search-icon" @click="showSearch=!showSearch"/>
+            <input
+            v-if="showSearch"
+            v-model="searchKeyword"
+            @keyup.enter="submitSearch"
+            type="text"
+            placeholder="輸入商品關鍵字"
+            class="form-control ms-2"
+            style="width: 200px; height:40px"
+            ></input>
           </div>
         </div>
         <div
@@ -80,10 +86,14 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { motion } from "motion-v";
 import { useUserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
+
+const showSearch=ref(false);
+const searchKeyword=ref("");
+const router=useRouter();
 
 const name = ref("Navbar");
 const logo = ref("./assets/logov12.png");
@@ -117,6 +127,18 @@ const link = ref([
     goTo: "/contact",
   },
 ]);
+
+const submitSearch=()=>{
+  if(searchKeyword.value.trim() !==""){
+    router.push({
+      path:"/products",
+      query:{keyword:searchKeyword.value.trim()},
+      
+    });
+    showSearch.value=false;
+    searchKeyword.value="";
+  }
+}
 </script>
 <style scoped>
 body,
@@ -132,33 +154,30 @@ html {
   background-color: rgb(240, 186, 9);
 }
 .facebook {
-  height: 30px;
+  height: 40px;
   margin: 0 5px;
 }
 .like {
-  height: 30px;
+  height: 40px;
   margin: 0 5px;
 }
 .login {
-  height: 30px;
+  height: 40px;
   margin: 0 5px;
 }
 .search-icon {
-  height: 30px;
+  height: 40px;
   margin: 0 5px;
+  cursor: pointer;
 
   width: auto;
   display: inline-block;
 }
 .cart {
-  height: 30px;
+  height: 40px;
   margin: 0 5px;
 }
-.search-put {
-  width: 200px;
-  height: 30px;
-  margin-left: 8px;
-}
+
 
 .navbarlist ul {
   display: flex;

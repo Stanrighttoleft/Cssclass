@@ -1,4 +1,3 @@
-
 import { defineStore } from "pinia";
 import { ref, computed, watch } from "vue";
 
@@ -16,14 +15,14 @@ export const useCartStore = defineStore("cart", () => {
   };
 
   //add to cart
-  function addToCart(product) {
+  function addToCart(product, quantity = 1) {
     const existing = items.value.find(
       (i) => i.id === product.id && i.size == product.size
     );
     if (existing) {
-      existing.cartQuantity += 1;
+      existing.cartQuantity += quantity;
     } else {
-      items.value.push({ ...product, cartQuantity: 1 });
+      items.value.push({ ...product, cartQuantity: quantity });
     }
     saveToLocalStorage();
   }
