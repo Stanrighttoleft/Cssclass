@@ -9,7 +9,9 @@
       <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
         <div class="row p-0 m-0">
           <div class="col-5 d-none d-lg-flex justify-content-end align-items-center p-0 m-0">
+            <RouterLink to="/lottery">
             <img class="facebook " :src="facebook" alt="" />
+            </RouterLink>
             <RouterLink to="/likeus"
               ><span class="text-light d-none d-md-inline align-items-center justify-content-center"
                 >關注我們</span
@@ -202,6 +204,8 @@ html {
 .logo {
   max-height: 82px;
   max-width: 90px;
+  min-width: 90px;
+  min-height: 82px;
 }
 .active {
   border-radius: 10% 10% 0% 0%;

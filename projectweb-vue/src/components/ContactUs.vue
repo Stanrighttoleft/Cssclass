@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-xxl-8 offset-xxl-2 bg-light">
+      <div class="col-12 col-xxl-6 offset-xxl-3 bg-light">
         <button class="btn btn-secondary">加入官方Linr@</button>
         <br />
         <br />

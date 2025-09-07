@@ -52,19 +52,18 @@ export const useUserStore = defineStore("user", () => {
   //fetch current user from server
   const fetchCurrentUser = async () => {
     try {
-      // const res = await request.get("/api/user.php");
-      const res = await request.get("/user.php");
-      userInfo.value = res.data.user || null;
+      const res = await request.get("/user.php", { withCredentials: true });
 
-      if (userInfo.value) {
-        localStorage.setItem("userInfo", JSON.stringify(userInfo.value));
+      if (res.data && res.data.user) {
+        userInfo.value = res.data.user;
+        localStorage.setItem("userInfo", JSON.stringify(res.data.user));
       } else {
-        localStorage.removeItem("userInfo");
+        // ⚠️ Don't auto-remove login if backend returns null
+        console.warn("Server did not return a user, keeping local data");
       }
     } catch (error) {
       console.error("Failed to fetch current user:", error);
-      userInfo.value = null;
-      localStorage.removeItem("userInfo");
+      // ⚠️ Don't clear userInfo here
     }
   };
 

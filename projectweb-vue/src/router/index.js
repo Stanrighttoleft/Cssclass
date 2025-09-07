@@ -14,6 +14,7 @@ import MemberView from "@/views/MemberView.vue";
 import { useUserStore } from "@/stores/userStore";
 import LikeUsView from "@/views/LikeUsView.vue";
 import ThankYouView from "@/views/ThankYouView.vue";
+import LotteryView from "@/views/LotteryView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -91,6 +92,11 @@ const router = createRouter({
       path: "/thank-you",
       name: "thankyou",
       component: ThankYouView,
+    },
+    {
+      path: "/lottery",
+      name: "lottery",
+      component: LotteryView,
     },
   ],
 });

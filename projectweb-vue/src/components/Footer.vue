@@ -16,8 +16,14 @@
       </div>
       <div class="col-md-6 col-xxl-4 d-flex justify-content-center">
         <ul class="list-unstyled">
-          <li class="">澳丁團購</li>
-          <li class="">會員登入</li>
+          <RouterLink to="/likeus" class="text-decoration-none"
+            ><li class="text-white text-decoration-none">
+              兔兔抽獎十連抽模擬
+            </li></RouterLink
+          >
+          <RouterLink to="/lottery" class="text-decoration-none"
+            ><li class="text-white">PowerBall抽獎模擬</li></RouterLink
+          >
           <li class="">購物流程</li>
           <li class="">隱私權聲明</li>
           <li class="">會員條款</li>
@@ -35,6 +41,7 @@
 <script setup>
 import { ref } from "vue";
 import { motion } from "motion-v";
+import { RouterLink } from "vue-router";
 
 const startAnim = ref(false);
 </script>
