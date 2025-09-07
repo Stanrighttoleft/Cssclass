@@ -3,7 +3,47 @@
     <div class="row">
       <div class="col-xxl-8 offset-xxl-2 flex-column">
         <!-- Banner -->
-        <div class="bg-warning"><img :src="banner1" alt="" /></div>
+        <div class="bg-warning p-2 mb-3">
+          <img :src="banner1" alt="" />
+          <br />
+          <h1>Powerball</h1>
+          <p>
+            Are you ready to become one of the hundreds of winners? Enjoy
+            Australia’s biggest jackpotting Lottery with Oz Lotteries.
+          </p>
+          <h1>What is Powerball and how does it work?</h1>
+          <p>
+            Powerball is a popular lottery introduced to Australia in 1996 and
+            is played every Thursday night. Powerball offers a larger prize
+            compared to other lottery games.
+          </p>
+          <p>The current drawing involves two sets of numbered balls:</p>
+          <ul>
+            <li>
+              The first barrel has 35 balls of which seven are chosen at random.
+            </li>
+            <li>The final Powerball comes from a barrel of 20 numbers.</li>
+          </ul>
+          <p>
+            If a player matches the first seven plus the extra ball, it is a
+            Division 1 win worth millions of dollars. The chances of winning the
+            grand prize are 1:134,490,400. These odds mean that it is not
+            unusual that no one picks all of the right numbers.
+          </p>
+
+          <p>
+            If several weeks go by without a winner the jackpot can grow into a
+            huge prize. The largest reward so far was $200 Million in February,
+            2024.
+          </p>
+          <p>
+            But for the shake of this stimulate game, you don't have to wait a
+            week for the result, the prize will open immediatly as long as you
+            hit the open prize button, and the corresponse prize will be given
+            base on the odd*2.5 (the amount for one draw)
+          </p>
+          <p>Enjoy the game and goodluck!</p>
+        </div>
 
         <div class="maincontent">
           <!-- Tabs -->
@@ -84,7 +124,7 @@
 
                 <div
                   v-if="activeStandardGame === i && !isStandardComplete(game)"
-                  class="card p-3"
+                  class="card p-3 bg-light"
                 >
                   <p class="fw-bold">Select 7 numbers (1–35)</p>
                   <div
