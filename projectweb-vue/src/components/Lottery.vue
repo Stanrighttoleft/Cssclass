@@ -34,7 +34,9 @@
             class="tab-pane fade show active"
           >
             <form @submit.prevent>
-              <label>Select number of games:</label>
+              <label class="bg-light">Select number of games:</label>
+              <br />
+              <br />
               <select v-model="selectedStandardGames" class="form-select mb-2">
                 <option
                   v-for="opt in gameOptions"
@@ -52,13 +54,20 @@
               >
                 Auto Pick All Standard
               </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary mb-4 ms-2"
+                @click="autoPickRestStandard"
+              >
+                Auto Pick Rest
+              </button>
 
               <div
                 v-for="(game, i) in standardGames"
                 :key="'std-' + i"
                 class="mb-4"
               >
-                <div class="d-flex flex-wrap mb-2">
+                <div class="d-flex flex-wrap mb-2 bg-light">
                   <span
                     v-for="num in game.picks.slice().sort((a, b) => a - b)"
                     :key="num"
@@ -111,7 +120,7 @@
                       :class="
                         game.powerball === n
                           ? 'btn btn-danger'
-                          : 'btn btn-outline-secondary'
+                          : 'btn btn-outline-danger'
                       "
                       class="btn btn-sm"
                     >
@@ -123,63 +132,142 @@
             </form>
 
             <!-- Prize Section -->
-            <div class="mb-4">
-              <button
-                type="button"
-                class="btn btn-warning mb-2"
-                @click="openPrizeStandard"
-              >
-                Open Prize
-              </button>
+            <div class="col-12 d-flex flex-row">
+              <div class="col-md-6 bg-light">
+                <div class="mb-4">
+                  <button
+                    type="button"
+                    class="btn btn-warning mb-2"
+                    @click="openPrizeStandard"
+                  >
+                    Open Prize
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger ms-3 mb-2"
+                    @click="resetAll"
+                  >
+                    Reset
+                  </button>
 
-              <div v-if="standardPrize" class="mt-2">
-                <p class="fw-bold">Winning Numbers:</p>
-                <span
-                  v-for="n in standardPrize.numbers"
-                  :key="'wpn-' + n"
-                  class="badge bg-primary me-2"
-                  >{{ n }}</span
-                >
-                <span class="badge bg-danger">{{
-                  standardPrize.powerball
-                }}</span>
+                  <div v-if="standardPrize" class="mt-2">
+                    <p class="fw-bold">Winning Numbers:</p>
+                    <span
+                      v-for="n in standardPrize.numbers"
+                      :key="'wpn-' + n"
+                      class="badge bg-primary me-2"
+                      >{{ n }}</span
+                    >
+                    <span class="badge bg-danger">{{
+                      standardPrize.powerball
+                    }}</span>
 
-                <div
-                  v-for="(game, i) in standardGames"
-                  :key="'res-' + i"
-                  class="mt-2"
-                >
-                  <p>Game {{ i + 1 }}:</p>
-                  <span
-                    v-for="n in game.picks"
-                    :key="'g' + i + '-' + n"
-                    class="badge bg-primary me-2"
-                    >{{ n }}</span
-                  >
-                  <span class="badge bg-danger">{{ game.powerball }}</span>
-                  <span class="badge bg-success ms-2"
-                    >Division: {{ gameResults[i].division }}</span
-                  >
-                  <span class="badge bg-info ms-2"
-                    >Prize: ${{ gameResults[i].prize.toFixed(2) }}</span
-                  >
+                    <div
+                      v-for="(game, i) in standardGames"
+                      :key="'res-' + i"
+                      class="mt-2"
+                    >
+                      <p>Game {{ i + 1 }}:</p>
+                      <span
+                        v-for="n in game.picks"
+                        :key="'g' + i + '-' + n"
+                        class="badge bg-primary me-2"
+                        >{{ n }}</span
+                      >
+                      <span class="badge bg-danger">{{ game.powerball }}</span>
+                      <span class="badge bg-success ms-2"
+                        >Division: {{ gameResults[i].division }}</span
+                      >
+                      <span class="badge bg-info ms-2"
+                        >Prize: ${{ gameResults[i].prize.toFixed(2) }}</span
+                      >
+                    </div>
+                  </div>
                 </div>
+                <!-- Add below your results section for Standard -->
               </div>
-            </div>
-            <!-- Add below your results section for Standard -->
-            <div v-if="gameResults.length">
-              <h3>Results:</h3>
-              <div v-for="(res, i) in gameResults" :key="i">
-                Set {{ i + 1 }}: {{ res.division }} - Won ${{
-                  res.prize.toLocaleString()
-                }}
-              </div>
-              <div>
-                <strong
-                  >Total Prize: ${{
-                    totalStandardPrize.toLocaleString()
-                  }}</strong
-                >
+              <div class="col-md-6 bg-warning pt-3 px-3">
+                <div v-if="gameResults.length > 0" class="mb-5">
+                  <h3>Results:</h3>
+                  <div v-for="(res, i) in gameResults" :key="i">
+                    Set {{ i + 1 }}: {{ res.division }} - Won ${{
+                      res.prize.toLocaleString()
+                    }}
+                  </div>
+                  <div>
+                    <strong
+                      >Total Prize: ${{
+                        totalStandardPrize.toLocaleString()
+                      }}</strong
+                    >
+                  </div>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Division</th>
+                      <th scope="col">Match</th>
+                      <th scope="col">Odds</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Division 1</td>
+                      <td>All 7 main winning numbers + the Powerball</td>
+                      <td>1:134,490,400</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Division 2</td>
+                      <td>All 7 main winning numbers</td>
+                      <td>1:7,078,443</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Division 3</td>
+                      <td>Any 6 main winning numbers + the Powerball</td>
+                      <td>1:686,176</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td>Division 4</td>
+                      <td>Any 6 main winning numbers</td>
+                      <td>1:36,115</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">5</th>
+                      <td>Division 5</td>
+                      <td>Any 5 main winning numbers + the Powerball</td>
+                      <td>1:16,943</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">6</th>
+                      <td>Division 6</td>
+                      <td>Any 4 main winning numbers + the Powerball</td>
+                      <td>1:1,173</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">7</th>
+                      <td>Division 7</td>
+                      <td>Any 5 main winning numbers</td>
+                      <td>1:892</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">8</th>
+                      <td>Division 8</td>
+                      <td>Any 3 main winning numbers + the Powerball</td>
+                      <td>1:188</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">9</th>
+                      <td>Division 9</td>
+                      <td>Any 2 main winning numbers + the Powerball</td>
+                      <td>1:66</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -207,6 +295,13 @@
                 @click="autoPickPowerhit"
               >
                 Auto Pick All PowerHit
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary mb-4 ms-2"
+                @click="autoPickRestPowerhit"
+              >
+                Auto Pick Rest
               </button>
 
               <div
@@ -258,6 +353,13 @@
                 @click="generatePowerhitPrize"
               >
                 Open Prize
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning ms-2"
+                @click="resetAll"
+              >
+                Reset
               </button>
 
               <div v-if="powerhitPrize" class="mt-2">
@@ -400,6 +502,44 @@ function autoPickStandard() {
   });
 }
 
+function autoPickRestStandard() {
+  standardGames.value.forEach((g) => {
+    if (!isStandardComplete(g)) {
+      // fill missing numbers
+      const nums = g.picks.slice();
+      while (nums.length < 7) {
+        const n = Math.floor(Math.random() * 35) + 1;
+        if (!nums.includes(n)) nums.push(n);
+      }
+      g.picks = nums.sort((a, b) => a - b);
+
+      if (g.powerball == null) {
+        g.powerball = Math.floor(Math.random() * 20) + 1;
+      }
+    }
+  });
+}
+
+function autoPickRestPowerhit() {
+  const pb =
+    standardPrize.value?.powerball || Math.floor(Math.random() * 20) + 1;
+
+  powerhitGames.value.forEach((g) => {
+    if (!isPowerhitComplete(g)) {
+      const nums = g.picks.slice();
+      while (nums.length < 7) {
+        const n = Math.floor(Math.random() * 35) + 1;
+        if (!nums.includes(n)) nums.push(n);
+      }
+      g.picks = nums.sort((a, b) => a - b);
+
+      if (!g.powerball) {
+        g.powerball = pb;
+      }
+    }
+  });
+}
+
 function autoPickPowerhit() {
   const pb =
     standardPrize.value?.powerball || Math.floor(Math.random() * 20) + 1;
@@ -498,6 +638,32 @@ function calcPowerhitPrize(game) {
 const totalPowerhitPrize = computed(() =>
   powerhitGames.value.reduce((sum, g) => sum + calcPowerhitPrize(g), 0)
 );
+
+// reset everything
+function resetAll() {
+  // clear standard games
+  standardGames.value = standardGames.value.map(() => ({
+    picks: [],
+    powerball: null,
+  }));
+
+  // clear powerhit games
+  powerhitGames.value = powerhitGames.value.map(() => ({
+    picks: [],
+    powerball: null,
+  }));
+
+  // reset prizes
+  standardPrize.value = null;
+  powerhitPrize.value = null;
+
+  // reset results
+  gameResults.value = [];
+
+  // reset active tab/game index if you use them
+  activeStandardGame.value = 0;
+  activePowerhitGame.value = 0;
+}
 </script>
 
 <style scoped>

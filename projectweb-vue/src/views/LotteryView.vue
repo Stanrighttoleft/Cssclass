@@ -11,6 +11,6 @@ import Lottery from "@/components/Lottery.vue";
 <style>
 .lottery {
   margin-top: 100px;
-  height: 200vh;
+  height: 350vh;
 }
 </style>
