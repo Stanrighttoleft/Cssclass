@@ -79,7 +79,7 @@
               <br />
               <select v-model="selectedStandardGames" class="form-select mb-2">
                 <option
-                  v-for="opt in gameOptions"
+                  v-for="opt in gameOptionsStandard"
                   :key="opt.value"
                   :value="opt.value"
                 >
@@ -319,9 +319,10 @@
           >
             <form @submit.prevent>
               <label>Select number of games:</label>
+              <br /><br />
               <select v-model="selectedPowerhitGames" class="form-select mb-2">
                 <option
-                  v-for="opt in gameOptions"
+                  v-for="opt in gameOptionsPowerhit"
                   :key="opt.value"
                   :value="opt.value"
                 >
@@ -350,12 +351,13 @@
                 class="mb-4"
               >
                 <div class="d-flex flex-wrap mb-2">
-                  <span
+                  <div
                     v-for="num in game.picks.slice().sort((a, b) => a - b)"
                     :key="num"
                     class="badge bg-primary me-2 mb-2"
-                    >{{ num }}</span
                   >
+                    {{ num }}
+                  </div>
                 </div>
 
                 <div
@@ -385,59 +387,165 @@
                 </div>
               </div>
             </form>
-
-            <div class="mb-4">
-              <button
-                type="button"
-                class="btn btn-warning mb-2"
-                @click="generatePowerhitPrize"
-              >
-                Open Prize
-              </button>
-              <button
-                type="button"
-                class="btn btn-warning ms-2"
-                @click="resetAll"
-              >
-                Reset
-              </button>
-
-              <div v-if="powerhitPrize" class="mt-2">
-                <p class="fw-bold">Winning Numbers:</p>
-                <span
-                  v-for="n in powerhitPrize.numbers"
-                  :key="'wpnph-' + n"
-                  class="badge bg-primary me-2"
-                  >{{ n }}</span
+            <div class="d-flex flex-row">
+              <div class="mb-4 col-md-6">
+                <button
+                  type="button"
+                  class="btn btn-warning mb-2"
+                  @click="generatePowerhitPrize"
                 >
-
-                <div
-                  v-for="(game, i) in powerhitGames"
-                  :key="'resph-' + i"
-                  class="mt-2"
+                  Open Prize
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2 mb-2"
+                  @click="resetAll"
                 >
-                  <p>
-                    Game {{ i + 1 }}: Division:
-                    {{ calcDivisionPowerhit(game, powerhitPrize) }}
-                  </p>
+                  Reset
+                </button>
+
+                <div v-if="powerhitPrize" class="mt-2">
+                  <p class="fw-bold">Winning Numbers:</p>
+                  <span
+                    v-for="n in powerhitPrize.numbers"
+                    :key="'wpnph-' + n"
+                    class="badge bg-primary me-2"
+                    >{{ n }}</span
+                  >
+
+                  <div
+                    v-for="(game, i) in powerhitGames"
+                    :key="'resph-' + i"
+                    class="mt-2"
+                  >
+                    <p>
+                      Game {{ i + 1 }}: Division:
+                      {{ calcDivisionPowerhit(game, powerhitPrize) }}
+                    </p>
+                  </div>
+                </div>
+                <!-- For PowerHit, similarly -->
+                <div v-if="powerhitPrize" class="mt-2">
+                  <p class="fw-bold">Winning Numbers:</p>
+                  <span
+                    v-for="n in powerhitPrize.numbers"
+                    :key="'wpnph-' + n"
+                    class="badge bg-primary me-2"
+                  >
+                    {{ n }}
+                  </span>
+                  <span class="badge bg-danger">{{
+                    powerhitPrize.powerball
+                  }}</span>
+
+                  <div
+                    v-for="(game, i) in powerhitGames"
+                    :key="'resph-' + i"
+                    class="mt-2"
+                  >
+                    <p>Game {{ i + 1 }}:</p>
+                    <span
+                      v-for="n in game.picks"
+                      :key="'gph' + i + '-' + n"
+                      class="badge bg-primary me-2"
+                    >
+                      {{ n }}
+                    </span>
+                    <span class="badge bg-danger">{{
+                      powerhitPrize.powerball
+                    }}</span>
+                    <span class="badge bg-success ms-2">
+                      Division: {{ gameResults[i].division }}
+                    </span>
+                    <span class="badge bg-info ms-2">
+                      Prize: ${{ gameResults[i].prize.toFixed(2) }}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <!-- For PowerHit, similarly -->
-              <div v-if="powerhitGames.length && standardPrize">
-                <h3>Results:</h3>
-                <div v-for="(game, i) in powerhitGames" :key="i">
-                  Set {{ i + 1 }}:
-                  {{ calcDivisionPowerhit(game, standardPrize) }} - Won ${{
-                    calcPowerhitPrize(game).toLocaleString()
-                  }}
+              <div class="bg-warning col-md-6 px-3 pt-3">
+                <!-- Summary like Standard -->
+                <div v-if="gameResults.length > 0" class="mb-5 mt-3">
+                  <h3>Results:</h3>
+                  <div v-for="(res, i) in gameResults" :key="'phres-' + i">
+                    Set {{ i + 1 }}: {{ res.division }} - Won ${{
+                      res.prize.toLocaleString()
+                    }}
+                  </div>
+                  <div>
+                    <strong
+                      >Total Prize: ${{
+                        totalPowerhitPrize.toLocaleString()
+                      }}</strong
+                    >
+                  </div>
                 </div>
-                <div>
-                  <strong
-                    >Total Prize: ${{
-                      totalPowerhitPrize.toLocaleString()
-                    }}</strong
-                  >
-                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Division</th>
+                      <th scope="col">Match</th>
+                      <th scope="col">Odds</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Division 1</td>
+                      <td>All 7 main winning numbers + the Powerball</td>
+                      <td>1:134,490,400</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Division 2</td>
+                      <td>All 7 main winning numbers</td>
+                      <td>1:7,078,443</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Division 3</td>
+                      <td>Any 6 main winning numbers + the Powerball</td>
+                      <td>1:686,176</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td>Division 4</td>
+                      <td>Any 6 main winning numbers</td>
+                      <td>1:36,115</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">5</th>
+                      <td>Division 5</td>
+                      <td>Any 5 main winning numbers + the Powerball</td>
+                      <td>1:16,943</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">6</th>
+                      <td>Division 6</td>
+                      <td>Any 4 main winning numbers + the Powerball</td>
+                      <td>1:1,173</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">7</th>
+                      <td>Division 7</td>
+                      <td>Any 5 main winning numbers</td>
+                      <td>1:892</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">8</th>
+                      <td>Division 8</td>
+                      <td>Any 3 main winning numbers + the Powerball</td>
+                      <td>1:188</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">9</th>
+                      <td>Division 9</td>
+                      <td>Any 2 main winning numbers + the Powerball</td>
+                      <td>1:66</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -455,7 +563,7 @@ const banner1 = "/luckydraw/banner.png";
 const activeTab = ref("standard");
 
 /** Game Options */
-const gameOptions = [
+const gameOptionsStandard = [
   { value: 4, label: "4 games - $10" },
   { value: 5, label: "5 games - $12.5" },
   { value: 6, label: "6 games - $15" },
@@ -464,6 +572,17 @@ const gameOptions = [
   { value: 9, label: "9 games - $22.5" },
   { value: 10, label: "10 games - $25" },
   { value: 20, label: "20 games - $50" },
+];
+
+const gameOptionsPowerhit = [
+  { value: 4, label: "4 games - $200" },
+  { value: 5, label: "5 games - $250" },
+  { value: 6, label: "6 games - $300" },
+  { value: 7, label: "7 games - $350" },
+  { value: 8, label: "8 games - $400" },
+  { value: 9, label: "9 games - $450" },
+  { value: 10, label: "10 games - $500" },
+  { value: 20, label: "20 games - $1000" },
 ];
 
 /** Standard Games */
@@ -659,6 +778,31 @@ function calcDivision(game, prize) {
   return res ? res.division : "-";
 }
 
+function generatePowerhitPrize() {
+  // generate winning numbers
+  const nums = [];
+  while (nums.length < 7) {
+    const n = Math.floor(Math.random() * 35) + 1;
+    if (!nums.includes(n)) nums.push(n);
+  }
+  nums.sort((a, b) => a - b);
+  const pb = Math.floor(Math.random() * 20) + 1;
+
+  // store winning set
+  powerhitPrize.value = { numbers: nums, powerball: pb };
+
+  // calculate results for each PowerHit game
+  gameResults.value = powerhitGames.value.map((g) => {
+    const mainMatch = g.picks.filter((n) => nums.includes(n)).length;
+    // PowerHit means PB is guaranteed → always true
+    const pbMatch = true;
+    const divObj = divisions.find((d) => d.check(mainMatch, pbMatch));
+    const divName = divObj ? divObj.name : "-";
+    const prize = divName !== "-" ? divisionPrizeMap[divName] : 0;
+    return { division: divName, prize };
+  });
+}
+
 function calcDivisionPowerhit(game, prize) {
   if (!prize) return "-";
   const mainMatch = game.picks.filter((n) => prize.numbers.includes(n)).length;
@@ -674,14 +818,13 @@ const totalStandardPrize = computed(() =>
 );
 
 function calcPowerhitPrize(game) {
-  if (!standardPrize.value) return 0;
+  if (!powerhitPrize.value) return 0;
   const mainMatch = game.picks.filter((n) =>
-    standardPrize.value.numbers.includes(n)
+    powerhitPrize.value.numbers.includes(n)
   ).length;
-  const pbMatch = game.powerball === standardPrize.value.powerball;
+  const pbMatch = true; // PowerHit covers all PBs
   const div = divisions.find((d) => d.check(mainMatch, pbMatch));
-  const oddsObj = divisionOdds.find((d) => d.name === (div ? div.name : "-"));
-  return oddsObj ? 2.5 * oddsObj.odds : 0;
+  return div ? divisionPrizeMap[div.name] : 0;
 }
 
 const totalPowerhitPrize = computed(() =>
