@@ -18,25 +18,30 @@
           class="form-control"
           name="itemSize"
           v-model="selectedSize"
-          id=""
+          :disabled="!product.sizes || product.sizes.length === 0"
         >
-          <option value="singleSize">單一尺寸</option>
+          <option
+            v-if="!product.sizes || product.sizes.length === 0"
+            value="singleSize"
+          >
+            單一尺寸
+          </option>
 
-          <option value="L">L</option>
-          <option value="M">M</option>
-          <option value="S">S</option>
+          <option v-for="size in product.sizes" :key="size" :value="size">
+            {{ size }}
+          </option>
         </select>
         <br />
         <label for="orderQuantity form-label">訂購數量</label>
         <select
           class="form-control"
           name="orderQuantity"
-          v-model.number="cartQuantity"
+          v-model="cartQuantity"
           id=""
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option :value="1">1</option>
+          <option :value="2">2</option>
+          <option :value="3">3</option>
         </select>
         <hr />
         <button class="btn btn-warning me-2" @click="addCart">
@@ -73,6 +78,8 @@ const { fetchProduct } = productStore;
 const route = useRoute();
 const productId = route.params.id;
 
+// set up for the product sizes
+
 //set up the cart
 const cart = useCartStore();
 const cartQuantity = ref(1);
@@ -86,7 +93,7 @@ const addCart = () => {
     },
     cartQuantity.value
   );
-  alert("已加入購物車!");
+  alert(`已加入購物車!加入${cartQuantity.value}件!`);
 };
 
 onMounted(async () => {
@@ -94,15 +101,12 @@ onMounted(async () => {
   console.log("product in component:", product.value);
 });
 watch(product, (newVal) => {
+  if (!newVal.sizes || newVal.sizes.length === 0) {
+    selectedSize.value = "singleSize";
+  } else {
+    selectedSize.value = newVal.sizes[0];
+  }
   console.log("products updated", newVal);
-});
-
-onMounted(async () => {
-  await fetchProduct(productId);
-  console.log("product in component:", product.value);
-});
-watch(product, (newVal) => {
-  console.log("products updated:", newVal);
 });
 </script>
 
