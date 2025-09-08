@@ -598,6 +598,7 @@ function autoPickPowerhit() {
 const standardPrize = ref(null);
 const powerhitPrize = ref(null);
 const gameResults = ref([]);
+const prizePool = 4000000;
 
 const divisionOdds = [
   { name: "Division 1", odds: 134490400 },
@@ -623,6 +624,14 @@ const divisions = [
   { name: "Division 9", check: (m, pb) => m === 2 && pb },
 ];
 
+const totalWeight = divisionOdds.reduce((sum, d) => sum + d.odds, 0);
+
+const divisionPrizeMap = divisionOdds.reduce((map, d) => {
+  const share = d.odds / totalWeight;
+  map[d.name] = Math.floor(prizePool * share);
+  return map;
+}, {});
+
 function openPrizeStandard() {
   const nums = [];
   while (nums.length < 7) {
@@ -640,7 +649,7 @@ function openPrizeStandard() {
     const divObj = divisions.find((d) => d.check(mainMatch, pbMatch));
     const divName = divObj ? divObj.name : "-";
     const oddsObj = divisionOdds.find((d) => d.name === divName);
-    const prize = oddsObj ? 2.5 * oddsObj.odds : 0;
+    const prize = divName !== "-" ? divisionPrizeMap[divName] : 0;
     return { division: divName, prize };
   });
 }
