@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-xxl-8 offset-xxl-2 flex-column">
         <!-- Banner -->
-        <div class="bg-warning p-2 mb-3">
+        <div class="bg-warning p-2 mb-3 position-relative overflow-hidden">
+          <div class="position-absolute conic-gradient-test"></div>
           <img :src="banner1" alt="" />
           <br />
           <h1>Powerball</h1>
@@ -47,7 +48,7 @@
 
         <div class="maincontent">
           <!-- Tabs -->
-          <ul class="nav nav-tabs mb-3">
+          <ul class="nav nav-tabs mb-3 d-flex justify-content-start">
             <li class="nav-item">
               <button
                 class="nav-link"
@@ -556,7 +557,7 @@
 </template>
 
 <script setup>
-import { ref, watch, unref } from "vue";
+import { ref, watch, unref, computed } from "vue";
 
 /** Banner */
 const banner1 = "/luckydraw/banner.png";
@@ -773,10 +774,10 @@ function openPrizeStandard() {
   });
 }
 
-function calcDivision(game, prize) {
-  const res = gameResults.value[standardGames.value.indexOf(game)];
-  return res ? res.division : "-";
-}
+// function calcDivision(game, prize) {
+//   const res = gameResults.value[standardGames.value.indexOf(game)];
+//   return res ? res.division : "-";
+// }
 
 function generatePowerhitPrize() {
   // generate winning numbers
@@ -810,8 +811,6 @@ function calcDivisionPowerhit(game, prize) {
   const div = divisions.find((d) => d.check(mainMatch, pbMatch));
   return div ? div.name : "-";
 }
-
-import { computed } from "vue";
 
 const totalStandardPrize = computed(() =>
   gameResults.value.reduce((sum, r) => sum + r.prize, 0)
@@ -861,5 +860,25 @@ function resetAll() {
 <style scoped>
 .d-grid {
   display: grid !important;
+}
+.conic-gradient-test {
+  top: 0;
+  left: 0;
+  height: 200%;
+  width: 200%;
+  background-image: repeating-conic-gradient(
+    from 0deg at center,
+    rgba(255, 128, 128, 0.7),
+    rgba(128, 255, 128, 0.7),
+    rgba(128, 128, 255, 0.7)
+  );
+  background-position: 0%;
+  transition: all 3s ease;
+  transform: translateX(-25%) translateY(-25%) rotate(0deg);
+  opacity: 0;
+}
+.conic-gradient-test:hover {
+  transform: translateX(-25%) translateY(-25%) rotate(720deg);
+  opacity: 0.8;
 }
 </style>
