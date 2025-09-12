@@ -57,7 +57,7 @@
             placeholder="輸入商品關鍵字"
             class="form-control ms-2"
             style="width: 200px; height:40px"
-            ></input>
+            >
           </div>
         </div>
         <div

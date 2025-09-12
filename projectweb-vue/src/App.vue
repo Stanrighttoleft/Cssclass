@@ -6,6 +6,7 @@ import Footer from './components/Footer.vue';
 import { ref, onMounted } from 'vue';
 import { useCartStore } from './stores/cartStore';
 import { useUserStore } from './stores/userStore';
+import SlideSideMenu from './components/SlideSideMenu.vue'
 
 const cartStore=useCartStore();
 const userStore=useUserStore();
@@ -24,6 +25,7 @@ onMounted(async () => {
     <RouterLink to="/cart"> <button class="position-fixed rounded-circle bg-light" id="cartbutton"><img :src="carticon" alt="" class="" id="carticon"><span class="cart-badge" v-if="cartStore.totalQuantity > 0">{{ cartStore.totalQuantity }}</span>
     </button></RouterLink>
     <NewNavbar/>
+    <SlideSideMenu />
      
     <!-- <Navbar/> -->
     <RouterView />

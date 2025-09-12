@@ -1,17 +1,45 @@
 <template>
      
-      <div class="container-fluid shows  m-3 p-2 productShow overflow-hidden position-relative  "  >
-        <div ref="productDiv" class="list row d-flex flex-row flex-nowrap overflow-hidden position-relative">
-          <div class="col-1 col-sm-3 productcard p-2 m-1 rounded-3 bg-light" v-for="(product, index) in productsList" :key="index">
-            <div class="position-relative">
-              <img class="productimage " :src="product.image" alt="">
-              <img v-if="product.topsale" class="position-absolute top-0 start-0" :src="hot" alt="">
-            </div>
-            <div class="productTag ">
-              <div class="bg-light">{{'TW '+ product.price }}</div>
-              <div class="bg-warning">{{product.name }}</div>
-            </div>
-          </div>
+      <div class="container-fluid shows  m-3 p-2 productShow overflow-hidden position-relative scroll-wrapper  "  >
+        <div ref="productDiv" class="d-flex flex-row flex-nowrap overflow-hidden product-row position-relative">
+          <motion.div
+            v-for="product in filteredAndSortedProducts"
+            :key="product.id"
+            class="mx-2 position-relative bg-light rounded-3"
+            style="min-height:280px; width:200px;"
+            :initial="{opacity:1}"
+            :while-hover="{opacity:0.6, transition:{duration:1}}"
+          >
+            <RouterLink :to="`/products/${product.id}`">
+              <div 
+              class="text-center bg-light rounded-3 "
+              
+              >
+                <img
+                  :src="product.image"
+                  alt="product.title"
+                  class=""
+                  style="height: 150px; width: 160px"
+                />
+                <img
+                  v-if="isHot(product)"
+                  class="position-absolute top-0 start-0"
+                  :src="hot"
+                  alt=""
+                />
+              </div>
+              <div class="bg-light rounded-3">
+                <div class="d-flex text-wrap"
+                style="width: 200px;"
+                >
+                  <p class="bg-light rounded-3 m-1 info">{{ product.title }}</p>
+                </div>
+                <div class="bg-light rounded-3 m-1 ">
+                  <p class="">TWD: {{ product.price }}</p>
+                </div>
+              </div>
+            </RouterLink>
+          </motion.div>
         </div>
         <!-- Navigation -->
         <div class="navigation position-absolute d-flex start-0 end-0 justify-content-between px-1 " >
@@ -38,7 +66,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
+import { useProductStore } from '@/stores/productStore';
+import { storeToRefs } from 'pinia';
+import { RouterLink, useRoute } from 'vue-router';
+import { motion } from 'motion-v';
+
 
 const hot=ref('/assets/hot.png');
 const prevBun=ref('/assets/left.png');
@@ -46,13 +79,32 @@ const nextBun=ref('/assets/right.png');
 const productDiv=ref(null);
 const scrollInterval=ref(null);
 const scrollAmount=4000;
+const route=useRoute();
+const productStore=useProductStore();
+const {products}=storeToRefs(productStore);
+const {fetchProducts}=productStore;
+
+const filteredAndSortedProducts = computed(() => {
+  if (!products.value) return [];
+  
+  return products.value
+    .filter(product => product ) //  filter && product.bestsell==='1'
+    .sort((a, b) => b.id - a.id); // Example sort (latest first)
+});
+
+const isHot = (product) =>
+  product.bestsell === true ||
+  product.bestsell === 1 ||
+  product.bestsell === "1";
+
+
 const startScroll=(direction)=>{
   if(!productDiv.value) return;
 
 
   scrollInterval.value=setInterval(()=>{
     productDiv.value.scrollBy({
-      left:direction==='next' ? scrollAmount /10 : -scrollAmount /10, behavior:'smooth'
+      left:direction==='next' ? scrollAmount /1 : -scrollAmount /1, behavior:'smooth'
   })
 },50);
 };
@@ -69,6 +121,14 @@ onMounted(() => {
 
   const rect = productDiv.value.getBoundingClientRect();
   console.log('Width from getBoundingClientRect:', rect.width);
+});
+
+onMounted(async () => {
+  await fetchProducts();
+  console.log("products in component:", products.value);
+});
+watch(products, (newVal) => {
+  console.log("products updated:", newVal);
 });
 
 const props=defineProps({
@@ -101,13 +161,22 @@ const props=defineProps({
 
 .shows{
   max-width: 99%;
-  background-color: rgba(116, 124, 8, 0.548);
+  height: 300px;
+  /* background-color: rgba(116, 124, 8, 0.548); */
 }
 .list{
   max-width: 100%;
 }
 .navigation{
   bottom: 50%;
+}
+.scroll-wrapper{
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+.info{
+  font-family: '標楷體';
+  font-size: large;
 }
 
 </style>
