@@ -92,6 +92,6 @@ const getImages = ref([
   overflow-x: hidden;
 }
 .openbanner {
-  margin-top: 85px;
+  margin-top: 80px;
 }
 </style>

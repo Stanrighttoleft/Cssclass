@@ -6,6 +6,7 @@ import Footer from "./components/Footer.vue";
 import { ref, onMounted } from "vue";
 import { useCartStore } from "./stores/cartStore";
 import { useUserStore } from "./stores/userStore";
+import SlideSideMenu from "./components/SlideSideMenu.vue";
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
@@ -29,6 +30,7 @@ onMounted(async () => {
       </button></RouterLink
     >
     <NewNavbar />
+    <SlideSideMenu />
 
     <!-- <Navbar/> -->
     <RouterView />
