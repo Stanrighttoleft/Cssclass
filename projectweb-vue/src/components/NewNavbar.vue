@@ -8,12 +8,15 @@
       </div>
       <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
         <div class="row p-0 m-0">
-          <div class="col-5 d-none d-lg-flex justify-content-end align-items-center p-0 m-0">
+          <div
+            class="col-5 d-none d-lg-flex justify-content-end align-items-center p-0 m-0"
+          >
             <RouterLink to="/lottery">
-            <img class="facebook " :src="facebook" alt="" />
+              <img class="facebook" :src="facebook" alt="" />
             </RouterLink>
             <RouterLink to="/likeus"
-              ><span class="text-light d-none d-md-inline align-items-center justify-content-center"
+              ><span
+                class="text-light d-none d-md-inline align-items-center justify-content-center"
                 >關注我們</span
               ></RouterLink
             >
@@ -48,16 +51,21 @@
                 >購物車</span
               >
             </RouterLink>
-            <img :src="searchIcon" alt="" class="search-icon" @click="showSearch=!showSearch"/>
+            <img
+              :src="searchIcon"
+              alt=""
+              class="search-icon"
+              @click="showSearch = !showSearch"
+            />
             <input
-            v-if="showSearch"
-            v-model="searchKeyword"
-            @keyup.enter="submitSearch"
-            type="text"
-            placeholder="輸入商品關鍵字"
-            class="form-control ms-2"
-            style="width: 200px; height:40px"
-            >
+              v-if="showSearch"
+              v-model="searchKeyword"
+              @keyup.enter="submitSearch"
+              type="text"
+              placeholder="輸入商品關鍵字"
+              class="form-control ms-2"
+              style="width: 200px; height: 40px"
+            />
           </div>
         </div>
         <div
@@ -93,9 +101,9 @@ import { motion } from "motion-v";
 import { useUserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
 
-const showSearch=ref(false);
-const searchKeyword=ref("");
-const router=useRouter();
+const showSearch = ref(false);
+const searchKeyword = ref("");
+const router = useRouter();
 
 const name = ref("Navbar");
 const logo = ref("./assets/logov12.png");
@@ -108,8 +116,8 @@ const isActiveLink = (routePath) => {
   const route = useRoute();
   return route.path === routePath;
 };
-const userStore=useUserStore();
-const {userInfo}=storeToRefs(userStore);
+const userStore = useUserStore();
+const { userInfo } = storeToRefs(userStore);
 
 const link = ref([
   {
@@ -130,17 +138,16 @@ const link = ref([
   },
 ]);
 
-const submitSearch=()=>{
-  if(searchKeyword.value.trim() !==""){
+const submitSearch = () => {
+  if (searchKeyword.value.trim() !== "") {
     router.push({
-      path:"/products",
-      query:{keyword:searchKeyword.value.trim()},
-      
+      path: "/products",
+      query: { keyword: searchKeyword.value.trim() },
     });
-    showSearch.value=false;
-    searchKeyword.value="";
+    showSearch.value = false;
+    searchKeyword.value = "";
   }
-}
+};
 </script>
 <style scoped>
 body,
@@ -179,7 +186,6 @@ html {
   height: 40px;
   margin: 0 5px;
 }
-
 
 .navbarlist ul {
   display: flex;
