@@ -15,6 +15,7 @@ import { useUserStore } from "@/stores/userStore";
 import LikeUsView from "@/views/LikeUsView.vue";
 import ThankYouView from "@/views/ThankYouView.vue";
 import LotteryView from "@/views/LotteryView.vue";
+import AdminDashboard from "@/views/AdminDashboard.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -98,12 +99,25 @@ const router = createRouter({
       name: "lottery",
       component: LotteryView,
     },
+    {
+      path:"/admin",
+      name:"admindashboard",
+      component:AdminDashboard,
+      meta:{requiresStoreOwner:true}
+    }
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const isLoggedIn = !!userStore.userInfo;
+  const user=userStore.userInfo;
+
+  if(to.meta.requiresStoreOwner){
+    if(!user || user.role !=="storeowner"){
+      return next("/"); //redirect no-admins to home
+    }
+  }
 
   if (to.meta.requiresAuth && !isLoggedIn) {
     return next({ name: "login" });

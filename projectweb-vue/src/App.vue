@@ -1,55 +1,71 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Navbar from '@/components/navbar.vue'
-import NewNavbar from '@/components/NewNavbar.vue';
-import Footer from './components/Footer.vue';
-import { ref, onMounted } from 'vue';
-import { useCartStore } from './stores/cartStore';
-import { useUserStore } from './stores/userStore';
-import SlideSideMenu from './components/SlideSideMenu.vue'
+import { RouterLink, RouterView } from "vue-router";
+import Navbar from "@/components/navbar.vue";
+import NewNavbar from "@/components/NewNavbar.vue";
+import Footer from "./components/Footer.vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useCartStore } from "./stores/cartStore";
+import { useUserStore } from "./stores/userStore";
+import SlideSideMenu from "./components/SlideSideMenu.vue";
 
-const cartStore=useCartStore();
-const userStore=useUserStore();
+const cartStore = useCartStore();
+const userStore = useUserStore();
 
-const carticon=ref('/assets/carticon.png');
+const carticon = ref("/assets/carticon.png");
+const isLarge = ref(window.innerWidth >= 992); // Bootstrap lg = 992px
+
+function handleResize() {
+  isLarge.value = window.innerWidth >= 992;
+}
 
 onMounted(async () => {
   await userStore.fetchCurrentUser();
+  window.addEventListener("resize", handleResize);
 });
-
-
+onUnmounted(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <template>
-  <main class="position-relative" >
-    <RouterLink to="/cart"> <button class="position-fixed rounded-circle bg-light" id="cartbutton"><img :src="carticon" alt="" class="" id="carticon"><span class="cart-badge" v-if="cartStore.totalQuantity > 0">{{ cartStore.totalQuantity }}</span>
-    </button></RouterLink>
-    <NewNavbar/>
-    <SlideSideMenu />
-     
-    <!-- <Navbar/> -->
-    <RouterView />
-    <Footer/>
+  <main class="position-relative">
+    <div>
+      <component :is="isLarge ? NewNavbar : SlideSideMenu" />
+    </div>
+    <div :class="[{ 'shift-up': !isLarge }]">
+      <RouterLink to="/cart">
+        <button class="position-fixed rounded-circle bg-light" id="cartbutton">
+          <img :src="carticon" alt="" class="" id="carticon" /><span
+            class="cart-badge"
+            v-if="cartStore.totalQuantity > 0"
+            >{{ cartStore.totalQuantity }}</span
+          >
+        </button></RouterLink
+      >
 
-    
-    
-
+      <!-- <Navbar/> -->
+      <RouterView />
+      <Footer />
+    </div>
   </main>
 </template>
 
 <style>
-html, body {
+html,
+body,
+div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-#carticon{
+.shift-up {
+  margin-top: -100px; /* push up content */
+}
+#carticon {
   width: 60px;
   height: 60px;
-  
-
 }
-#cartbutton{
+#cartbutton {
   border: 0;
   width: 90px;
   height: 90px;
@@ -74,6 +90,4 @@ html, body {
   z-index: 6;
   display: inline-block;
 }
-
-
 </style>
