@@ -33,10 +33,15 @@
             ></motion.img>
           </div>
           <div class="d-none d-lg-flex col-7 justify-content-end pe-3 m-0">
-            <RouterLink v-if="userInfo" to="/member">
+            <RouterLink
+              v-if="userInfo"
+              :to="userInfo.role === 'storeowner' ? '/admin' : '/member'"
+            >
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
-                >會員專區</span
+                >{{
+                  userInfo.role === "storeowner" ? "管理專區" : "會員專區"
+                }}</span
               >
             </RouterLink>
             <RouterLink v-else to="/login">
@@ -118,6 +123,9 @@ const isActiveLink = (routePath) => {
 };
 const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
+
+console.log("userInfo:", userInfo.value);
+console.log("user role:", userInfo.value?.role);
 
 const link = ref([
   {

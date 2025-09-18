@@ -65,7 +65,9 @@ export const useUserStore = defineStore("user", () => {
       console.error("Failed to fetch current user:", error);
       // ⚠️ Don't clear userInfo here
     }
+    
   };
+  const userRole = computed(() => userInfo.value?.role ?? "member");
 
   // Fetch users from API/mock
   // const fetchUsers = async () => {
@@ -81,6 +83,7 @@ export const useUserStore = defineStore("user", () => {
 
   return {
     userInfo,
+    userRole,
     login,
     register,
     logout,

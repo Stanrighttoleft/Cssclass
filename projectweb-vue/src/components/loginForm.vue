@@ -75,13 +75,18 @@ const userStore = useUserStore();
 const onSubmit = async () => {
   errorMsg.value = "";
   const success = await userStore.login(email.value, password.value);
-  if (success) {
-    console.log("Logged in user info:", userStore.userInfo);
-    //Redirect to home or dashboard after login success
-    router.push({ name: "member" });
+    if (success) {
+    const role = userStore.userInfo?.role || "member";
+
+    if (role === "storeowner") {
+      router.push({ name: "admindashboard" }); // Redirect to admin dashboard
+    } else {
+      router.push({ name: "member" }); // Redirect to regular member page
+    }
   } else {
     errorMsg.value = "登入失敗,請檢察帳號密碼";
   }
+
 
   const clearForm = () => {
     email.value = "";
