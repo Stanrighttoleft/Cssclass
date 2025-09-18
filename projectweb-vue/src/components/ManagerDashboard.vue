@@ -1,27 +1,39 @@
 <template>
-    <div class="container managerboard">
+  <div class="container managerboard">
     <div class="row">
-       <div class=" col-md-8 offset-md-2 d-flex justify-content-center
-       align-items-center flex-column">
-            <h1>Store Owner Dashboard</h1>
-            
-            <section>
-              <h2>Product Management</h2>
-              <button @click="fetchProducts">Refresh Products</button>
-              <div v-for="product in products" :key="product.id">
-                <input v-model="product.name" />
-                <input v-model="product.price" type="number" />
-                <textarea v-model="product.description"></textarea>
-                <button @click="updateProduct(product)">Save</button>
-                <button @click="deleteProduct(product.id)">Delete</button>
-              </div>
-              <h3>Add New Product</h3>
-              <input v-model="newProduct.name" placeholder="Name" />
-              <input v-model="newProduct.price" type="number" placeholder="Price" />
-              <textarea v-model="newProduct.description" placeholder="Description"></textarea>
-              <button @click="addNewProduct">Add Product</button>
-            </section>
-        
+      <div
+        class="col-md-8 gap-2 offset-md-2 d-flex justify-content-center align-items-center"
+      >
+        <div class="row">
+          <div
+            v-for="product in store.products"
+            :key="product.id"
+            class="col-md-4 flex-wrap"
+          >
+            <img :src="product.image" alt="" style="width: 150px" />
+            <input v-model="product.title" />
+
+            <input v-model="product.price" type="number" />
+            <textarea v-model="product.description"></textarea>
+            <button @click="updateProduct(product)">Save</button>
+            <button @click="deleteProduct(product.id)">Delete</button>
+          </div>
+          <div
+            class="col-md-12 d-flex justify-content-center align-items-center flex-column mt-5"
+          >
+            <h3>Add New Product</h3>
+            <input v-model="newProduct.name" placeholder="Name" />
+            <input
+              v-model="newProduct.price"
+              type="number"
+              placeholder="Price"
+            />
+            <textarea
+              v-model="newProduct.description"
+              placeholder="Description"
+            ></textarea>
+            <button @click="addNewProduct">Add Product</button>
+
             <!-- <section>
               <h2>Order Management</h2>
               <button @click="fetchOrders">Refresh Orders</button>
@@ -35,26 +47,30 @@
               
           </div>
         </section> -->
-        <br>
-        <button class="btn btn-warning" @click="handleLogout">Logout</button>
-       </div>
+            <br />
+            <button class="btn btn-warning" @click="handleLogout">
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 import { useUserStore } from "@/stores/userStore";
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
+import { watch } from "vue";
 
-const router=useRouter();
+//use the pinia store, without unwrap it so, everything from the store(products), should put store in front, like store.products
+const router = useRouter();
 const store = useStoreOwnerStore();
-const userStore=useUserStore();
+const userStore = useUserStore();
 
-const {logout}=userStore;
-const { products, orders, fetchProducts, fetchOrders, addProduct, updateProduct, deleteProduct, confirmOrder, deleteOrder } = store;
+const { logout } = userStore;
 
 const role = userStore.userRole;
 console.log("Role:", role);
@@ -66,10 +82,10 @@ const newProduct = ref({
 });
 
 //the logout function
-const handleLogout=()=>{
+const handleLogout = () => {
   logout();
-  router.push("/")
-}
+  router.push("/");
+};
 
 //deal with the product management
 const addNewProduct = async () => {
@@ -81,14 +97,14 @@ const addNewProduct = async () => {
     alert(res.message || "Failed to add product");
   }
 };
-
-onMounted(async () => {
-  await fetchProducts();
-  console.log("Fetched products:", products.value); // <-- Add this
- 
+//check whether the products value is right
+watch(store.products, (newVal) => {
+  console.log("Products updated:", newVal);
 });
 
-
+onMounted(async () => {
+  await store.fetchProducts();
+});
 </script>
 
 <style scoped>
@@ -104,5 +120,4 @@ onMounted(async () => {
   display: block;
   margin-bottom: 0.5rem;
 }
-
 </style>

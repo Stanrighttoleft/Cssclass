@@ -8,6 +8,7 @@ import { RouterLink, useRoute } from "vue-router";
 const route = useRoute();
 
 const productStore = useProductStore();
+//use storeToRefs to keep the unwrap become ref again
 const { products } = storeToRefs(productStore);
 const { fetchProducts } = productStore;
 

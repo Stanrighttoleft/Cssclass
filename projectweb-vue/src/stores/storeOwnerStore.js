@@ -10,6 +10,7 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     const res = await request.get("/admin/products.php");
     if (res.data.success) {
       products.value = res.data.products ?? [];
+      console.log(products.value);
     }
   };
 
@@ -24,13 +25,15 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
   };
 
   const deleteProduct = async (productId) => {
-    const res = await request.post("/admin/delete_product.php", { id: productId });
+    const res = await request.post("/admin/delete_product.php", {
+      id: productId,
+    });
     return res.data;
   };
 
   const fetchOrders = async () => {
     const res = await request.get("/admin/orders.php");
-     console.log("API response (storeowner):", res.data); // <-- Add this
+    console.log("API response (storeowner):", res.data); // <-- Add this
     if (res.data.success) {
       orders.value = res.data.orders ?? [];
     }
