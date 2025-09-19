@@ -7,9 +7,11 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { useCartStore } from "./stores/cartStore";
 import { useUserStore } from "./stores/userStore";
 import SlideSideMenu from "./components/SlideSideMenu.vue";
+import { storeToRefs } from "pinia";
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
+const {userInfo} =storeToRefs(userStore)
 
 const carticon = ref("/assets/carticon.png");
 const isLarge = ref(window.innerWidth >= 992); // Bootstrap lg = 992px
@@ -21,6 +23,7 @@ function handleResize() {
 onMounted(async () => {
   await userStore.fetchCurrentUser();
   window.addEventListener("resize", handleResize);
+  console.log(userInfo)
 });
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
