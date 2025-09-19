@@ -10,11 +10,25 @@
       <!-- Side Menu -->
       <div class="side-menu shadow-lg bg-secondary">
         <div class="menu-content p-3">
-          <ul class="list-unstyled">
-            <li><RouterLink to="/">團購首頁</RouterLink></li>
-            <li><RouterLink to="/memo">購貨須知</RouterLink></li>
-            <li><RouterLink to="/products">商品瀏覽</RouterLink></li>
-            <li><RouterLink to="/contact">聯絡我們</RouterLink></li>
+          <ul class="list-unstyled text-white">
+            <RouterLink v-if="userInfo" :to="userInfo.role==='storeowner' ? '/admin' : '/member'">
+              <li
+                class="text-light d-none d-lg-inline"
+                >{{userInfo.role==='storeowner' ? '管理專區' : '會員專區'}}
+              </li>
+            </RouterLink>
+            <RouterLink v-else to="/login">
+              <li
+                class="text-light d-none d-lg-inline"
+                >會員登入</li
+              >
+            </RouterLink>
+            
+            <RouterLink to="/"><li class="text-white text-decoration-none">團購首頁</li></RouterLink>
+            <RouterLink to="/memo"><li class="text-white text-decoration-none">購貨須知</li></RouterLink>
+            <RouterLink to="/products"><li class="text-white text-decoration-none">商品瀏覽</li></RouterLink>
+            <RouterLink to="/contact"><li class="text-white text-decoration-none">連絡我們</li></RouterLink>
+            
           </ul>
         </div>
       </div>
@@ -31,6 +45,14 @@
 <script setup>
 import { ref } from "vue";
 import { motion } from "motion-v";
+import { RouterLink } from "vue-router";
+import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
+
+const userStore=useUserStore();
+const { userInfo } = storeToRefs(userStore);
+
+
 const isOpen = ref(false);
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;

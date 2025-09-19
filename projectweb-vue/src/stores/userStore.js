@@ -7,6 +7,16 @@ export const useUserStore = defineStore("user", () => {
   const storedUser = localStorage.getItem("userInfo"); // all users fetched from API/mock
   const userInfo = ref(storedUser ? JSON.parse(storedUser) : null); // current logged-in user
 
+  //call the restoreUser to keep the user information
+
+  const userRole = computed(() => userInfo.value?.role ?? "member");
+
+  //set user for keep the user information
+  const setUser = (user, role) => {
+    userInfo.value = { ...user, role };
+    localStorage.setItem("userInfo", JSON.stringify({ ...user, role }));
+  };
+
   const login = async (email, password) => {
     try {
       // const res = await request.post("/api/login.php", { email, password });
@@ -14,7 +24,7 @@ export const useUserStore = defineStore("user", () => {
       if (res.data.success) {
         userInfo.value = res.data.user;
         //save to localhost
-        localStorage.setItem("userInfo", JSON.stringify(res.data.user));
+        setUser(res.data.user, res.data.user.role);
         return true;
       } else {
         return false;
@@ -65,9 +75,7 @@ export const useUserStore = defineStore("user", () => {
       console.error("Failed to fetch current user:", error);
       // ⚠️ Don't clear userInfo here
     }
-    
   };
-  const userRole = computed(() => userInfo.value?.role ?? "member");
 
   // Fetch users from API/mock
   // const fetchUsers = async () => {

@@ -84,7 +84,6 @@
                   'thelink',
                   'border-box',
                 ]"
-                ><i class="pi pi-spin pi-chevron-circle-left"></i
                 >{{ item.name }}</RouterLink
               >
             </li>
