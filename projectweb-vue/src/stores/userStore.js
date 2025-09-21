@@ -65,8 +65,7 @@ export const useUserStore = defineStore("user", () => {
       const res = await request.get("/user.php", { withCredentials: true });
 
       if (res.data && res.data.user) {
-        userInfo.value = res.data.user;
-        localStorage.setItem("userInfo", JSON.stringify(res.data.user));
+        setUser(res.data.user, res.data.user.role);
       } else {
         // ⚠️ Don't auto-remove login if backend returns null
         console.warn("Server did not return a user, keeping local data");

@@ -8,10 +8,12 @@ import { useCartStore } from "./stores/cartStore";
 import { useUserStore } from "./stores/userStore";
 import SlideSideMenu from "./components/SlideSideMenu.vue";
 import { storeToRefs } from "pinia";
+import ManagerNav from "./components/ManagerNav.vue";
+import { computed } from "vue";
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
-const {userInfo} =storeToRefs(userStore)
+const { userInfo } = storeToRefs(userStore);
 
 const carticon = ref("/assets/carticon.png");
 const isLarge = ref(window.innerWidth >= 992); // Bootstrap lg = 992px
@@ -20,10 +22,17 @@ function handleResize() {
   isLarge.value = window.innerWidth >= 992;
 }
 
+const currentNav = computed(() => {
+  if (userInfo.value?.role === "storeowner") {
+    return ManagerNav;
+  }
+  return isLarge.value ? NewNavbar : SlideSideMenu;
+});
+
 onMounted(async () => {
   await userStore.fetchCurrentUser();
   window.addEventListener("resize", handleResize);
-  console.log(userInfo)
+  console.log(userInfo);
 });
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
@@ -33,9 +42,9 @@ onUnmounted(() => {
 <template>
   <main class="position-relative">
     <div>
-      <component :is="isLarge ? NewNavbar : SlideSideMenu" />
+      <component :is="currentNav" />
     </div>
-    <div :class="[{ 'shift-up': !isLarge }]">
+    <div :class="[{ 'shift-up': !isLarge && userInfo?.role !== 'storeowner' }]">
       <RouterLink to="/cart">
         <button class="position-fixed rounded-circle bg-light" id="cartbutton">
           <img :src="carticon" alt="" class="" id="carticon" /><span
@@ -48,7 +57,7 @@ onUnmounted(() => {
 
       <!-- <Navbar/> -->
       <RouterView />
-      <Footer />
+      <Footer v-if="isLarge" />
     </div>
   </main>
 </template>
