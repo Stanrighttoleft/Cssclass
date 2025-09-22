@@ -3,32 +3,82 @@
     <!-- Slide-out container (menu + tab) -->
     <motion.div
       class="side-wrapper"
-      :initial="{ x: -200 }"
-      :animate="isOpen ? { x: 0 } : { x: -200 }"
+      :animate="isOpen ? { x: 0 } : { x: -150 }"
       :transition="{ type: 'spring', stiffness: 100, damping: 20 }"
     >
       <!-- Side Menu -->
       <div class="side-menu shadow-lg bg-secondary">
         <div class="menu-content p-3">
+          <div>
+            <img :src="logo" style="width: 7rem" alt="" />
+          </div>
           <ul class="list-unstyled text-white">
-            <RouterLink v-if="userInfo" :to="userInfo.role==='storeowner' ? '/admin' : '/member'">
-              <li
-                class="text-light d-none d-lg-inline"
-                >{{userInfo.role==='storeowner' ? '管理專區' : '會員專區'}}
+            <RouterLink
+              v-if="userInfo"
+              :to="userInfo.role === 'storeowner' ? '/admin' : '/member'"
+              class="text-decoration-none"
+            >
+              <li class="text-light">
+                <img :src="user" alt="" style="width: 1.5rem" />
+                {{ userInfo.role === "storeowner" ? "管理專區" : "會員專區" }}
               </li>
             </RouterLink>
-            <RouterLink v-else to="/login">
-              <li
-                class="text-light d-none d-lg-inline"
-                >會員登入</li
-              >
+            <RouterLink v-else to="/login" class="text-decoration-none">
+              <li class="text-light">
+                <img :src="user" alt="" style="width: 1.5rem" />會員登入
+              </li>
             </RouterLink>
-            
-            <RouterLink to="/"><li class="text-white text-decoration-none">團購首頁</li></RouterLink>
-            <RouterLink to="/memo"><li class="text-white text-decoration-none">購貨須知</li></RouterLink>
-            <RouterLink to="/products"><li class="text-white text-decoration-none">商品瀏覽</li></RouterLink>
-            <RouterLink to="/contact"><li class="text-white text-decoration-none">連絡我們</li></RouterLink>
-            
+
+            <RouterLink to="/" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="home" class="mb-1" alt="" style="width: 1.5rem" />
+                團購首頁
+              </li></RouterLink
+            >
+            <RouterLink to="/memo" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="note" class="mb-1" alt="" style="width: 1.5rem" />
+                購貨須知
+              </li></RouterLink
+            >
+            <RouterLink to="/products" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="goods" class="mb-1" alt="" style="width: 1.5rem" />
+                商品瀏覽
+              </li></RouterLink
+            >
+            <RouterLink to="/contact" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="contact" class="mb-1" alt="" style="width: 1.5rem" />
+                連絡我們
+              </li></RouterLink
+            >
+            <RouterLink to="/contact" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="cart" class="mb-1" alt="" style="width: 1.5rem" />
+                購物車
+              </li></RouterLink
+            >
+          </ul>
+          <hr style="color: white" />
+          <ul class="list-unstyled text-white">
+            <RouterLink to="/likeus" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img :src="draw" class="mb-1" alt="" style="width: 1.5rem" />
+                兔兔抽獎
+              </li></RouterLink
+            >
+            <RouterLink to="/lottery" class="text-decoration-none"
+              ><li class="text-white text-decoration-none">
+                <img
+                  :src="powerball"
+                  class="mb-1"
+                  alt=""
+                  style="width: 1.5rem"
+                />
+                威彩模擬
+              </li></RouterLink
+            >
           </ul>
         </div>
       </div>
@@ -49,9 +99,18 @@ import { RouterLink } from "vue-router";
 import { useUserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
 
-const userStore=useUserStore();
-const { userInfo } = storeToRefs(userStore);
+const logo = "./assets/logov12.png";
+const home = "./assets/house-solid-full.svg";
+const user = "./assets/user-solid-full.svg";
+const note = "./assets/clipboard-solid-full.svg";
+const goods = "./assets/gift-solid-full.svg";
+const contact = "./assets/tty-solid-full.svg";
+const cart = "./assets/cart-shopping-solid-full.svg";
+const draw = "./assets/dragon-solid-full.svg";
+const powerball = "./assets/money-bills-solid-full.svg";
 
+const userStore = useUserStore();
+const { userInfo } = storeToRefs(userStore);
 
 const isOpen = ref(false);
 const toggleMenu = () => {
@@ -71,7 +130,7 @@ const toggleMenu = () => {
   z-index: 10;
 } /* Side Menu */
 .side-menu {
-  width: 200px;
+  width: 150px;
   height: 100vh;
   background-color: white;
   border-right: 1px solid #ccc;

@@ -17,6 +17,9 @@ import ThankYouView from "@/views/ThankYouView.vue";
 import LotteryView from "@/views/LotteryView.vue";
 import AdminDashboard from "@/views/AdminDashboard.vue";
 
+import ProductManagerView from "@/views/ProductManagerView.vue";
+import ProductDetailManagerView from "@/views/ProductDetailManagerView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -100,21 +103,33 @@ const router = createRouter({
       component: LotteryView,
     },
     {
-      path:"/admin",
-      name:"admindashboard",
-      component:AdminDashboard,
-      meta:{requiresStoreOwner:true}
-    }
+      path: "/admin",
+      name: "admindashboard",
+      component: AdminDashboard,
+      meta: { requiresStoreOwner: true },
+    },
+    {
+      path: "/admin/productsmanager",
+      name: "productsmanager",
+      component: ProductManagerView,
+      meta: { requiresStoreOwner: true },
+    },
+    {
+      path: "/admin/productsmanager/:id",
+      name: "productsmanagerdetail",
+      component: ProductDetailManagerView,
+      meta: { requiresStoreOwner: true },
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const isLoggedIn = !!userStore.userInfo;
-  const user=userStore.userInfo;
+  const user = userStore.userInfo;
 
-  if(to.meta.requiresStoreOwner){
-    if(!user || user.role !=="storeowner"){
+  if (to.meta.requiresStoreOwner) {
+    if (!user || user.role !== "storeowner") {
       return next("/"); //redirect no-admins to home
     }
   }

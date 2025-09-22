@@ -6,17 +6,18 @@
           ><img :src="logo" alt="" class="img-fluid logo"
         /></RouterLink>
       </div>
-      <div class="right-top col-xxl-7 col-10 flex-column p-0 m-0">
-        <div class="row p-0 m-0">
+      <div class="col-xxl-7 col-10 flex-column p-0 m-0">
+        <div
+          class="row p-0 m-0 border-bottom border-warning border-2 pb-2 rightTop"
+        >
           <div
-            class="col-5 d-none d-lg-flex justify-content-end align-items-center p-0 m-0"
+            class="col-4 d-none d-lg-flex justify-content-start align-items-center p-0 m-0"
           >
             <RouterLink to="/lottery">
               <img class="facebook" :src="facebook" alt="" />
             </RouterLink>
-            <RouterLink to="/likeus"
-              ><span
-                class="text-light d-none d-md-inline align-items-center justify-content-center"
+            <RouterLink to="/likeus" class="text-decoration-none mt-0"
+              ><span class="text-light d-none d-md-inline"
                 >關注我們</span
               ></RouterLink
             >
@@ -32,20 +33,26 @@
               class="like"
             ></motion.img>
           </div>
-          <div class="d-none d-lg-flex col-7 justify-content-end pe-3 m-0">
-            <RouterLink v-if="userInfo" :to="userInfo.role==='storeowner' ? '/admin' : '/member'">
+          <div class="d-none d-lg-flex col-8 justify-content-end pe-3 m-0">
+            <RouterLink
+              v-if="userInfo"
+              :to="userInfo.role === 'storeowner' ? '/admin' : '/member'"
+              class="text-decoration-none mt-1"
+            >
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
-                >{{userInfo.role==='storeowner' ? '管理專區' : '會員專區'}}</span
+                >{{
+                  userInfo.role === "storeowner" ? "管理專區" : "會員專區"
+                }}</span
               >
             </RouterLink>
-            <RouterLink v-else to="/login">
+            <RouterLink v-else to="/login" class="mt-1">
               <img :src="login" alt="" class="login" /><span
-                class="text-light d-none d-lg-inline"
+                class="text-light d-none d-lg-inline text-decoration-none"
                 >會員登入</span
               >
             </RouterLink>
-            <RouterLink to="/cart">
+            <RouterLink to="/cart" class="text-decoration-none mt-1">
               <img :src="cart" alt="" class="cart" /><span
                 class="text-light d-none d-lg-inline"
                 >購物車</span
@@ -78,8 +85,7 @@
                 :class="[
                   isActiveLink(item.goTo) ? 'active' : '',
                   'navlink',
-                  'px-3',
-
+                  'px-1',
                   'pt-2',
                   'thelink',
                   'border-box',
@@ -108,9 +114,9 @@ const name = ref("Navbar");
 const logo = ref("./assets/logov12.png");
 const facebook = ref("./assets/facebook.png");
 const like = ref("./assets/like.png");
-const login = ref("./assets/user.png");
+const login = ref("./assets/user-solid-full.svg");
 const searchIcon = ref("./assets/search.png");
-const cart = ref("./assets/cart.png");
+const cart = ref("./assets/cart-shopping-solid-full.svg");
 const isActiveLink = (routePath) => {
   const route = useRoute();
   return route.path === routePath;
@@ -157,8 +163,8 @@ html {
   margin: 0;
   padding: 0;
 }
-.test {
-  height: 80px;
+.rightTop {
+  font-size: 1.3rem;
 }
 
 .nav-top {
@@ -218,7 +224,7 @@ html {
 .active {
   border-radius: 10% 10% 0% 0%;
   background-color: rgb(12, 120, 12);
-  padding-bottom: 1.1rem;
+  padding-bottom: 1rem;
 }
 .thelink:hover {
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);

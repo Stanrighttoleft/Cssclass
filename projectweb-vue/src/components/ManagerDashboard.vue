@@ -1,8 +1,18 @@
 <template>
   <div class="container managerboard">
     <div class="row">
+      <div class="col-md-8 offset-md-2">
+        first row for the manager banner, i need to make sure everything is
+        right Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptates illo recusandae veritatis repellat aliquam quis sequi eveniet
+        sunt, accusamus expedita magni unde, perspiciatis porro atque deserunt
+        rem ullam placeat necessitatibus?
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 offset-md-2">test</div>
       <div
-        class="col-md-8 gap-2 offset-md-2 d-flex justify-content-center align-items-center"
+        class="col-md-6 gap-2 d-flex justify-content-center align-items-center"
       >
         <div class="row">
           <div
@@ -64,6 +74,7 @@ import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import { watch } from "vue";
+import { motion } from "motion-v";
 
 //use the pinia store, without unwrap it so, everything from the store(products), should put store in front, like store.products
 const router = useRouter();
