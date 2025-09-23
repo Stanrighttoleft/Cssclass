@@ -46,7 +46,7 @@
                 }}</span
               >
             </RouterLink>
-            <RouterLink v-else to="/login">
+            <RouterLink v-else to="/login" class="mt-1">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline text-decoration-none"
                 >會員登入</span
