@@ -193,7 +193,7 @@ watch(products, (newVal) => {
               </div>
             </RouterLink>
             <div class="mb-2 mt-0">
-              <button class="btn btn-warning btn-sm">刪除商品</button>
+              <button class="btn btn-warning btn-sm">下架商品</button>
             </div>
           </div>
         </div>

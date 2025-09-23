@@ -25,20 +25,9 @@
         <input type="text" v-model="sizeInput" class="form-control" />
         <br />
         <label for="orderQuantity form-label">訂購數量</label>
-        <select
-          class="form-control"
-          name="orderQuantity"
-          v-model="cartQuantity"
-          id=""
-        >
-          <option :value="1">1</option>
-          <option :value="2">2</option>
-          <option :value="3">3</option>
-        </select>
+      
         <hr />
-        <button class="btn btn-warning me-2" @click="addCart">
-          加入購物車
-        </button>
+       
         <button class="btn btn-success mt-4" @click="updateProduct">更新商品資訊</button>
       </div>
     </div>
@@ -119,21 +108,8 @@ const updateProduct = async () => {
     alert("伺服器錯誤，請稍後再試！");
   }
 };
-//set up the cart
-const cart = useCartStore();
-const cartQuantity = ref(1);
-const selectedSize = ref("singleSize");
 
-const addCart = () => {
-  cart.addToCart(
-    {
-      ...product.value,
-      size: selectedSize.value,
-    },
-    cartQuantity.value
-  );
-  alert(`已加入購物車!加入${cartQuantity.value}件!`);
-};
+
 
 onMounted(async () => {
   await fetchProduct(productId);
@@ -141,14 +117,8 @@ onMounted(async () => {
   sizeInput.value=product.value.sizes?.join(',')||'';
   console.log("product in component:", product.value);
 });
-watch(product, (newVal) => {
-  if (!newVal.sizes || newVal.sizes.length === 0) {
-    selectedSize.value = "singleSize";
-  } else {
-    selectedSize.value = newVal.sizes[0];
-  }
-  console.log("products updated", newVal);
-});
+
+
 
 
 </script>
