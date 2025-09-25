@@ -42,7 +42,7 @@
 
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <RouterLink class="dropdown-item" to="#">新增商品</RouterLink>
+                <RouterLink class="dropdown-item" to="/admin/addproductmanager">新增商品</RouterLink>
               </li>
             </ul>
           </li>

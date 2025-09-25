@@ -14,10 +14,31 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     }
   };
 
-  const addProduct = async (productData) => {
-    const res = await request.post("/admin/add_product.php", productData);
+  const addProduct = async (productData, imageFile = null) => {
+  try {
+    const formData = new FormData();
+    formData.append("title", productData.title);
+    formData.append("price", productData.price);
+    formData.append("description", productData.description);
+    formData.append("sizes", JSON.stringify(productData.sizes));
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    const res = await request.post("/admin/add_product.php", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
     return res.data;
-  };
+  } catch (error) {
+    console.error("新增商品失敗", error);
+    return { success: false, message: "新增失敗，請檢查錯誤！" };
+  }
+};
+
 
   const updateProduct = async (productId, productData, imageFile = null) => {
   try {

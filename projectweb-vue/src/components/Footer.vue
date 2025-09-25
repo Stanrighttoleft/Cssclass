@@ -24,7 +24,7 @@
           <RouterLink to="/lottery" class="text-decoration-none"
             ><li class="text-white">PowerBall抽獎模擬</li></RouterLink
           >
-          <li class="">購物流程</li>
+          <RouterLink to="/clockgame" class="text-decoration-none text-white"><li class="">倒數計時碼表</li></RouterLink>
           <li class="">隱私權聲明</li>
           <li class="">會員條款</li>
           <li class="">FAQ問與答</li>
