@@ -5,12 +5,23 @@ import { ref } from "vue";
 export const useStoreOwnerStore = defineStore("storeOwner", () => {
   const products = ref([]);
   const orders = ref([]);
+  const baseURL=import.meta.env.VITE_API_BASE_URL;
+
+  //change the image path
+  const resolveImageUrl=(path)=>{
+    if(!path) return "";
+    if(path.startsWith("http")) return path;
+    return `${baseURL}/${path}`.replace(/\+/,'/'); //clean double slashes
+  }
+
 
   const fetchProducts = async () => {
     const res = await request.get("/admin/products.php");
     if (res.data.success) {
-      products.value = res.data.products ?? [];
-      console.log(products.value);
+      products.value = (res.data.products ?? []).map(product=>({...product, 
+        image:resolveImageUrl(product.image),
+      }));
+      console.log("Fetched products:",products.value);
     }
   };
 

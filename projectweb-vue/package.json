@@ -12,6 +12,7 @@
     "@popperjs/core": "^2.11.8",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
+    "js-cookie": "^3.0.5",
     "motion-v": "^1.7.0",
     "pinia": "^3.0.3",
     "primeicons": "^7.0.0",
