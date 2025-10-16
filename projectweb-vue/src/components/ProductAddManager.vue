@@ -64,6 +64,7 @@ const handleFileChange = (e) => {
 };
 
 const handleSubmit = async () => {
+  console.log("Submitting form..."); // Debug log
   loading.value = true;
   message.value = '';
   success.value = false;

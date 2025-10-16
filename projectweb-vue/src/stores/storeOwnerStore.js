@@ -8,24 +8,32 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
   const baseURL=import.meta.env.VITE_API_BASE_URL;
 
   //change the image path
-  const resolveImageUrl=(path)=>{
-    if(!path) return "";
-    if(path.startsWith("http")) return path;
-    return `${baseURL}/${path}`.replace(/\+/,'/'); //clean double slashes
-  }
+  const resolveImageUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;         // Full URL already
+    if (path.startsWith("/")) {
+      // Path already has leading slash
+      return `${import.meta.env.VITE_BASE_URL}${path}`;
+    }
+    // Otherwise, assume it's a filename and build full path
+    return `${import.meta.env.VITE_BASE_URL}/${path}`;
+  };
 
 
   const fetchProducts = async () => {
-    const res = await request.get("/admin/products.php");
-    if (res.data.success) {
-      products.value = (res.data.products ?? []).map(product=>({...product, 
-        image:resolveImageUrl(product.image),
-      }));
-      console.log("Fetched products:",products.value);
+  const res = await request.get("/admin/products.php");
+  if (res.data.success) {
+      products.value = (res.data.products ?? []).map((product) => {
+        // Correct the image URL based on the product's relative path
+        const resolvedImageUrl = resolveImageUrl(product.image);
+        return { ...product, image: resolvedImageUrl };
+      });
+      console.log("Fetched products:", products.value);
     }
   };
 
   const addProduct = async (productData, imageFile = null) => {
+    console.log("🚀 addProduct called with:", productData, imageFile); // <-- Add this
   try {
     const formData = new FormData();
     formData.append("title", productData.title);
@@ -36,19 +44,37 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     if (imageFile) {
       formData.append("image", imageFile);
     }
-
+    console.log("📦 Sending FormData:", [...formData.entries()]); // <-- Log form contents
     const res = await request.post("/admin/add_product.php", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
+     console.log("📨 Response from backend:", res); // <-- Check this in console
+
+     if (res.data.success) {
+      // Update the image URL based on the new upload path
+      res.data.product.image = `${import.meta.env.VITE_BASE_URL}/products/small/${res.data.product.image}`;
+    }
 
     return res.data;
   } catch (error) {
-    console.error("新增商品失敗", error);
+    console.error("🔥 API Error in addProduct:", error); 
+    // Catch & log error
     return { success: false, message: "新增失敗，請檢查錯誤！" };
   }
 };
+
+  //fetch single product 
+  const fetchProduct = async (productId) => {
+  const res = await request.get(`/admin/product.php?id=${productId}`);
+    if (res.data.success && res.data.product) {
+      const product = res.data.product;
+      product.image = resolveImageUrl(product.image); // 💡 resolve here
+      return product;
+    }
+    return null;
+  };
 
 
   const updateProduct = async (productId, productData, imageFile = null) => {
@@ -106,6 +132,7 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     products,
     orders,
     fetchProducts,
+    fetchProduct,
     addProduct,
     updateProduct,
     deleteProduct,

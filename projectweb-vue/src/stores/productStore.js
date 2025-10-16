@@ -4,14 +4,20 @@ import request from "@/api/request";
 
 export const useProductStore = defineStore("product", () => {
   const products = ref([]);
-  const product = ref([]);
+  const product = ref(null);
   const baseURL=import.meta.env.VITE_API_BASE_URL;
+  const basefrontURL = import.meta.env.VITE_BASE_URL;  // changed to VITE_BASE_URL for consistency
 
-  const resolveImageUrl=(path)=>{
-    if(!path) return "";
-    if(path.startsWith("http")) return path;
-    return `${baseURL}/${path}`.replace(/([^:]\/)\/+/g, "$1"); // clean double slashes
-  }
+  const resolveImageUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;         // Full URL already
+    if (path.startsWith("/")) {
+      // Path already has leading slash
+      return `${import.meta.env.VITE_BASE_URL}${path}`;
+    }
+    // Otherwise, assume it's a filename and build full path
+    return `${import.meta.env.VITE_BASE_URL}/${path}`;
+  };
 
   const fetchProducts = async () => {
     try {

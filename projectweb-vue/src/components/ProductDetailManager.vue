@@ -44,9 +44,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { useProductStore } from "@/stores/productStore";
 import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
-import { storeToRefs } from "pinia";
 import { ref, onMounted, computed, watch, watchEffect } from "vue";
 import axios from "axios";
 import { useCartStore } from "@/stores/cartStore";
@@ -54,17 +52,16 @@ import { useCartStore } from "@/stores/cartStore";
 //set up for the product from backend
 
 const storeOwner=useStoreOwnerStore();
-const productStore = useProductStore();
-const { product } = storeToRefs(productStore);
 // const {fetchProducts}=productStore;
-const { fetchProduct } = productStore;
 
 const route = useRoute();
 const productId = route.params.id;
+const product=ref({});
 
 // setup for the backend manager editable page
 const previewImage = ref();
 const selectedImageFile = ref(null);
+
 
 const onFileChange = (e) => {
   const file = e.target.files[0];
@@ -82,8 +79,15 @@ const sizeInput = ref("");
     });
 
     onMounted(async () => {
-    await fetchProduct(productId);
-    sizeInput.value = product.value.sizes?.join(', ') || '';
+    const fetched=await storeOwner.fetchProduct(productId);
+    if(fetched){
+      product.value=fetched;
+      previewImage.value=fetched.image;
+      sizeInput.value=fetched.sizes?.join(',') ||'';
+      console.log("product in component:", product.value);
+    }else{
+      console.warn("can't get the data from ownerstore!")
+    }
     });
 
 //update the product
@@ -108,18 +112,6 @@ const updateProduct = async () => {
     alert("伺服器錯誤，請稍後再試！");
   }
 };
-
-
-
-onMounted(async () => {
-  await fetchProduct(productId);
-  previewImage.value=product.value.image;
-  sizeInput.value=product.value.sizes?.join(',')||'';
-  console.log("product in component:", product.value);
-});
-
-
-
 
 </script>
 
