@@ -21,6 +21,7 @@ import ProductManagerView from "@/views/ProductManagerView.vue";
 import ProductDetailManagerView from "@/views/ProductDetailManagerView.vue";
 import ProductAddManagerView from "@/views/ProductAddManagerView.vue";
 import CountDownClockView from "@/views/CountDownClockView.vue";
+import OrderManagerView from "@/views/OrderManagerView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -123,17 +124,22 @@ const router = createRouter({
       meta: { requiresStoreOwner: true },
     },
     {
-      path:"/admin/addproductmanager",
-      name:"addproductmanager",
+      path: "/admin/addproductmanager",
+      name: "addproductmanager",
       component: ProductAddManagerView,
-      meta:{ requiresStoreOwner:true},
+      meta: { requiresStoreOwner: true },
     },
     {
-      path:"/clockgame",
-      name:"clockgame",
-      component:CountDownClockView,
-      
-    }
+      path: "/clockgame",
+      name: "clockgame",
+      component: CountDownClockView,
+    },
+    {
+      path: "/admin/ordermanager",
+      name: "ordermanager",
+      component: OrderManagerView,
+      meta: { requiresStoreOwner: true },
+    },
   ],
 });
 

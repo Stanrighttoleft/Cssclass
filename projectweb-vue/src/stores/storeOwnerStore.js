@@ -15,56 +15,58 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
   };
 
   const addProduct = async (productData, imageFile = null) => {
-  try {
-    const formData = new FormData();
-    formData.append("title", productData.title);
-    formData.append("price", productData.price);
-    formData.append("description", productData.description);
-    formData.append("sizes", JSON.stringify(productData.sizes));
+    try {
+      const formData = new FormData();
+      formData.append("title", productData.title);
+      formData.append("price", productData.price);
+      formData.append("description", productData.description);
+      formData.append("sizes", JSON.stringify(productData.sizes));
 
-    if (imageFile) {
-      formData.append("image", imageFile);
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
+      const res = await request.post("/admin/add_product.php", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return res.data;
+    } catch (error) {
+      console.error("新增商品失敗", error);
+      return { success: false, message: "新增失敗，請檢查錯誤！" };
     }
-
-    const res = await request.post("/admin/add_product.php", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    return res.data;
-  } catch (error) {
-    console.error("新增商品失敗", error);
-    return { success: false, message: "新增失敗，請檢查錯誤！" };
-  }
-};
-
+  };
 
   const updateProduct = async (productId, productData, imageFile = null) => {
-  try {
-    const formData = new FormData();
-    formData.append("title", productData.title);
-    formData.append("price", productData.price);
-    formData.append("description", productData.description);
-    formData.append("sizes", JSON.stringify(productData.sizes));
+    try {
+      const formData = new FormData();
+      formData.append("title", productData.title);
+      formData.append("price", productData.price);
+      formData.append("description", productData.description);
+      formData.append("sizes", JSON.stringify(productData.sizes));
 
-    if (imageFile) {
-      formData.append("image", imageFile);
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
+      const res = await request.post(
+        `/admin/update_product.php?id=${productId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      return res.data;
+    } catch (error) {
+      console.error("更新商品失敗", error);
+      return { success: false, message: "更新失敗，請檢查錯誤！" };
     }
-
-    const res = await request.post(`/admin/update_product.php?id=${productId}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    return res.data;
-  } catch (error) {
-    console.error("更新商品失敗", error);
-    return { success: false, message: "更新失敗，請檢查錯誤！" };
-  }
-};
-
+  };
 
   const deleteProduct = async (productId) => {
     const res = await request.post("/admin/delete_product.php", {
@@ -74,21 +76,42 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
   };
 
   const fetchOrders = async () => {
-    const res = await request.get("/admin/orders.php");
-    console.log("API response (storeowner):", res.data); // <-- Add this
-    if (res.data.success) {
-      orders.value = res.data.orders ?? [];
+    try {
+      const res = await request.get("/admin/orders.php");
+      console.log("API response (storeowner):", res.data);
+
+      if (res.data.success) {
+        orders.value = res.data.orders ?? [];
+      } else {
+        console.error("Failed:", res.data.message);
+      }
+    } catch (err) {
+      console.error("Error fetching orders:", err);
     }
   };
 
   const confirmOrder = async (orderId) => {
-    const res = await request.post("/admin/confirm_order.php", { id: orderId });
-    return res.data;
+    try {
+      const res = await request.post("/admin/confirm_order.php", {
+        id: orderId,
+      });
+      return res.data;
+    } catch (err) {
+      console.error("Confirm order error:", err);
+      return { success: false };
+    }
   };
 
   const deleteOrder = async (orderId) => {
-    const res = await request.post("/admin/delete_order.php", { id: orderId });
-    return res.data;
+    try {
+      const res = await request.post("/admin/delete_order.php", {
+        id: orderId,
+      });
+      return res.data;
+    } catch (err) {
+      console.error("Delete order error:", err);
+      return { success: false };
+    }
   };
 
   return {

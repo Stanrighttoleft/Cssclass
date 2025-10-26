@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted, ref, nextTick, watch, computed } from "vue";
-import { useProductStore } from "@/stores/productStore";
 import { storeToRefs } from "pinia";
 import { motion } from "motion-v";
 import { RouterLink, useRoute } from "vue-router";
+import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 
 const route = useRoute();
 
-const productStore = useProductStore();
+const productStore = useStoreOwnerStore();
 //use storeToRefs to keep the unwrap become ref again
 const { products } = storeToRefs(productStore);
 const { fetchProducts } = productStore;

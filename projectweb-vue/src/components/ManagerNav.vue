@@ -42,7 +42,9 @@
 
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <RouterLink class="dropdown-item" to="/admin/addproductmanager">新增商品</RouterLink>
+                <RouterLink class="dropdown-item" to="/admin/addproductmanager"
+                  >新增商品</RouterLink
+                >
               </li>
             </ul>
           </li>
@@ -57,7 +59,11 @@
               訂單管理
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">編輯訂單</a></li>
+              <li>
+                <RouterLink class="dropdown-item" to="/admin/ordermanager"
+                  >編輯訂單</RouterLink
+                >
+              </li>
             </ul>
           </li>
         </ul>
