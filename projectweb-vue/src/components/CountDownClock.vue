@@ -6,6 +6,7 @@
         <div
           class="clockarea w-100 h-5 bg-light d-flex justify-content-center rounded-2 position-relative"
         >
+          <div class="position-absolute bg-white clockway rounded-3"></div>
           <Motion
             v-if="showStartBubble"
             :initial="{ opacity: 0, scale: 0.5, y: -20 }"
@@ -21,7 +22,7 @@
             Ahhh~~~Again!!
           </Motion>
 
-          <div
+          <Motion
             v-if="showBubble"
             class="speech-bubble position-absolute"
             :style="{
@@ -31,7 +32,7 @@
             }"
           >
             Leave me alone!
-          </div>
+          </Motion>
           <Motion
             v-if="showHoverBubble"
             :initial="{ opacity: 0, scale: 0.5, y: -20 }"
@@ -47,7 +48,7 @@
             No more work, please!
           </Motion>
           <div
-            class="theclock"
+            class="theclock position-absolute"
             style="
               font-size: 50px;
               font-family: 'Caveat', cursive;
@@ -71,6 +72,7 @@
                 top: 0;
                 left: 0;
               "
+              class="runimage"
               @mouseenter="showHoverBubble = true"
               @mouseleave="showHoverBubble = false"
             />
@@ -286,7 +288,7 @@ function toggleStatus() {
 function startCountdown() {
   if (interval) return;
 
-  // If we are starting from scratch (not resuming), set totalTime from inputs
+  //starting from scratch, set totalTime from inputs
   if (!elapsedTime.value || elapsedTime.value <= 0) {
     totalTime.value =
       (inputMinutes.value || 0) * 60 + (inputSeconds.value || 0);
@@ -297,7 +299,7 @@ function startCountdown() {
     showStartBubble.value = true;
     setTimeout(() => {
       showStartBubble.value = false;
-    }, 2000); // hide after 2s (adjust as needed)
+    }, 2000);
   } else {
     // resuming: set startTimestamp so elapsedTime continues from previous value
     startTimestamp = Date.now() - Math.floor(elapsedTime.value * 1000);
@@ -414,6 +416,8 @@ function deleteRecord(index) {
 function clearAllRecords() {
   savedList.value = [];
   Cookies.remove("countdownList");
+  marks = [];
+  drawBaseCircle();
 }
 
 //modify functions function
@@ -521,13 +525,13 @@ function addZero(x) {
 .clockarea {
   background-image: radial-gradient(
       circle at 60% center,
-      rgba(255, 255, 0, 1) 10%,
-      rgba(255, 0, 0, 1)
+      rgba(255, 255, 0, 0.2) 10%,
+      rgba(255, 0, 0, 0.2)
     ),
     url("/luckydraw/bg.jpg");
   background-size: cover; /* scale image to fill */
   background-position: center;
-  background-blend-mode: hard-light;
+  background-blend-mode: normal;
 }
 .speech-bubble {
   background: #fff;
@@ -568,5 +572,25 @@ function addZero(x) {
   border-radius: 12px;
   font-weight: bold;
   white-space: nowrap;
+}
+.clockway {
+  height: 100px;
+  width: 200px;
+  top: 0;
+  left: 10%;
+  z-index: 1;
+  background-image: linear-gradient(skyblue, white, skyblue);
+  opacity: 70%;
+  box-shadow: 0px 0px 20px white;
+}
+.theclock {
+  top: 0;
+  left: 12%;
+  z-index: 2;
+}
+.runimage {
+  box-shadow: 0px 1px 30px white;
+  border-radius: 50%;
+  z-index: 5;
 }
 </style>

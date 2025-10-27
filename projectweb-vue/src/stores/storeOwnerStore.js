@@ -14,6 +14,21 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     }
   };
 
+  const fetchProduct = async (productId) => {
+    try {
+      const res = await request.get(`/admin/product.php?id=${productId}`);
+      console.log("fetchProduct response:", res.data);
+      if (res.data.code === 200) {
+        return res.data.data;
+      } else {
+        console.error("Fetch single product failed:", res.data.message);
+        return null;
+      }
+    } catch (err) {
+      console.error("Fetch single product error:", err);
+    }
+  };
+
   const addProduct = async (productData, imageFile = null) => {
     try {
       const formData = new FormData();
@@ -25,6 +40,18 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
       if (imageFile) {
         formData.append("image", imageFile);
       }
+      // 🔍 Debug logs:
+      console.log("🟢 Preparing to send addProduct request...");
+      console.log("👉 Base URL:", request.defaults.baseURL);
+      console.log("👉 Endpoint:", "/admin/add_product.php");
+      console.log(
+        "👉 Full URL:",
+        `${request.defaults.baseURL}/admin/add_product.php`
+      );
+
+      for (const pair of formData.entries()) {
+        console.log("📦 FormData field:", pair[0], "→", pair[1]);
+      }
 
       const res = await request.post("/admin/add_product.php", formData, {
         headers: {
@@ -32,9 +59,16 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
         },
       });
 
+      console.log("✅ Server response:", res);
+
       return res.data;
     } catch (error) {
       console.error("新增商品失敗", error);
+      if (error.response) {
+        console.error("Response status:", error.response.status);
+        console.error("Response data:", error.response.data);
+        console.error("Response headers:", error.response.headers);
+      }
       return { success: false, message: "新增失敗，請檢查錯誤！" };
     }
   };
@@ -118,6 +152,7 @@ export const useStoreOwnerStore = defineStore("storeOwner", () => {
     products,
     orders,
     fetchProducts,
+    fetchProduct,
     addProduct,
     updateProduct,
     deleteProduct,

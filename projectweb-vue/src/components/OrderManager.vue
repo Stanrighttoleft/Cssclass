@@ -1,67 +1,65 @@
 <template>
-  <div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">訂單管理</h1>
+  <div class="container py-4">
+    <h1 class="h4 fw-bold mb-4">訂單管理</h1>
 
     <!-- Loading indicator -->
-    <div v-if="loading" class="text-gray-500">載入中...</div>
+    <div v-if="loading" class="text-muted">載入中...</div>
 
     <!-- No orders -->
-    <div v-else-if="orders.length === 0" class="text-gray-500">尚無訂單。</div>
+    <div v-else-if="orders.length === 0" class="text-muted">尚無訂單。</div>
 
     <!-- Orders table -->
-    <table
-      v-else
-      class="min-w-full border border-gray-300 bg-white rounded-lg shadow-sm"
-    >
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="border px-4 py-2 text-left">#</th>
-          <th class="border px-4 py-2 text-left">客戶名稱</th>
-          <th class="border px-4 py-2 text-left">總金額</th>
-          <th class="border px-4 py-2 text-left">狀態</th>
-          <th class="border px-4 py-2 text-left">建立時間</th>
-          <th class="border px-4 py-2 text-left">操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(order, index) in orders"
-          :key="order.id"
-          class="hover:bg-gray-50 transition"
-        >
-          <td class="border px-4 py-2">{{ index + 1 }}</td>
-          <td class="border px-4 py-2">
-            {{ order.customer_name || "未提供" }}
-          </td>
-          <td class="border px-4 py-2">{{ order.final_price }} 元</td>
-          <td class="border px-4 py-2">{{ order.status || "待處理" }}</td>
-          <td class="border px-4 py-2">
-            {{ formatDate(order.created_at) }}
-          </td>
-          <td class="border px-4 py-2 space-x-2">
-            <button
-              @click="confirm(order.id)"
-              class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-            >
-              確認
-            </button>
-            <button
-              @click="remove(order.id)"
-              class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-            >
-              刪除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-else class="table-responsive">
+      <table class="table table-bordered align-middle shadow-sm bg-white">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">客戶名稱</th>
+            <th scope="col">總金額</th>
+            <th scope="col">狀態</th>
+            <th scope="col">建立時間</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(order, index) in orders" :key="order.id">
+            <td>{{ index + 1 }}</td>
+            <td>{{ order.customer_name || "未提供" }}</td>
+            <td>{{ order.final_price }} 元</td>
+            <td>
+              <span
+                :class="{
+                  'badge bg-secondary': !order.status,
+                  'badge bg-success': order.status === '已確認',
+                  'badge bg-warning text-dark': order.status === '待處理',
+                }"
+              >
+                {{ order.status || "待處理" }}
+              </span>
+            </td>
+            <td>{{ formatDate(order.created_at) }}</td>
+            <td>
+              <button
+                @click="confirm(order.id)"
+                class="btn btn-success btn-sm me-2"
+              >
+                確認
+              </button>
+              <button @click="remove(order.id)" class="btn btn-danger btn-sm">
+                刪除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useStoreOwnerStore } from "@/stores/storeownerstore";
+import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 
 const storeOwner = useStoreOwnerStore();
 const { orders } = storeToRefs(storeOwner);
