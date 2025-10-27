@@ -2,30 +2,51 @@
   <div class="container managerboard">
     <div class="row">
       <div class="col-md-8 offset-md-2 d-flex flex-row">
-        <RouterLink to="/admin/addproductmanager" class="me-3"><button class="btn btn-primary">新增商品</button></RouterLink>
-        <RouterLink to="/admin/productsmanager" class="me-3"><button class="btn btn-primary">編輯商品</button></RouterLink>
-        <RouterLink to="/admin/ordermanager" class="me-3"><button class="btn btn-primary">管理訂單</button></RouterLink>
-        <button class="btn btn-warning" @click="handleLogout">
-          登出
-        </button>
+        <RouterLink to="/admin/addproductmanager" class="me-3"
+          ><button class="btn btn-primary">新增商品</button></RouterLink
+        >
+        <RouterLink to="/admin/productsmanager" class="me-3"
+          ><button class="btn btn-primary">編輯商品</button></RouterLink
+        >
+        <RouterLink to="/admin/ordermanager" class="me-3"
+          ><button class="btn btn-primary">管理訂單</button></RouterLink
+        >
+        <RouterLink to="" class="me-3"
+          ><button class="btn btn-primary">帳號管理</button></RouterLink
+        >
+        <button class="btn btn-warning" @click="handleLogout">登出</button>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="card col-md-3" v-for="product in store.products" :key="product.id" >
-      <img :src="product.image" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{product.title}}</h5>
-        <h5 class="card-title">{{product.price}}</h5>
-        <p class="card-text">{{product.description}}</p>
-        <div class="d-flex">
-          <RouterLink class="text-decoration-none" to="/admin/addproductmanager"><button class="btn btn-primary">編輯</button></RouterLink>
-          <button @click="deleteProduct(product.id)" class="btn btn-danger">刪除</button>
+    <div class="row mt-5 g-2">
+      <div
+        class="card col-md-3"
+        v-for="product in store.products"
+        :key="product.id"
+      >
+        <img
+          :src="product.image"
+          class="card-img-top"
+          alt="..."
+          style="width: 120px; height: 120px"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <h5 class="card-title">{{ product.price }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <div class="d-flex">
+            <RouterLink
+              class="text-decoration-none"
+              to="/admin/addproductmanager"
+              ><button class="btn btn-primary">編輯</button></RouterLink
+            >
+            <button @click="deleteProduct(product.id)" class="btn btn-danger">
+              刪除
+            </button>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   </div>
-</div>
-  
 </template>
 
 <script setup>

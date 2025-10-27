@@ -28,12 +28,13 @@ import { computed, onMounted, watch } from "vue";
 import { useUserStore } from "@/stores/userStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 const router = useRouter();
 
 const order = useOrderStore();
-const { orders } = order;
+const { orders } = storeToRefs(order);
 const user = computed(() => userStore.userInfo);
 const logout = async () => {
   await userStore.logout();
@@ -42,9 +43,13 @@ const logout = async () => {
 
 //Watch for user info to be loaded
 
-onMounted(() => {
-  order.fetchOrders();
-  console.log("order info:", order.value);
-  console.log("User info on member page:", user.value);
+onMounted(async () => {
+  await userStore.fetchCurrentUser();
+});
+
+watch(user, async (newUser) => {
+  if (newUser) {
+    await order.fetchOrders();
+  }
 });
 </script>
