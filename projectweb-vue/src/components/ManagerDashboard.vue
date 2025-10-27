@@ -1,78 +1,38 @@
 <template>
   <div class="container managerboard">
     <div class="row">
-      <div class="col-md-8 offset-md-2">
-        first row for the manager banner, i need to make sure everything is
-        right Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Voluptates illo recusandae veritatis repellat aliquam quis sequi eveniet
-        sunt, accusamus expedita magni unde, perspiciatis porro atque deserunt
-        rem ullam placeat necessitatibus?
+      <div class="col-md-8 offset-md-2 d-flex flex-row">
+        <RouterLink to="/admin/addproductmanager" class="me-3"><button class="btn btn-primary">新增商品</button></RouterLink>
+        <RouterLink to="/admin/productsmanager" class="me-3"><button class="btn btn-primary">編輯商品</button></RouterLink>
+        <RouterLink to="/admin/ordermanager" class="me-3"><button class="btn btn-primary">管理訂單</button></RouterLink>
+        <button class="btn btn-warning" @click="handleLogout">
+          登出
+        </button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2 offset-md-2">test</div>
-      <div
-        class="col-md-6 gap-2 d-flex justify-content-center align-items-center"
-      >
-        <div class="row">
-          <div
-            v-for="product in store.products"
-            :key="product.id"
-            class="col-md-4 flex-wrap"
-          >
-            <img :src="product.image" alt="" style="width: 150px" />
-            <input v-model="product.title" />
-
-            <input v-model="product.price" type="number" />
-            <textarea v-model="product.description"></textarea>
-            <button @click="updateProduct(product)">Save</button>
-            <button @click="deleteProduct(product.id)">Delete</button>
-          </div>
-          <div
-            class="col-md-12 d-flex justify-content-center align-items-center flex-column mt-5"
-          >
-            <h3>Add New Product</h3>
-            <input v-model="newProduct.name" placeholder="Name" />
-            <input
-              v-model="newProduct.price"
-              type="number"
-              placeholder="Price"
-            />
-            <textarea
-              v-model="newProduct.description"
-              placeholder="Description"
-            ></textarea>
-            <button @click="addNewProduct">Add Product</button>
-
-            <!-- <section>
-              <h2>Order Management</h2>
-              <button @click="fetchOrders">Refresh Orders</button>
-              <div v-for="order in orders" :key="order.id">
-                <p>Order #{{ order.id }} - {{ order.status }}</p>
-                <p>Customer: {{ order.customer_name ?? 'N/A' }}</p>
-                <p>Total: {{ order.total_amount ?? '?' }}</p>
-                <button v-if="order.status !== 'confirmed'" @click="confirmOrder(order.id)">Confirm</button>
-                <button @click="deleteOrder(order.id)">Delete</button>
-                
-              
-          </div>
-        </section> -->
-            <br />
-            <button class="btn btn-warning" @click="handleLogout">
-              Logout
-            </button>
-          </div>
+    <div class="row mt-5">
+      <div class="card col-md-3" v-for="product in store.products" :key="product.id" >
+      <img :src="product.image" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <h5 class="card-title">{{product.price}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <div class="d-flex">
+          <RouterLink class="text-decoration-none" to="/admin/addproductmanager"><button class="btn btn-primary">編輯</button></RouterLink>
+          <button @click="deleteProduct(product.id)" class="btn btn-danger">刪除</button>
         </div>
       </div>
-    </div>
+      </div>
   </div>
+</div>
+  
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 import { useUserStore } from "@/stores/userStore";
-import { useRouter } from "vue-router";
+import { useRouter, RouterLink } from "vue-router";
 import { watch } from "vue";
 import { motion } from "motion-v";
 

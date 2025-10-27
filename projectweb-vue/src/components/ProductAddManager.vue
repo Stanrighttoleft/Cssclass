@@ -41,21 +41,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useStoreOwnerStore } from '@/stores/storeOwnerStore';
+import { ref } from "vue";
+import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 
 const store = useStoreOwnerStore();
-
 const form = ref({
-  title: '',
-  price: '',
-  description: '',
+  title: "",
+  price: "",
+  description: "",
   sizes: [],
 });
 
-const sizesInput = ref('');
+const sizesInput = ref("");
 const imageFile = ref(null);
-const message = ref('');
+const message = ref("");
 const success = ref(false);
 const loading = ref(false);
 
@@ -64,13 +63,12 @@ const handleFileChange = (e) => {
 };
 
 const handleSubmit = async () => {
-  console.log("Submitting form..."); // Debug log
   loading.value = true;
-  message.value = '';
+  message.value = "";
   success.value = false;
 
   form.value.sizes = sizesInput.value
-    .split(',')
+    .split(",")
     .map((size) => size.trim())
     .filter((size) => size.length > 0);
 
@@ -82,8 +80,8 @@ const handleSubmit = async () => {
 
   if (response.success) {
     // Optionally reset form
-    form.value = { title: '', price: '', description: '', sizes: [] };
-    sizesInput.value = '';
+    form.value = { title: "", price: "", description: "", sizes: [] };
+    sizesInput.value = "";
     imageFile.value = null;
   }
 };

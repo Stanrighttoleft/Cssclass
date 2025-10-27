@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useUserStore } from "@/stores/userStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useRouter } from "vue-router";
@@ -34,13 +34,13 @@ const router = useRouter();
 
 const order = useOrderStore();
 const { orders } = order;
-
 const user = computed(() => userStore.userInfo);
-
 const logout = async () => {
   await userStore.logout();
   router.push({ name: "login" });
 };
+
+//Watch for user info to be loaded
 
 onMounted(() => {
   order.fetchOrders();

@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref, nextTick, watch, computed } from "vue";
-import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 import { storeToRefs } from "pinia";
 import { motion } from "motion-v";
 import { RouterLink, useRoute } from "vue-router";
+import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 
 const route = useRoute();
 

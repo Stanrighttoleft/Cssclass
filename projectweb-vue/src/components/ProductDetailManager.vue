@@ -47,10 +47,8 @@ import { useRoute } from "vue-router";
 import { useStoreOwnerStore } from "@/stores/storeOwnerStore";
 import { ref, onMounted, computed, watch, watchEffect } from "vue";
 import axios from "axios";
-import { useCartStore } from "@/stores/cartStore";
 
 //set up for the product from backend
-
 const storeOwner=useStoreOwnerStore();
 // const {fetchProducts}=productStore;
 
@@ -61,8 +59,6 @@ const product=ref({});
 // setup for the backend manager editable page
 const previewImage = ref();
 const selectedImageFile = ref(null);
-
-
 const onFileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
@@ -74,24 +70,23 @@ const onFileChange = (e) => {
 //make the size input editable
 const sizeInput = ref("");
 
-    watchEffect(() => {
-    product.value.sizes = sizeInput.value.split(',').map(s => s.trim()).filter(Boolean);
-    });
-
-    onMounted(async () => {
-    const fetched=await storeOwner.fetchProduct(productId);
-    if(fetched){
-      product.value=fetched;
-      previewImage.value=fetched.image;
-      sizeInput.value=fetched.sizes?.join(',') ||'';
-      console.log("product in component:", product.value);
-    }else{
-      console.warn("can't get the data from ownerstore!")
-    }
-    });
+watchEffect(() => {
+product.value.sizes = sizeInput.value.split(',').map(s => s.trim()).filter(Boolean);
+});
+// Show the product detail on the editable field
+onMounted(async () => {
+const fetched=await storeOwner.fetchProduct(productId);
+if(fetched){
+  product.value=fetched;
+  previewImage.value=fetched.image;
+  sizeInput.value=fetched.sizes?.join(',') ||'';
+  console.log("product in component:", product.value);
+}else{
+  console.warn("can't get the data from ownerstore!")
+}
+});
 
 //update the product
-
 const updateProduct = async () => {
   try {
     const res = await storeOwner.updateProduct(productId, {
