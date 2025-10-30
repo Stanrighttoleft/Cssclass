@@ -32,7 +32,7 @@ import { RouterLink } from 'vue-router';
 const name='News';
 const articles=ref([]);
 const pen=ref('/assets/pen.gif');
-const newsUrl='https://newsapi.org/v2/top-headlines?' +'category=business&' +     'country=us&' +'pageSize=3&' +                'apiKey=222dfbdb223a4c6097f1b8155d21e91e';
+const newsUrl='https://newsapi.org/v2/top-headlines?' +'category=business&' +'country=us&' +'pageSize=3&' +'apiKey=222dfbdb223a4c6097f1b8155d21e91e';
 
 
 onMounted(async ()=>{
@@ -47,13 +47,16 @@ onMounted(async ()=>{
 //Computed property to truncate content
 
 const truncatedArticles=computed(()=>{
+    if (!articles.value || !Array.isArray(articles.value)) return [];
     return articles.value.map(article=>({
         ...article,
-        truncatedContent: article.description && article.description.length > 90 
-        ? article.description.slice(0,90) 
-        :article.description || 'no description'
+        truncatedContent:
+        article.description && article.description.length > 90
+            ? article.description.slice(0, 90)
+            : article.description || 'no description'
     }))
 })
+
 
 
 
