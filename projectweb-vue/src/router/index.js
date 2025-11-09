@@ -22,6 +22,7 @@ import ProductDetailManagerView from "@/views/ProductDetailManagerView.vue";
 import ProductAddManagerView from "@/views/ProductAddManagerView.vue";
 import CountDownClockView from "@/views/CountDownClockView.vue";
 import OrderManagerView from "@/views/OrderManagerView.vue";
+import FormView from "@/views/FormView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -139,6 +140,11 @@ const router = createRouter({
       name: "ordermanager",
       component: OrderManagerView,
       meta: { requiresStoreOwner: true },
+    },
+    {
+      path: "/testout",
+      name: "testout",
+      component: FormView,
     },
   ],
 });
