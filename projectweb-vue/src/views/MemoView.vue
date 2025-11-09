@@ -15,12 +15,14 @@
         </div>
       </Slide>
     </Carousel>
+    <FeatherEffect/>
   </div>
 </template>
 
 <script setup>
 import Carousel from "@/components/Carousel.vue";
 import Slide from "@/components/Slide.vue";
+import FeatherEffect from "@/components/FeatherEffect.vue";
 import { ref } from "vue";
 
 const name = "about";
