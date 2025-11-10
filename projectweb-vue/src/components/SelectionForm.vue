@@ -1,74 +1,71 @@
 <template>
-  <div class="form">
-    <label for="try" class="form-label">選擇商品</label>
-    <div style="display: flex; gap: 10px; align-items: center">
-      <select v-model="selectedValue" id="try" class="form-control" required>
-        <option value="" selected disabled hidden>Choose one</option>
-        <option :value="item.id" v-for="item in list" :key="item.id">
-          {{ item.content }} - ${{ item.price }}
-        </option>
-      </select>
-
-      <button type="button" @click="addItem">加入</button>
-    </div>
-
-    <hr />
-
-    <h3>已選商品：</h3>
-    <ul>
-      <li v-for="(p, index) in showList" :key="p.id">
-        {{ p.content }} — ${{ p.price }}
-        <button type="button" @click="removeItem(index)">移除</button>
-      </li>
-    </ul>
-
-    <p><strong>總價：</strong> ${{ totalPrice }}</p>
+<div class="form">
+   
+  <div>
+    <select name="" id="" v-model="selectedCata">
+      <option value="" selected hidden disabled >請選擇類別</option>
+      <option :value=item.name v-for="item, index in cakeList" :key="index">{{ item.name }}</option>
+    </select>
+    <hr>
+    <select name="" id="" v-model="selectedProdt">
+      <option value="" selected hidden disabled >請選擇產品</option>
+      <option :value=prodt.name v-for="prodt, index in currentList" :key="index">{{prodt.name}}</option>
+    </select>
+    <button class="btn btn-warning ms-3" @click="addItem()">加入購物</button>
   </div>
+  <hr>
+  <ul>
+    <li v-for="item, index in cartList" :key="index">{{ item.name }}-{{ item.price }}</li>
+  </ul>
+  
+</div>
+
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 
-// 商品清單
-const list = ref([
-  { id: 1, content: "information", value: "information", price: 100 },
-  { id: 2, content: "webdesign", value: "webdesign", price: 200 },
-  { id: 3, content: "warehouse", value: "warehouse", price: 300 },
-  { id: 4, content: "office", value: "office", price: 400 },
-]);
 
-// 使用者選擇的商品 ID
-const selectedValue = ref("");
+const cakeList=ref([
+  { name:"麵包",
+    sub:[
+      {name:'肉鬆麵包', price:10},
+      {name:'夾心麵包', price:20},
+      {name:'可頌',price:30}
+    ]
+  },
+  { name:"蛋糕",
+    sub:[
+      {name:'黑森林蛋糕', price:10},
+      {name:'乳酪蛋糕', price:20},
+      {name:'起司蛋糕', price:30}
+    ]
+  }
+])
+const selectedCata=ref("");
+const currentList=ref([]);
+const selectedProdt=ref("");
+const cartList=ref([]);
+const product=ref([]);
 
-// 已加入的商品
-const showList = ref([]);
-
-// 總價
-const totalPrice = ref(0);
-
-// 點擊「加入」按鈕
-function addItem() {
-  const selected = list.value.find((item) => item.id === selectedValue.value);
-  if (selected && !showList.value.find((p) => p.id === selected.id)) {
-    showList.value.push(selected);
+function addItem(){
+   product.value=currentList.value.find(p=>p.name===selectedProdt.value);
+  if(product){
+    cartList.value.push(product.value);
   }
 }
 
-// 移除項目
-function removeItem(index) {
-  showList.value.splice(index, 1);
-}
 
-// 🔍 使用 watch 監聽 showList 改變 → 更新總價
 watch(
-  showList,
-  (newList) => {
-    let total = 0;
-    newList.forEach((item) => {
-      total += item.price;
-    });
-    totalPrice.value = total;
-  },
-  { deep: true }
-);
+  selectedCata,
+  (newvalue)=>{    
+    if(!newvalue){
+      currentList.value=[];
+    }else{
+      const tempList=cakeList.value.find((a)=>a.name==newvalue);
+      currentList.value=tempList ?tempList.sub : [];
+    }
+  }
+)
+
 </script>
