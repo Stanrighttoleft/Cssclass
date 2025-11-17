@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid p-0 m-0 fixed-top test">
+  <div class="container-fluid p-0 m-0 fixed-top test" >
     <div class="row bg-secondary p-0 m-0">
       <div class="col-xxl-1 offset-xxl-2 col-2">
         <RouterLink to="/" class="text-danger"
@@ -8,7 +8,7 @@
       </div>
       <div class="col-xxl-7 col-10 flex-column p-0 m-0">
         <div
-          class="row p-0 m-0 border-bottom border-warning border-2 pb-2 rightTop"
+          class="row p-0 m-0 pb-2 rightTop" style="box-shadow: 0 4px 10px rgba(0,0,0,0.2);"
         >
           <div
             class="col-4 d-none d-lg-flex justify-content-start align-items-center p-0 m-0"
@@ -36,17 +36,17 @@
           <div class="d-none d-lg-flex col-8 justify-content-end pe-3 m-0">
             <RouterLink
               v-if="userInfo"
-              :to="userInfo.role === 'storeowner' ? '/admin' : '/member'"
+              :to="userInfo?.role === 'storeowner' ? '/admin' : '/member'"
               class="text-decoration-none mt-1"
             >
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline"
                 >{{
-                  userInfo.role === "storeowner" ? "管理專區" : "會員專區"
+                  userInfo?.role === "storeowner" ? "管理專區" : "會員專區"
                 }}</span
               >
             </RouterLink>
-            <RouterLink v-else to="/login" class="mt-1">
+            <RouterLink v-else to="/login" class="mt-1 text-decoration-none">
               <img :src="login" alt="" class="login" /><span
                 class="text-light d-none d-lg-inline text-decoration-none"
                 >會員登入</span
