@@ -1,22 +1,28 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRoute } from "vue-router";
 import Navbar from "@/components/navbar.vue";
 import NewNavbar from "@/components/NewNavbar.vue";
 import Footer from "./components/Footer.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useCartStore } from "./stores/cartStore";
 import { useUserStore } from "./stores/userStore";
 import SlideSideMenu from "./components/SlideSideMenu.vue";
 import { storeToRefs } from "pinia";
 import ManagerNav from "./components/ManagerNav.vue";
 import { computed } from "vue";
+import { useUIStore } from "./stores/uiStore";
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
+// uistore
+const uiStore=useUIStore();
+const showNavbar=computed(()=>uiStore.showNavbar);
 
 const carticon = ref("/assets/carticon.png");
 const isLarge = ref(window.innerWidth >= 992); // Bootstrap lg = 992px
+// 隱藏或顯示navbar變數
+
 
 function handleResize() {
   isLarge.value = window.innerWidth >= 992;
@@ -33,6 +39,7 @@ onMounted(async () => {
   await userStore.fetchCurrentUser();
   window.addEventListener("resize", handleResize);
   console.log(userInfo);
+  
 });
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
@@ -42,7 +49,7 @@ onUnmounted(() => {
 <template>
   <main class="position-relative">
     <div>
-      <component :is="currentNav" />
+      <component v-if="showNavbar" :is="currentNav"  />
     </div>
     <div :class="[{ 'shift-up': !isLarge && userInfo?.role !== 'storeowner' }]">
       <RouterLink to="/cart">
@@ -57,6 +64,7 @@ onUnmounted(() => {
 
       <!-- <Navbar/> -->
       <RouterView />
+      
       <Footer v-if="isLarge" />
     </div>
   </main>
