@@ -15,7 +15,7 @@
         </div>
       </Slide>
     </Carousel>
-    <FeatherEffect/>
+    <FeatherEffect />
   </div>
 </template>
 
@@ -49,6 +49,6 @@ const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
   object-fit: cover;
 }
 .about {
-  height: 100vh;
+  height: 200vh;
 }
 </style>
