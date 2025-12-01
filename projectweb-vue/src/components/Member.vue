@@ -1,16 +1,34 @@
 <template>
   <div class="container mt-5">
     <div v-if="user">
-      <h1>Welcome, {{ user.name }}</h1>
-      <p>Email: {{ user.email }}</p>
-      <p>Phone: {{ user.phone }}</p>
-      <button @click="logout">Logout</button>
+      <table class="table table-striped">
+        <h2 class="mt-2">會員專區：</h2>
+        <br />
+        <tbody>
+          <tr>
+            <td scope="col">歡迎回來</td>
+            <td scope="col">{{ user.name }}</td>
+          </tr>
+          <tr>
+            <td scope="col">會員信箱</td>
+            <td scope="col">{{ user.email }}</td>
+          </tr>
+          <tr>
+            <td scope="col">會員電話</td>
+            <td scope="col">{{ user.phone }}</td>
+          </tr>
+          <tr>
+            <td scope="col">登出會員</td>
+            <td scope="col"><button @click="logout">Logout</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div v-else>
       <p>Loading user data...</p>
     </div>
 
-    <h2>我的訂單</h2>
+    <h2 class="mb-3">會員訂單</h2>
     <div v-if="orders.length === 0">目前沒有訂單</div>
     <div v-for="order in orders" :key="order.id" class="card mb-3">
       <div class="card-body">

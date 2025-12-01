@@ -5,13 +5,16 @@
       v-slot="{ currentSlide }"
       :navigation="true"
       :pagination="true"
-      :timeout="15000"
+      :timeout="5000"
       :startAutoPlay="true"
       :slide-count="carouselSlides.length"
     >
       <Slide v-for="(slide, index) in carouselSlides" :key="index">
         <div v-show="currentSlide === index + 1" class="slide-info">
-          <img :src="`./assets/${slide}.jpg`" alt="" />
+          <h1 class="position-absolute text-white" style="top: 60%; left: 20%">
+            {{ slide.line }}
+          </h1>
+          <img :src="`./assets/${slide.name}.jpg`" alt="" class="img-fluid" />
         </div>
       </Slide>
     </Carousel>
@@ -26,7 +29,13 @@ import FeatherEffect from "@/components/FeatherEffect.vue";
 import { ref } from "vue";
 
 const name = "about";
-const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
+const carouselSlides = ref([
+  { name: "p11", line: "依照你的訂單在澳洲最可靠的商家進行採買" },
+  { name: "p12", line: "不同的產品用最合適最用心的方式去打包" },
+  { name: "p13", line: "配合安全的物流讓您的商品維持最佳品質" },
+  { name: "p14", line: "根據當地以及澳洲法規去做調整讓你的商品不卡關" },
+  { name: "p15", line: "在地物流直送到您手上" },
+]);
 </script>
 
 <style>
@@ -49,6 +58,7 @@ const carouselSlides = ref(["bg-1", "bg-2", "bg-3"]);
   object-fit: cover;
 }
 .about {
-  height: 200vh;
+  height: 100vh;
+  background-color: black;
 }
 </style>

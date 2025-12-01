@@ -10,7 +10,7 @@ import CartList from "@/components/CartList.vue";
 
 <style>
 .cartlist {
-  margin-top: 100px;
+  margin-top: 120px;
   height: 100vh;
 }
 </style>

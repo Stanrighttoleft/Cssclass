@@ -1,7 +1,7 @@
 <script setup>
 import openBanner from "@/components/openBanner.vue";
 import ImageCard from "@/components/image-card.vue";
-import { ref,inject,onMounted, onBeforeUnmount } from "vue";
+import { ref, inject, onMounted, onBeforeUnmount } from "vue";
 import { useUIStore } from "@/stores/uiStore";
 import ProductShow from "@/components/ProductShow.vue";
 import News from "@/components/news.vue";
@@ -10,25 +10,45 @@ import Footer from "@/components/Footer.vue";
 import Shipment from "@/components/Shipment.vue";
 import OpeningTheme from "@/components/OpeningTheme.vue";
 
-
 // use the uistore
-const uiStore=useUIStore();
+const uiStore = useUIStore();
+
+onMounted(() => {
+  // check if already played in this session
+  const hasPlayed = sessionStorage.getItem("openingPlayed");
+
+  if (!hasPlayed) {
+    // first time visiting → play animation
+    uiStore.openingFinished = false;
+    uiStore.showNavbar = false;
+
+    setTimeout(() => {
+      uiStore.openingFinished = true;
+      uiStore.showNavbar = true;
+
+      // remember so it never plays again this session
+      sessionStorage.setItem("openingPlayed", "true");
+    }, 1500);
+  } else {
+    // loading already played → skip
+    uiStore.openingFinished = true;
+    uiStore.showNavbar = true;
+  }
+});
 </script>
 <template>
-  
   <div class="homeview">
     <!-- only mount OpeningTheme once -->
     <OpeningTheme v-if="!uiStore.openingFinished" />
-    
+
     <openBanner class="openbanner" />
-    <ProductShow :productsList="list" />
+    <ProductShow />
     <News />
     <AboutUs />
     <shipment />
 
     <!-- <ImageCard :visibleNumber="6" :getImages="getImages"/> -->
   </div>
-
 </template>
 
 <style>

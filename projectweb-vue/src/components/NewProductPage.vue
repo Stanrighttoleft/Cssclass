@@ -86,12 +86,12 @@ const filteredAndSortedProducts = computed(() => {
 const menus = ref([
   {
     title: "品項選擇",
-    expanded: false,
+    expanded: true,
     children: ["生活五金", "保養品", "戶外用品"],
   },
   {
     title: "品牌選擇",
-    expanded: false,
+    expanded: true,
     children: ["Life Space", "Unichi Rosa"],
   },
 ]);

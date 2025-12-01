@@ -10,7 +10,7 @@ import Member from "@/components/Member.vue";
 
 <style>
 .memberview {
-  margin-top: 100px;
+  margin-top: 120px;
   height: 100vh;
 }
 </style>
