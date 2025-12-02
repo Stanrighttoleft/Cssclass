@@ -16,13 +16,12 @@ const cartStore = useCartStore();
 const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
 // uistore
-const uiStore=useUIStore();
-const showNavbar=computed(()=>uiStore.showNavbar);
+const uiStore = useUIStore();
+const showNavbar = computed(() => uiStore.showNavbar);
 
 const carticon = ref("/assets/carticon.png");
 const isLarge = ref(window.innerWidth >= 992); // Bootstrap lg = 992px
 // 隱藏或顯示navbar變數
-
 
 function handleResize() {
   isLarge.value = window.innerWidth >= 992;
@@ -39,7 +38,6 @@ onMounted(async () => {
   await userStore.fetchCurrentUser();
   window.addEventListener("resize", handleResize);
   console.log(userInfo);
-  
 });
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
@@ -47,9 +45,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main class="position-relative">
-    <div>
-      <component v-if="showNavbar" :is="currentNav"  />
+  <main
+    class="position-relative col-lg-8 offset-lg-2 col-xxl-6 offset-xxl-3"
+    style="max-width: 1920px"
+  >
+    <div class="navbar-fixed-wrapper">
+      <component v-if="showNavbar" :is="currentNav" />
     </div>
     <div :class="[{ 'shift-up': !isLarge && userInfo?.role !== 'storeowner' }]">
       <RouterLink to="/cart">
@@ -64,7 +65,7 @@ onUnmounted(() => {
 
       <!-- <Navbar/> -->
       <RouterView />
-      
+
       <Footer v-if="isLarge" />
     </div>
   </main>
@@ -109,5 +110,12 @@ div {
   line-height: 20px;
   z-index: 6;
   display: inline-block;
+}
+.navbar-fixed-wrapper {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: inherit; /* match the parent's width */
+  max-width: inherit;
 }
 </style>

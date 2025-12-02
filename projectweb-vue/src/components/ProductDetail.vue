@@ -54,7 +54,7 @@
       <div class="offset-xxl-3 col-xxl-6 col-12">
         <h1>產品描述</h1>
         <hr />
-        <p>預計產品描述跟圖片還有影片區域</p>
+        <div v-if="product.description" v-html="product.description"></div>
       </div>
     </div>
   </div>

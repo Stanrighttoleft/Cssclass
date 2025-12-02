@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex justify-content-center row loginform">
-    <div class="col-sm-6 mt-5">
+  <div class="d-flex justify-content-center row">
+    <div class="col-sm-10 col-md-8 col-lg-6 mt-5 col-10">
       <form @submit.prevent="onSubmit">
         <div class="shadow p-5 pt-3 rounded-4">
           <h1>會員登入</h1>
@@ -75,7 +75,7 @@ const userStore = useUserStore();
 const onSubmit = async () => {
   errorMsg.value = "";
   const success = await userStore.login(email.value, password.value);
-    if (success) {
+  if (success) {
     const role = userStore.userInfo?.role || "member";
 
     if (role === "storeowner") {
@@ -87,7 +87,6 @@ const onSubmit = async () => {
     errorMsg.value = "登入失敗,請檢察帳號密碼";
   }
 
-
   const clearForm = () => {
     email.value = "";
     password.value = "";
@@ -96,8 +95,4 @@ const onSubmit = async () => {
 };
 </script>
 
-<style scoped>
-.loginform {
-  height: 600px;
-}
-</style>
+<style scoped></style>

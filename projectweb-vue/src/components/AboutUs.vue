@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid m-0 p-0">
+  <div class="container-fluid m-0 p-0 bg-warning">
     <div class="row bg-warning">
       <div class="col-lg-3 d-none d-lg-inline">
         <img class="styleimg" :src="styleimg" alt="" />
@@ -83,6 +83,7 @@ onMounted(() => {
 }
 .about {
   height: 400px;
+  background-color: transparent;
 }
 .abouttext {
   font-family: "標楷體", "DFKai-SB", "Microsoft JhengHei", "SimSun", serif;

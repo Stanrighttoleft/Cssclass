@@ -1,100 +1,96 @@
 <template>
-  <div class="container-fluid p-0 m-0 fixed-top test" >
-    <div class="row bg-secondary p-0 m-0">
-      <div class="col-xxl-1 offset-xxl-2 col-2">
-        <RouterLink to="/" class="text-danger"
-          ><img :src="logo" alt="" class="img-fluid logo"
-        /></RouterLink>
-      </div>
-      <div class="col-xxl-7 col-10 flex-column p-0 m-0">
+  <div class="row bg-secondary p-0 m-0">
+    <div class="col-lg-1 col-2">
+      <RouterLink to="/" class="text-danger"
+        ><img :src="logo" alt="" class="img-fluid logoimage"
+      /></RouterLink>
+    </div>
+    <div class="col-lg-11 col-10 flex-column m-0" style="padding-left: 10px">
+      <div class="row p-0 m-0 rightTop">
         <div
-          class="row p-0 m-0 pb-2 rightTop" style="box-shadow: 0 4px 10px rgba(0,0,0,0.2);"
+          class="col-4 d-none d-lg-flex justify-content-center align-items-center ps-1 m-0"
         >
-          <div
-            class="col-4 d-none d-lg-flex justify-content-start align-items-center p-0 m-0"
+          <RouterLink to="/lottery">
+            <img class="facebook" :src="facebook" alt="" />
+          </RouterLink>
+          <RouterLink to="/likeus" class="text-decoration-none mt-0"
+            ><span class="text-light d-none d-md-inline"
+              >關注我們</span
+            ></RouterLink
           >
-            <RouterLink to="/lottery">
-              <img class="facebook" :src="facebook" alt="" />
-            </RouterLink>
-            <RouterLink to="/likeus" class="text-decoration-none mt-0"
-              ><span class="text-light d-none d-md-inline"
-                >關注我們</span
-              ></RouterLink
+          <motion.img
+            :src="like"
+            :initial="{
+              scale: 1,
+            }"
+            :whileInView="{
+              scale: [1, 2, 1],
+            }"
+            alt=""
+            class="like"
+          ></motion.img>
+        </div>
+        <div class="d-none d-lg-flex col-8 justify-content-end pe-3 m-0">
+          <RouterLink
+            v-if="userInfo"
+            :to="userInfo?.role === 'storeowner' ? '/admin' : '/member'"
+            class="text-decoration-none mt-1"
+          >
+            <img :src="login" alt="" class="login" /><span
+              class="text-light d-none d-lg-inline"
+              >{{
+                userInfo?.role === "storeowner" ? "管理專區" : "會員專區"
+              }}</span
             >
-            <motion.img
-              :src="like"
-              :initial="{
-                scale: 1,
-              }"
-              :whileInView="{
-                scale: [1, 2, 1],
-              }"
-              alt=""
-              class="like"
-            ></motion.img>
-          </div>
-          <div class="d-none d-lg-flex col-8 justify-content-end pe-3 m-0">
+          </RouterLink>
+          <RouterLink v-else to="/login" class="mt-1 text-decoration-none">
+            <img :src="login" alt="" class="login" /><span
+              class="text-light d-none d-lg-inline text-decoration-none"
+              >會員登入</span
+            >
+          </RouterLink>
+          <RouterLink to="/cart" class="text-decoration-none mt-1">
+            <img :src="cart" alt="" class="cart" /><span
+              class="text-light d-none d-lg-inline"
+              >購物車</span
+            >
+          </RouterLink>
+          <img
+            :src="searchIcon"
+            alt=""
+            class="search-icon"
+            @click="showSearch = !showSearch"
+          />
+          <input
+            v-if="showSearch"
+            v-model="searchKeyword"
+            @keyup.enter="submitSearch"
+            type="text"
+            placeholder="輸入商品關鍵字"
+            class="form-control ms-2"
+            style="width: 200px; height: 40px"
+          />
+        </div>
+      </div>
+      <div
+        class="navbarlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0 mt-2"
+      >
+        <ul class="navbarlistul">
+          <li v-for="(item, index) in link" :key="index">
             <RouterLink
-              v-if="userInfo"
-              :to="userInfo?.role === 'storeowner' ? '/admin' : '/member'"
-              class="text-decoration-none mt-1"
+              :to="item.goTo"
+              :class="[
+                isActiveLink(item.goTo) ? 'active' : '',
+                'navlink',
+                'px-1',
+                'pt-2',
+                'thelink',
+                'border-box',
+              ]"
+              >{{ item.name }}</RouterLink
             >
-              <img :src="login" alt="" class="login" /><span
-                class="text-light d-none d-lg-inline"
-                >{{
-                  userInfo?.role === "storeowner" ? "管理專區" : "會員專區"
-                }}</span
-              >
-            </RouterLink>
-            <RouterLink v-else to="/login" class="mt-1 text-decoration-none">
-              <img :src="login" alt="" class="login" /><span
-                class="text-light d-none d-lg-inline text-decoration-none"
-                >會員登入</span
-              >
-            </RouterLink>
-            <RouterLink to="/cart" class="text-decoration-none mt-1">
-              <img :src="cart" alt="" class="cart" /><span
-                class="text-light d-none d-lg-inline"
-                >購物車</span
-              >
-            </RouterLink>
-            <img
-              :src="searchIcon"
-              alt=""
-              class="search-icon"
-              @click="showSearch = !showSearch"
-            />
-            <input
-              v-if="showSearch"
-              v-model="searchKeyword"
-              @keyup.enter="submitSearch"
-              type="text"
-              placeholder="輸入商品關鍵字"
-              class="form-control ms-2"
-              style="width: 200px; height: 40px"
-            />
-          </div>
-        </div>
-        <div
-          class="navbarlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0 mt-2"
-        >
-          <ul class="navbarlistul">
-            <li v-for="(item, index) in link" :key="index">
-              <RouterLink
-                :to="item.goTo"
-                :class="[
-                  isActiveLink(item.goTo) ? 'active' : '',
-                  'navlink',
-                  'px-1',
-                  'pt-2',
-                  'thelink',
-                  'border-box',
-                ]"
-                >{{ item.name }}</RouterLink
-              >
-            </li>
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -111,7 +107,7 @@ const searchKeyword = ref("");
 const router = useRouter();
 
 const name = ref("Navbar");
-const logo = ref("./assets/logov12.png");
+const logo = ref("./assets/logov122.png");
 const facebook = ref("./assets/facebook.png");
 const like = ref("./assets/like.png");
 const login = ref("./assets/user-solid-full.svg");
@@ -215,11 +211,11 @@ html {
   font-weight: 400;
   font-style: normal;
 }
-.logo {
-  max-height: 82px;
-  max-width: 90px;
-  min-width: 90px;
-  min-height: 82px;
+.logoimage {
+  min-width: 60px;
+  min-height: 60px;
+
+  object-fit: cover;
 }
 .active {
   border-radius: 10% 10% 0% 0%;

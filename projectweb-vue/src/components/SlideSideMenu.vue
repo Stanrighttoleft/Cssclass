@@ -53,7 +53,7 @@
                 連絡我們
               </li></RouterLink
             >
-            <RouterLink to="/contact" class="text-decoration-none"
+            <RouterLink to="/cart" class="text-decoration-none"
               ><li class="text-white text-decoration-none">
                 <img :src="cart" class="mb-1" alt="" style="width: 1.5rem" />
                 購物車
@@ -123,8 +123,10 @@ const toggleMenu = () => {
   position: fixed;
   top: 0;
   left: 0;
+  padding-right: 0;
+  margin-right: 0;
   height: 100vh;
-  width: 230px; /* 220 (menu) + 40 (tab) */
+  width: 190px; /* 220 (menu) + 40 (tab) */
   display: flex;
   flex-direction: row;
   z-index: 10;
