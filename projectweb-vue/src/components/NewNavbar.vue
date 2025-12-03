@@ -1,6 +1,6 @@
 <template>
   <div class="row bg-secondary p-0 m-0">
-    <div class="col-lg-1 col-2">
+    <div class="col-lg-1 col-xxl-1 col-2">
       <RouterLink to="/" class="text-danger"
         ><img :src="logo" alt="" class="img-fluid logoimage"
       /></RouterLink>
@@ -30,7 +30,7 @@
             class="like"
           ></motion.img>
         </div>
-        <div class="d-none d-lg-flex col-8 justify-content-end pe-3 m-0">
+        <div class="d-none d-lg-flex col-lg-8 justify-content-end pe-3 m-0">
           <RouterLink
             v-if="userInfo"
             :to="userInfo?.role === 'storeowner' ? '/admin' : '/member'"
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div
-        class="navbarlist col-sm-12 d-none d-lg-flex justify-content-end align-items-center pe-3 m-0 mt-2"
+        class="navbarlist d-none d-lg-flex justify-content-end align-items-center pe-3 m-0 mt-2"
       >
         <ul class="navbarlistul">
           <li v-for="(item, index) in link" :key="index">

@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid m-0 p-0 bg-warning">
     <div class="row bg-warning">
-      <div class="col-lg-3 d-none d-lg-inline">
+      <div class="col-xxl-3 d-none d-xxl-inline">
         <img class="styleimg" :src="styleimg" alt="" />
       </div>
-      <div class="col-md-3 d-flex justify-content-center">
+      <div class="col-xxl-3 d-flex justify-content-center">
         <img class="aboutimg" :src="aboutus" />
       </div>
-      <div class="col-lg-6 col-md-9">
+      <div class="col-xxl-6 col-md-9">
         <div class="d-flex justify-content-end">
           <motion.img
             class="shipment2"
@@ -71,14 +71,14 @@ onMounted(() => {
 
 <style scoped>
 .styleimg {
-  width: 400px;
+  width: 300px;
 }
 .aboutimg {
   width: 200px;
 }
 .shipment2 {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   transform: scaleX(-1);
 }
 .about {

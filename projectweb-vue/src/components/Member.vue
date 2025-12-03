@@ -1,9 +1,9 @@
 <template>
   <div class="container mt-5">
     <div v-if="user">
+      <h2 class="mt-2">會員專區：</h2>
+      <br />
       <table class="table table-striped">
-        <h2 class="mt-2">會員專區：</h2>
-        <br />
         <tbody>
           <tr>
             <td scope="col">歡迎回來</td>

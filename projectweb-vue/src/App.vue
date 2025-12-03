@@ -45,30 +45,34 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main
-    class="position-relative col-lg-8 offset-lg-2 col-xxl-6 offset-xxl-3"
-    style="max-width: 1920px"
-  >
-    <div class="navbar-fixed-wrapper">
-      <component v-if="showNavbar" :is="currentNav" />
-    </div>
-    <div :class="[{ 'shift-up': !isLarge && userInfo?.role !== 'storeowner' }]">
-      <RouterLink to="/cart">
-        <button class="position-fixed rounded-circle bg-light" id="cartbutton">
-          <img :src="carticon" alt="" class="" id="carticon" /><span
-            class="cart-badge"
-            v-if="cartStore.totalQuantity > 0"
-            >{{ cartStore.totalQuantity }}</span
-          >
-        </button></RouterLink
+  <div style="display: flex; justify-content: center">
+    <main class="position-relative container m-0 p-0" style="max-width: 1920px">
+      <div class="navbar-fixed-wrapper">
+        <component v-if="showNavbar" :is="currentNav" />
+      </div>
+      <div
+        :class="[{ 'shift-up': !isLarge && userInfo?.role !== 'storeowner' }]"
       >
+        <RouterLink to="/cart">
+          <button
+            class="position-fixed rounded-circle bg-light"
+            id="cartbutton"
+          >
+            <img :src="carticon" alt="" class="" id="carticon" /><span
+              class="cart-badge"
+              v-if="cartStore.totalQuantity > 0"
+              >{{ cartStore.totalQuantity }}</span
+            >
+          </button></RouterLink
+        >
 
-      <!-- <Navbar/> -->
-      <RouterView />
+        <!-- <Navbar/> -->
+        <RouterView />
 
-      <Footer v-if="isLarge" />
-    </div>
-  </main>
+        <Footer v-if="isLarge" />
+      </div>
+    </main>
+  </div>
 </template>
 
 <style>
@@ -115,7 +119,7 @@ div {
   position: fixed;
   top: 0;
   z-index: 999;
-  width: inherit; /* match the parent's width */
+  width: 100%; /* match the parent's width */
   max-width: inherit;
 }
 </style>
